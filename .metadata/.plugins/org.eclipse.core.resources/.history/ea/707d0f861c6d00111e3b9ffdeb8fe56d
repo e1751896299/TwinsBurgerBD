@@ -1,0 +1,5 @@
+package com.uisrael.twinsburger.infraestructura.persistencia.jpa;
+
+public class ClienteEntity {
+
+}
