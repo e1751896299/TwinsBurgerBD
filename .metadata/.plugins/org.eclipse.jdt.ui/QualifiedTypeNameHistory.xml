@@ -10,4 +10,9 @@
     <fullyQualifiedTypeName name="jakarta.persistence.Id"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Entity"/>
     <fullyQualifiedTypeName name="jakarta.persistence.Table"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.MetodoPagoEntity"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.PagoEntity"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.PedidoEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.ProductoEntity"/>
 </qualifiedTypeNameHistroy>
