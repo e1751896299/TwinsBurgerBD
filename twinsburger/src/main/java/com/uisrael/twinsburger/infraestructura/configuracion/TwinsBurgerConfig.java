@@ -3,9 +3,11 @@ package com.uisrael.twinsburger.infraestructura.configuracion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IAdministradorUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.ICategoriaUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IClienteUseCase;
+import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IDetallePedidoUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IHorarioRetiroUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IMetodoPagoUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IPagoUseCase;
@@ -14,6 +16,7 @@ import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IProductoUseCase;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.AdministradorUseCaseImpl;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.CategoriaUseCaseImpl;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.ClienteUseCaseImpl;
+import com.uisrael.twinsburger.aplicacion.casosuso.impl.DetallePedidoUseCaseImpl;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.HorarioRetiroUseCaseImpl;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.MetodoPagoUseCaseImpl;
 import com.uisrael.twinsburger.aplicacion.casosuso.impl.PagoUseCaseImpl;
@@ -22,6 +25,7 @@ import com.uisrael.twinsburger.aplicacion.casosuso.impl.ProductoUseCaseImpl;
 import com.uisrael.twinsburger.dominio.repositorios.IAdministradorRepositorio;
 import com.uisrael.twinsburger.dominio.repositorios.ICategoriaRepositorio;
 import com.uisrael.twinsburger.dominio.repositorios.IClienteRepositorio;
+import com.uisrael.twinsburger.dominio.repositorios.IDetallePedidoRepositorio;
 import com.uisrael.twinsburger.dominio.repositorios.IHorarioRetiroRepositorio;
 import com.uisrael.twinsburger.dominio.repositorios.IMetodoPagoRepositorio;
 import com.uisrael.twinsburger.dominio.repositorios.IPagoRepositorio;
@@ -30,6 +34,7 @@ import com.uisrael.twinsburger.dominio.repositorios.IProductoRepositorio;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.AdministradorRepositorioImpl;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.CategoriaRepositorioImpl;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.ClienteRepositorioImpl;
+import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.DetallePedidoRepositorioImpl;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.HorarioRetiroRepositorioImpl;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.MetodoPagoRepositorioImpl;
 import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.PagoRepositorioImpl;
@@ -38,6 +43,7 @@ import com.uisrael.twinsburger.infraestructura.persistencia.adaptadores.Producto
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IAdministradorJpaMapper;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.ICategoriaJpaMapper;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IClienteJpaMapper;
+import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IDetallePedidoJpaMapper;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IHorarioRetiroJpaMapper;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IMetodoPagoJpaMapper;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IPagoJpaMapper;
@@ -46,6 +52,7 @@ import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IProducto
 import com.uisrael.twinsburger.infraestructura.repositorios.IAdministradorJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.ICategoriaJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IClienteJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IDetallePedidoJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IHorarioRetiroJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IMetodoPagoJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IPagoJpaRepositorio;
@@ -133,6 +140,16 @@ public class TwinsBurgerConfig {
 	@Bean
 	IProductoUseCase productoUseCase(IProductoRepositorio repositorio) {
 	    return new ProductoUseCaseImpl(repositorio);
+	}
+	
+	@Bean
+	IDetallePedidoRepositorio detallePedidoRepositorio(IDetallePedidoJpaRepositorio jpaRepositorio, IDetallePedidoJpaMapper jpaMapper) {
+	    return new DetallePedidoRepositorioImpl(jpaRepositorio, jpaMapper);
+	}
+	
+	@Bean
+	IDetallePedidoUseCase detallePedidoUseCase(IDetallePedidoRepositorio repositorio) {
+	    return new DetallePedidoUseCaseImpl(repositorio);
 	}
 
 }
