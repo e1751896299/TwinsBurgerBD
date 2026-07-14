@@ -36,4 +36,9 @@ public class HorarioRetiroUseCaseImpl implements IHorarioRetiroUseCase{
 		repositorio.eliminar(idHorarioRetiro);
 	}
 
+	@Override
+	public List<HorarioRetiro> listarHorarios() {
+		return repositorio.listarHorarios();
+	}
+
 }

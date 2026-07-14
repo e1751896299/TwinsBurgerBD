@@ -14,6 +14,8 @@ public interface IAdministradorRepositorio {
 	List<Administrador> listaTodos();
 	
 	void eliminar(int idAdminsitrador ); 
+	
+	Optional<Administrador> findByAdminCorreo(String correo);
 
 
 }

@@ -43,4 +43,16 @@ public class PagoRepositorioImpl implements IPagoRepositorio{
 		
 	}
 
+
+	@Override
+	public Optional<Pago> findByPedidoIdPedido(Integer idPedido) {
+		return jpaRepositorio.findByPedidoIdPedido(idPedido).map(entityMapper::toDomain);
+	}
+
+
+	@Override
+	public List<Pago> buscarPorMetodo(Integer idMetodo) {
+		return jpaRepositorio.buscarPorMetodo(idMetodo).stream().map(entityMapper::toDomain).toList();
+	}
+
 }

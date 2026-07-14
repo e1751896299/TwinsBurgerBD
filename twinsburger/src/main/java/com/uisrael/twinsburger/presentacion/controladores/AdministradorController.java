@@ -45,11 +45,16 @@ public class AdministradorController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable int idAdministrador){
-			administradorUseCase.eliminar(idAdministrador);
-			return ResponseEntity.noContent().build();
-		}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable int idAdministrador){
+		administradorUseCase.eliminar(idAdministrador);
+		return ResponseEntity.noContent().build();		
+	}
+	
+	@GetMapping("/correo/{correo}")
+	public AdministradorResponseDto findByAdminCorreo(@PathVariable String correo) {
+		return mapper.toResponseDto(administradorUseCase.findByAdminCorreo(correo));
+	}
 		
 
 }

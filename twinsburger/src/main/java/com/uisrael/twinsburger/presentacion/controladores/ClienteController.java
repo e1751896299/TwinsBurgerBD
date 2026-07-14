@@ -44,10 +44,20 @@ public class ClienteController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable int idCliente){
-			clienteUseCase.eliminar(idCliente);
-			return ResponseEntity.noContent().build();
-		}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable int idCliente){
+		clienteUseCase.eliminar(idCliente);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public List<ClienteResponseDto> buscarPorNombre(@PathVariable String nombre) {
+	    return clienteUseCase.buscarPorNombre(nombre).stream().map(mapper::toResponseDto).toList();
+	}
+	
+	@GetMapping("/correo/{correo}")
+	public ClienteResponseDto buscarPorCorreo(@PathVariable String correo) {
+	    return mapper.toResponseDto(clienteUseCase.findByCliCorreo(correo));
+	}
 
 }

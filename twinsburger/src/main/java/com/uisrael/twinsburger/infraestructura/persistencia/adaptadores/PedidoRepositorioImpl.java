@@ -43,4 +43,19 @@ public class PedidoRepositorioImpl implements IPedidoRepositorio {
 		
 	}
 
+	@Override
+	public List<Pedido> listarPedidosCliente(Integer idCliente) {
+		return jpaRepositorio.listarPedidosCliente(idCliente).stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<Pedido> listarPendientes() {
+		return jpaRepositorio.listarPendientes().stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<Pedido> buscarPorHorario(Integer idHorario) {
+		return jpaRepositorio.buscarPorHorario(idHorario).stream().map(entityMapper::toDomain).toList();
+	}
+
 }

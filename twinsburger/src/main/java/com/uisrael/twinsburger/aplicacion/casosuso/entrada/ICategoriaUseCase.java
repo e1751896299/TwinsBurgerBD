@@ -10,5 +10,7 @@ public interface ICategoriaUseCase {
 	Categoria buscarPorId(int idCategoria);
 	List<Categoria> listarTodos();
 	void eliminar(int idCtegoria);
+	
+	Categoria findByCatNombre(String nombre);
 
 }

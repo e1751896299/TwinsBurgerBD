@@ -1,9 +1,13 @@
 package com.uisrael.twinsburger.infraestructura.repositorios;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.MetodoPagoEntity;
 
 public interface IMetodoPagoJpaRepositorio extends JpaRepository<MetodoPagoEntity, Integer>{
+	
+	Optional<MetodoPagoEntity> findByMetNombre(String nombre);
 
 }

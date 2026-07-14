@@ -44,4 +44,9 @@ public class DetallePedidoRepositorioImpl implements IDetallePedidoRepositorio{
 		
 	}
 
+	@Override
+	public List<DetallePedido> obtenerDetallePedido(Integer idPedido) {
+		return jpaRepositorio.obtenerDetallePedido(idPedido).stream().map(entityMapper::toDomain).toList();
+	}
+
 }

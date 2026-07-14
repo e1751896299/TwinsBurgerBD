@@ -14,5 +14,7 @@ public interface IDetallePedidoRepositorio {
 	List<DetallePedido> listarTodos();
 	
 	void eliminar(int idDetalle);
+		
+	List<DetallePedido> obtenerDetallePedido(Integer idPedido);
 
 }

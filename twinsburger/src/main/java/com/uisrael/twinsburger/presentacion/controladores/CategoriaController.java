@@ -46,10 +46,14 @@ public class CategoriaController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable int idCategoria){
-			categoriaUseCase.eliminar(idCategoria);
-			return ResponseEntity.noContent().build();
-		}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable int idCategoria){			categoriaUseCase.eliminar(idCategoria);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public CategoriaResponseDto findByCatNombre(@PathVariable String nombre) {
+		return mapper.toResponseDto(categoriaUseCase.findByCatNombre(nombre));
+	}
 
 }

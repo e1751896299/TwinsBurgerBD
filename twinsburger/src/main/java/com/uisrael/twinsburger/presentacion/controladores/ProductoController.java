@@ -44,10 +44,30 @@ public class ProductoController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable int idProducto){
-			productoUseCase.eliminar(idProducto);
-			return ResponseEntity.noContent().build();
-		}
+	@DeleteMapping("/{idProducto}")
+	public ResponseEntity<Void> eliminar(@PathVariable int idProducto){
+		productoUseCase.eliminar(idProducto);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/estado/{estado}")
+	public List<ProductoResponseDto> findByProdEstado(@PathVariable Boolean estado){
+		return productoUseCase.findByProdEstado(estado).stream().map(mapper::toResponseDto).toList();
+	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public List<ProductoResponseDto> findByProdNombreContaining(@PathVariable String nombre){
+		return productoUseCase.findByProdNombreContaining(nombre).stream().map(mapper::toResponseDto).toList();
+	}
+	
+	@GetMapping("/idCategoria/{idCategoria}")
+	public List<ProductoResponseDto> buscarPorCategoria(@PathVariable Integer idCategoria){
+		return productoUseCase.buscarPorCategoria(idCategoria).stream().map(mapper::toResponseDto).toList();
+	}
+	
+	@GetMapping
+	public List<ProductoResponseDto> listarActivos(){
+		return productoUseCase.listarActivos().stream().map(mapper::toResponseDto).toList();
+	}
 
 }

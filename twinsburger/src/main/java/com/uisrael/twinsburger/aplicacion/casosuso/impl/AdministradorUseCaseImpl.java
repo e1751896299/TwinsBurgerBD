@@ -36,4 +36,11 @@ public class AdministradorUseCaseImpl implements IAdministradorUseCase{
 		repositorio.eliminar(idAdministrador);
 	}
 
+	@Override
+	public Administrador findByAdminCorreo(String correo) {
+		return repositorio.findByAdminCorreo(correo)
+				.orElseThrow(()-> new RuntimeException("No encontrado"));
+				
+	}
+
 }

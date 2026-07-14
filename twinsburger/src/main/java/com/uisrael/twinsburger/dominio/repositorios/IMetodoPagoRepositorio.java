@@ -14,6 +14,8 @@ public interface IMetodoPagoRepositorio {
 	List<MetodoPago> listaTodos();
 	
 	void eliminar(int idMetodoPago); 
+	
+	Optional<MetodoPago> findByMetNombre(String nombre);
 
 
 }

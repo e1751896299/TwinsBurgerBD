@@ -2,14 +2,14 @@ package com.uisrael.twinsburger.presentacion.dto.response;
 
 import java.time.LocalTime;
 
-public class HorarioRetiroresponseDto {
+public class HorarioRetiroResponseDto {
 	
 	private int idHorarioRetiro;
 	private LocalTime hrInicio;
 	private LocalTime hrFin;
 	private boolean hrEstado;
 	
-	public HorarioRetiroresponseDto() {
+	public HorarioRetiroResponseDto() {
 		super();
 	}
 	public int getIdHorarioRetiro() {

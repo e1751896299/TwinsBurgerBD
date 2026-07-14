@@ -15,6 +15,8 @@ public interface IHorarioRetiroRepositorio {
 	List<HorarioRetiro> listaTodos();
 	
 	void eliminar(int idHorarioRetiro); 
+	
+	List<HorarioRetiro> listarHorarios();
 
 
 }

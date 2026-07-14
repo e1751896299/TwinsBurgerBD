@@ -44,10 +44,15 @@ public class MetodoPagoController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-		@DeleteMapping("/{id}")
-		public ResponseEntity<Void> eliminar(@PathVariable int idMetodoPago){
-			metodoUseCase.eliminar(idMetodoPago);
-			return ResponseEntity.noContent().build();
-		}
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminar(@PathVariable int idMetodoPago){
+		metodoUseCase.eliminar(idMetodoPago);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/nombre/{nombre}")
+	public MetodoPagoResponseDto findByMetNombre(@PathVariable String nombre) {
+		return mapper.toResponseDto(metodoUseCase.findByMetNombre(nombre));
+	}
 
 }

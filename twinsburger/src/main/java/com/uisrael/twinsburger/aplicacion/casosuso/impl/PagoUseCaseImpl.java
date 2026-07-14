@@ -36,4 +36,14 @@ public class PagoUseCaseImpl implements IPagoUseCase{
 		repositorio.eliminar(idPago);
 	}
 
+	@Override
+	public Pago findByPedidoIdPedido(Integer idPedido) {
+		return repositorio.findByPedidoIdPedido(idPedido).orElseThrow(()-> new RuntimeException("No encontrado"));
+	}
+
+	@Override
+	public List<Pago> buscarPorMetodo(Integer idMetodo) {
+		return repositorio.buscarPorMetodo(idMetodo);
+	}
+
 }

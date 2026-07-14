@@ -42,4 +42,9 @@ public class AdministradorRepositorioImpl implements IAdministradorRepositorio {
 		jpaRepositorio.deleteById(idAdminsitrador);		
 	}
 
+	@Override
+	public Optional<Administrador> findByAdminCorreo(String correo) {
+		return jpaRepositorio.findByAdminCorreo(correo).map(entityMapper::toDomain);
+	}
+
 }

@@ -35,19 +35,30 @@ public class PagoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public PagoResponseDto guardar(@Valid @RequestBody PagoRequestDto pagoRequestdto) {
-		return mapper.toResponsedDto(pagoUseCase.guardar(mapper.toDomain(pagoRequestdto)));
+		return mapper.toResponseDto(pagoUseCase.guardar(mapper.toDomain(pagoRequestdto)));
 	}
 	
 	@GetMapping
 	public List<PagoResponseDto> listar(){
 		return pagoUseCase.listarTodos()
-				.stream().map(mapper::toResponsedDto).toList();
+				.stream().map(mapper::toResponseDto).toList();
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idPago){
 		pagoUseCase.eliminar(idPago);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/idPedido/{idPedido}")
+	public PagoResponseDto findByPedidoIdPedid(@PathVariable int idPedido) {
+		return mapper.toResponseDto(pagoUseCase.findByPedidoIdPedido(idPedido));
+		
+	}
+	
+	@GetMapping("/idMetodo/{idMetodo}")
+	public List<PagoResponseDto> buscarPorMetodo(@PathVariable int idMetodo){
+		return pagoUseCase.buscarPorMetodo(idMetodo).stream().map(mapper::toResponseDto).toList();
 	}
 
 }

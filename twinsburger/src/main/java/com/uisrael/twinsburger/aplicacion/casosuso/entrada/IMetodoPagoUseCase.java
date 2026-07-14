@@ -10,5 +10,6 @@ public interface IMetodoPagoUseCase {
 	MetodoPago buscarPorId(int idMetodoPago);
 	List<MetodoPago> listarTodos();
 	void eliminar(int idMetodoPago);
+	MetodoPago findByMetNombre(String nombre);
 
 }

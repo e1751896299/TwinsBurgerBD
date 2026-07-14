@@ -37,4 +37,16 @@ public class ClienteUseCaseImpl implements IClienteUseCase{
 		
 	}
 
+	@Override
+	public Cliente findByCliCorreo(String correo) {
+		return repositorio.findByCliCorreo(correo).orElseThrow(()->new RuntimeException("Correo no encontrado"));
+	}
+
+	@Override
+	public List<Cliente> buscarPorNombre(String nombre) {
+ 		return repositorio.buscarPorNombre(nombre);
+	}
+
+
+
 }

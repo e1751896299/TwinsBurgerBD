@@ -11,5 +11,5 @@ public interface IAdministradorJpaMapper {
 	Administrador toDomain(AdministradorEntity administradorEntity);
 	
 	AdministradorEntity toEntity(Administrador administradorPojo);
-
+	
 }

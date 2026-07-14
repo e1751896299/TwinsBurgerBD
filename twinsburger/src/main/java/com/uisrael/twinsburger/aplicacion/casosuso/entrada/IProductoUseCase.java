@@ -7,8 +7,20 @@ import com.uisrael.twinsburger.dominio.entidades.Producto;
 public interface IProductoUseCase {
 	
 	Producto guardar(Producto nuevoProducto);
+	
 	Producto buscarPorId(int idProducto);
+	
 	List<Producto> listarTodo();
+	
 	void eliminar(int idProducto);
+	
+	List<Producto> findByProdEstado(Boolean estado);
+
+	List<Producto> findByProdNombreContaining(String nombre);
+	
+	List<Producto> buscarPorCategoria(Integer idCategoria);
+	
+	List<Producto> listarActivos();
+	
 
 }

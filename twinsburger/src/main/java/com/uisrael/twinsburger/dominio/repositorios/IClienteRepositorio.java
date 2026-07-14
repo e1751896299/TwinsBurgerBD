@@ -13,6 +13,13 @@ public interface IClienteRepositorio {
 	
 	List<Cliente> listaTodos();
 	
-	void eliminar(int idCliente); 
+	void eliminar(int idCliente);
+	
+	Optional<Cliente> findByCliCorreo(String correo);
+	
+	List<Cliente> buscarPorNombre(String nombre);
+
+
+
 
 }

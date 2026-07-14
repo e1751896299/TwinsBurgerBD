@@ -14,6 +14,9 @@ public interface ICategoriaRepositorio {
 	List<Categoria> listaTodos();
 	
 	void eliminar(int idCategoria); 
+	
+	Optional<Categoria> findByCatNombre(String nombre);
+
 
 
 }

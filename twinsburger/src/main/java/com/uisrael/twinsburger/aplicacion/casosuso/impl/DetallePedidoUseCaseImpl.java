@@ -38,4 +38,9 @@ public class DetallePedidoUseCaseImpl implements IDetallePedidoUseCase {
 		
 	}
 
+	@Override
+	public List<DetallePedido> obtenerDetallePedido(Integer idPedido) {
+		return repositorio.obtenerDetallePedido(idPedido);
+	}
+
 }

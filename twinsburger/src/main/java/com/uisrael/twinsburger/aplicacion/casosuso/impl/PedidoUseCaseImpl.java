@@ -36,4 +36,19 @@ public class PedidoUseCaseImpl implements IPedidoUseCase{
 		repositorio.eliminar(idPedido);
 	}
 
+	@Override
+	public List<Pedido> listarPedidosCliente(Integer idCliente) {
+		return repositorio.listarPedidosCliente(idCliente);
+	}
+
+	@Override
+	public List<Pedido> listarPendientes() {
+		return repositorio.listarPendientes();
+	}
+
+	@Override
+	public List<Pedido> buscarPorHorario(Integer idHorario) {
+		return repositorio.buscarPorHorario(idHorario);
+	}
+
 }

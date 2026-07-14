@@ -43,4 +43,9 @@ public class CategoriaRepositorioImpl implements ICategoriaRepositorio{
 		jpaRepositorio.deleteById(idCategoria);
 	}
 
+	@Override
+	public Optional<Categoria> findByCatNombre(String nombre) {
+		return jpaRepositorio.findByCatNombre(nombre).map(entityMapper::toDomain);
+	}
+
 }

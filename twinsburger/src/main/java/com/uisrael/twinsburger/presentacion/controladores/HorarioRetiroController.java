@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IHorarioRetiroUseCase;
 import com.uisrael.twinsburger.presentacion.dto.request.HorarioRetiroRequestDto;
-import com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroresponseDto;
+import com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroResponseDto;
 import com.uisrael.twinsburger.presentacion.mapeadores.IHorarioRetiroDtoMapper;
 
 import jakarta.validation.Valid;
@@ -34,12 +34,12 @@ public class HorarioRetiroController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public HorarioRetiroresponseDto guardar(@Valid @RequestBody HorarioRetiroRequestDto horarioRequestdto) {
+	public HorarioRetiroResponseDto guardar(@Valid @RequestBody HorarioRetiroRequestDto horarioRequestdto) {
 		return mapper.toResponseDto(horarioUseCase.guardar(mapper.toDomain(horarioRequestdto)));
 	}
 	
 	@GetMapping
-	public List<HorarioRetiroresponseDto> listar(){
+	public List<HorarioRetiroResponseDto> listar(){
 		return horarioUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
@@ -48,6 +48,11 @@ public class HorarioRetiroController {
 	public ResponseEntity<Void> eliminar(@PathVariable int idHorarioRetiro){
 		horarioUseCase.eliminar(idHorarioRetiro);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping
+	public List<HorarioRetiroResponseDto> listarHorarios(){
+		return horarioUseCase.listarHorarios().stream().map(mapper::toResponseDto).toList();
 	}
 
 }

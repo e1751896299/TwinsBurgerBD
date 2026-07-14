@@ -37,4 +37,24 @@ public class ProductoUseCaseImpl implements IProductoUseCase{
 		
 	}
 
+	@Override
+	public List<Producto> findByProdEstado(Boolean estado) {
+		return repositorio.findByProdEstado(estado);
+	}
+
+	@Override
+	public List<Producto> findByProdNombreContaining(String nombre) {
+		return repositorio.findByProdNombreContaining(nombre);
+	}
+
+	@Override
+	public List<Producto> buscarPorCategoria(Integer idCategoria) {
+		return repositorio.buscarPorCategoria(idCategoria);
+	}
+
+	@Override
+	public List<Producto> listarActivos() {
+		return repositorio.listarActivos();
+	}
+
 }

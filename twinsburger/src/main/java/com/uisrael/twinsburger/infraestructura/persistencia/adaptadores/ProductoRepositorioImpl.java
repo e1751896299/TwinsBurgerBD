@@ -44,4 +44,24 @@ public class ProductoRepositorioImpl implements IProductoRepositorio{
 		
 	}
 
+	@Override
+	public List<Producto> findByProdEstado(Boolean estado) {
+		return jpaRepositorio.findByProdEstado(estado).stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<Producto> findByProdNombreContaining(String nombre) {
+		return jpaRepositorio.findByProdNombreContaining(nombre).stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<Producto> buscarPorCategoria(Integer idCategoria) {
+		return jpaRepositorio.buscarPorCategoria(idCategoria).stream().map(entityMapper::toDomain).toList();
+	}
+
+	@Override
+	public List<Producto> listarActivos() {
+		return jpaRepositorio.listarActivos().stream().map(entityMapper::toDomain).toList();
+	}
+
 }

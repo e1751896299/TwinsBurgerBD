@@ -14,7 +14,12 @@ public interface IPagoRepositorio {
 	
 	List<Pago> listaTodos();
 	
-	void eliminar(int idPago); 
+	void eliminar(int idPago);
+	
+	Optional<Pago> findByPedidoIdPedido(Integer idPedido);
+	
+	List<Pago> buscarPorMetodo(Integer idMetodo);
+
 
 
 }

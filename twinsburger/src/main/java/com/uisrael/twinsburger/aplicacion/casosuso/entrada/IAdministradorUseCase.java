@@ -10,5 +10,6 @@ public interface IAdministradorUseCase {
 	Administrador buscarPorId(int idAdministrador);
 	List<Administrador> listarTodos();
 	void eliminar(int idAdministrador);
+	Administrador findByAdminCorreo(String correo);
 
 }

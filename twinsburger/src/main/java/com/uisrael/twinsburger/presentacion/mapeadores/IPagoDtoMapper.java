@@ -10,6 +10,6 @@ import com.uisrael.twinsburger.presentacion.dto.response.PagoResponseDto;
 public interface IPagoDtoMapper {
 	
 	Pago toDomain(PagoRequestDto dto);
-	PagoResponseDto toResponsedDto(Pago pagoPojo);
+	PagoResponseDto toResponseDto(Pago pagoPojo);
 
 }

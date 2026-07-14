@@ -48,5 +48,10 @@ public class DetallePedidoController {
 	public ResponseEntity<Void> eliminar(@PathVariable int idDetalle){
 		return ResponseEntity.noContent().build();
 	}
+	
+	@GetMapping("/idPedido/{idPedido}")
+	public List<DetallePedidoResponseDto> obtenerDetallePedido(@PathVariable Integer idPedido){
+		return detalleUseCase.obtenerDetallePedido(idPedido).stream().map(mapper::toResponseDto).toList();
+	}
 
 }
