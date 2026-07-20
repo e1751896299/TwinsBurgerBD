@@ -2,11 +2,13 @@ package com.uisrael.clienteweb.services.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.uisrael.clienteweb.model.dto.response.PagoResponseDto;
 import com.uisrael.clienteweb.services.IPagoService;
 
+@Service
 public class PagoServiceImpl implements IPagoService{
 	
 	private final WebClient webClient;

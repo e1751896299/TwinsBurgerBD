@@ -2,11 +2,13 @@ package com.uisrael.clienteweb.services.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.uisrael.clienteweb.model.dto.response.DetallePedidoResponseDto;
 import com.uisrael.clienteweb.services.IDetallePedidoService;
 
+@Service
 public class DetallePedidoServiceImpl implements IDetallePedidoService {
 	
 	private final WebClient webClient;

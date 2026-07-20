@@ -106,19 +106,19 @@ Button
 							
 								<th>
 									<button class="table-sort d-flex justify-content-between" data-sort="sort-name">
-										Name
+										Nombre
 									</button>
 								</th>
 							
 								<th>
 									<button class="table-sort d-flex justify-content-between" data-sort="sort-city">
-										City
+										Apellido
 									</button>
 								</th>
 							
 								<th>
 									<button class="table-sort d-flex justify-content-between" data-sort="sort-status">
-										Status
+										Correo
 									</button>
 								</th>
 							
@@ -144,6 +144,21 @@ Button
 					</thead>
 
 					<tbody class="table-tbody">
+					
+						<tr th:each="admin : ${administradores}">
+
+	    					<td></td>
+	
+						    <td th:text="${admin.idAdmin}"></td>
+						
+						    <td th:text="${admin.adminNombre}"></td>
+						
+						    <td th:text="${admin.adminApellido}"></td>
+						
+						    <td th:text="${admin.adminCorreo}"></td>
+			
+	
+						</tr>
 						
 					</tbody>
 				</table>

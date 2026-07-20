@@ -2,11 +2,13 @@ package com.uisrael.clienteweb.services.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.uisrael.clienteweb.model.dto.response.HorarioRetiroResponseDto;
 import com.uisrael.clienteweb.services.IHorarioRetiroService;
 
+@Service
 public class HorarioRetiroServiceImpl implements IHorarioRetiroService{
 	
 	private final WebClient webClient;
