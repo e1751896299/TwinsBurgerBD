@@ -50,14 +50,10 @@ public class ProductoController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping("/estado/{estado}")
-	public List<ProductoResponseDto> findByProdEstado(@PathVariable Boolean estado){
-		return productoUseCase.findByProdEstado(estado).stream().map(mapper::toResponseDto).toList();
-	}
 	
 	@GetMapping("/nombre/{nombre}")
-	public List<ProductoResponseDto> findByProdNombreContaining(@PathVariable String nombre){
-		return productoUseCase.findByProdNombreContaining(nombre).stream().map(mapper::toResponseDto).toList();
+	public List<ProductoResponseDto> findByProdNombre(@PathVariable String nombre){
+		return productoUseCase.findByProdNombre(nombre).stream().map(mapper::toResponseDto).toList();
 	}
 	
 	@GetMapping("/idCategoria/{idCategoria}")
@@ -65,9 +61,5 @@ public class ProductoController {
 		return productoUseCase.buscarPorCategoria(idCategoria).stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@GetMapping
-	public List<ProductoResponseDto> listarActivos(){
-		return productoUseCase.listarActivos().stream().map(mapper::toResponseDto).toList();
-	}
-
+	
 }

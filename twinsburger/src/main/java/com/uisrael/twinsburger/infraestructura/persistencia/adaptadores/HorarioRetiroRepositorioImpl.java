@@ -44,9 +44,5 @@ public class HorarioRetiroRepositorioImpl implements IHorarioRetiroRepositorio{
 		
 	}
 
-	@Override
-	public List<HorarioRetiro> listarHorarios() {
-		return jpaRepositorio.listarHorarios().stream().map(entityMapper::toDomain).toList();
-	}
 
 }

@@ -12,9 +12,7 @@ public interface IPedidoUseCase {
 	void eliminar(int idPedido);
 	
 	List<Pedido> listarPedidosCliente(Integer idCliente);
-	
-	List<Pedido> listarPendientes();
-	
+		
 	List<Pedido> buscarPorHorario(Integer idHorario);
 
 }

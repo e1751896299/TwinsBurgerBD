@@ -46,8 +46,8 @@ public class MetodoPagoRepositorioImpl implements IMetodoPagoRepositorio{
 
 
 	@Override
-	public Optional<MetodoPago> findByMetNombre(String nombre) {
-		return jpaRepositorio.findByMetNombre(nombre).map(entityMapper::toDomain);
+	public Optional<MetodoPago> findByMpagoDescripcion(String descripcion) {
+		return jpaRepositorio.findByMpagoDescripcion(descripcion).map(entityMapper::toDomain);
 	}
 
 }

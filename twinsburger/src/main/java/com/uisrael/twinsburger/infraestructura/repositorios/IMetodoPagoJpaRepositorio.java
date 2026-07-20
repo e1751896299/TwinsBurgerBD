@@ -8,6 +8,6 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.MetodoPagoEntity
 
 public interface IMetodoPagoJpaRepositorio extends JpaRepository<MetodoPagoEntity, Integer>{
 	
-	Optional<MetodoPagoEntity> findByMetNombre(String nombre);
+	Optional<MetodoPagoEntity> findByMpagoDescripcion(String descripcion);
 
 }

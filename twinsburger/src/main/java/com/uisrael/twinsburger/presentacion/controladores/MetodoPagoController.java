@@ -21,7 +21,7 @@ import com.uisrael.twinsburger.presentacion.mapeadores.IMetodoPagoDtoMapper;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/metodoPago")
+@RequestMapping("/api/metodopago")
 public class MetodoPagoController {
 	
 	private final IMetodoPagoUseCase metodoUseCase;
@@ -50,9 +50,9 @@ public class MetodoPagoController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping("/nombre/{nombre}")
-	public MetodoPagoResponseDto findByMetNombre(@PathVariable String nombre) {
-		return mapper.toResponseDto(metodoUseCase.findByMetNombre(nombre));
+	@GetMapping("/descripcion/{descripcion}")
+	public MetodoPagoResponseDto findByMpagoDescripcion(@PathVariable String descripcion) {
+		return mapper.toResponseDto(metodoUseCase.findByMpagoDescripcion(descripcion));
 	}
 
 }

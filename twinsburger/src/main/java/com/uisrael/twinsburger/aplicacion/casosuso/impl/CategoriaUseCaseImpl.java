@@ -39,8 +39,8 @@ public class CategoriaUseCaseImpl implements ICategoriaUseCase{
 	}
 
 	@Override
-	public Categoria findByCatNombre(String nombre) {
-		return repositorio.findByCatNombre(nombre).orElseThrow(()->new RuntimeException("No encontrado"));
+	public Categoria findByCategoriaNombre(String nombre) {
+		return repositorio.findByCategoriaNombre(nombre).orElseThrow(()->new RuntimeException("No encontrado"));
 	}
 	
 

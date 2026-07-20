@@ -8,6 +8,6 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.CategoriaEntity;
 
 public interface ICategoriaJpaRepositorio extends JpaRepository<CategoriaEntity, Integer> {
 	
-	Optional<CategoriaEntity> findByCatNombre(String nombre);
+	Optional<CategoriaEntity> findByCategoriaNombre(String nombre);
 
 }

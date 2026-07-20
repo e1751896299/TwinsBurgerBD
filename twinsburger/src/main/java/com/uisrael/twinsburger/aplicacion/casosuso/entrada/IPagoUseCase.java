@@ -11,7 +11,7 @@ public interface IPagoUseCase {
 	List<Pago> listarTodos();
 	void eliminar(int idPago);
 	
-	Pago findByPedidoIdPedido(Integer idPedido);
+	Pago findByFkPedidoIdPedido(Integer idPedido);
 	
 	List<Pago> buscarPorMetodo(Integer idMetodo);
 

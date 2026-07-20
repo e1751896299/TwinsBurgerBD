@@ -37,8 +37,8 @@ public class PagoUseCaseImpl implements IPagoUseCase{
 	}
 
 	@Override
-	public Pago findByPedidoIdPedido(Integer idPedido) {
-		return repositorio.findByPedidoIdPedido(idPedido).orElseThrow(()-> new RuntimeException("No encontrado"));
+	public Pago findByFkPedidoIdPedido(Integer idPedido) {
+		return repositorio.findByFkPedidoIdPedido(idPedido).orElseThrow(()-> new RuntimeException("No encontrado"));
 	}
 
 	@Override

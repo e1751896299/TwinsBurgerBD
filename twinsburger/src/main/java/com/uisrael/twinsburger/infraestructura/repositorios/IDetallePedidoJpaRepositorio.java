@@ -13,7 +13,7 @@ public interface IDetallePedidoJpaRepositorio extends JpaRepository<DetallePedid
 	@Query("""
 			SELECT d
 			FROM DetallePedidoEntity d
-			WHERE d.pedido.idPedido = :idPedido
+			WHERE d.fkPedido.idPedido = :idPedido
 			""")
 			List<DetallePedidoEntity> obtenerDetallePedido(Integer idPedido);
 

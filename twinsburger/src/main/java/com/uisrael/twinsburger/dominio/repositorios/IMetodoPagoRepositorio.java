@@ -15,7 +15,7 @@ public interface IMetodoPagoRepositorio {
 	
 	void eliminar(int idMetodoPago); 
 	
-	Optional<MetodoPago> findByMetNombre(String nombre);
+	Optional<MetodoPago> findByMpagoDescripcion(String descripcion);
 
 
 }

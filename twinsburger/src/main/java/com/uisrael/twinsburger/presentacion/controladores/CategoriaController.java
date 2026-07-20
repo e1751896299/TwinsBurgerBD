@@ -52,8 +52,8 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/nombre/{nombre}")
-	public CategoriaResponseDto findByCatNombre(@PathVariable String nombre) {
-		return mapper.toResponseDto(categoriaUseCase.findByCatNombre(nombre));
+	public CategoriaResponseDto findByCategoriaNombre(@PathVariable String nombre) {
+		return mapper.toResponseDto(categoriaUseCase.findByCategoriaNombre(nombre));
 	}
 
 }

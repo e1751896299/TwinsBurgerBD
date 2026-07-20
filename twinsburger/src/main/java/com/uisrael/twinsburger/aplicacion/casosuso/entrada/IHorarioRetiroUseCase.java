@@ -10,6 +10,5 @@ public interface IHorarioRetiroUseCase {
 	HorarioRetiro buscarPorId(int idHorarioRetiro);
 	List<HorarioRetiro> listarTodos();
 	void eliminar(int idHorarioRetiro);
-	List<HorarioRetiro> listarHorarios(); 
 
 }

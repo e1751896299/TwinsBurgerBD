@@ -51,8 +51,8 @@ public class PagoController {
 	}
 	
 	@GetMapping("/idPedido/{idPedido}")
-	public PagoResponseDto findByPedidoIdPedid(@PathVariable int idPedido) {
-		return mapper.toResponseDto(pagoUseCase.findByPedidoIdPedido(idPedido));
+	public PagoResponseDto findByFkPedidoIdPedido(@PathVariable int idPedido) {
+		return mapper.toResponseDto(pagoUseCase.findByFkPedidoIdPedido(idPedido));
 		
 	}
 	

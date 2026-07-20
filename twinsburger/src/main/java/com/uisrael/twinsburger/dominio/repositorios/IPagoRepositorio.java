@@ -16,7 +16,7 @@ public interface IPagoRepositorio {
 	
 	void eliminar(int idPago);
 	
-	Optional<Pago> findByPedidoIdPedido(Integer idPedido);
+	Optional<Pago> findByFkPedidoIdPedido(Integer idPedido);
 	
 	List<Pago> buscarPorMetodo(Integer idMetodo);
 

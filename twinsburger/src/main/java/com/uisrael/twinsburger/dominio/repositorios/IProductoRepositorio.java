@@ -15,13 +15,9 @@ public interface IProductoRepositorio {
 	
 	void eliminar(int idProducto); 
 	
-	List<Producto> findByProdEstado(Boolean estado);
-
-	List<Producto> findByProdNombreContaining(String nombre);
+	List<Producto> findByProdNombre(String nombre);
 	
 	List<Producto> buscarPorCategoria(Integer idCategoria);
 	
-	List<Producto> listarActivos();
-
 
 }

@@ -37,8 +37,8 @@ public class MetodoPagoUseCaseImpl implements IMetodoPagoUseCase{
 	}
 
 	@Override
-	public MetodoPago findByMetNombre(String nombre) {
-		return repositorio.findByMetNombre(nombre)
+	public MetodoPago findByMpagoDescripcion(String descripcion) {
+		return repositorio.findByMpagoDescripcion(descripcion)
 				.orElseThrow(()-> new RuntimeException("No encontrado"));
 	}
 

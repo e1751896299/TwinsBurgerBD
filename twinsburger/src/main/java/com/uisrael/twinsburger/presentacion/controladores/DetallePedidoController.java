@@ -21,7 +21,7 @@ import com.uisrael.twinsburger.presentacion.mapeadores.IDetallePedidoDtoMapper;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/detallePedido")
+@RequestMapping("/api/detallepedido")
 public class DetallePedidoController {
 	
 	private final IDetallePedidoUseCase detalleUseCase;

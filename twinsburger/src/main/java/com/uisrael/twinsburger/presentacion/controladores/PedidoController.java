@@ -44,7 +44,7 @@ public class PedidoController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idPedido}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idPedido){
 		pedidoUseCase.eliminar(idPedido);
 		return ResponseEntity.noContent().build();
@@ -56,10 +56,6 @@ public class PedidoController {
 		return pedidoUseCase.listarPedidosCliente(idCliente).stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@GetMapping
-	public List<PedidoResponseDto> listarPendientes(){
-		return pedidoUseCase.listarPendientes().stream().map(mapper::toResponseDto).toList();
-	}
 	
 	@GetMapping("/idHorario/{idHorario}")
 	public List<PedidoResponseDto> buscarPorHorario(@PathVariable Integer idHorario){

@@ -45,8 +45,8 @@ public class PagoRepositorioImpl implements IPagoRepositorio{
 
 
 	@Override
-	public Optional<Pago> findByPedidoIdPedido(Integer idPedido) {
-		return jpaRepositorio.findByPedidoIdPedido(idPedido).map(entityMapper::toDomain);
+	public Optional<Pago> findByFkPedidoIdPedido(Integer idPedido) {
+		return jpaRepositorio.findByFkPedidoIdPedido(idPedido).map(entityMapper::toDomain);
 	}
 
 

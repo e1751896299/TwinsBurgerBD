@@ -21,7 +21,7 @@ import com.uisrael.twinsburger.presentacion.mapeadores.IHorarioRetiroDtoMapper;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/horarioRetiro")
+@RequestMapping("/api/horarioretiro")
 public class HorarioRetiroController {
 	
 	private final IHorarioRetiroUseCase horarioUseCase;
@@ -50,9 +50,5 @@ public class HorarioRetiroController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@GetMapping
-	public List<HorarioRetiroResponseDto> listarHorarios(){
-		return horarioUseCase.listarHorarios().stream().map(mapper::toResponseDto).toList();
-	}
 
 }

@@ -42,11 +42,6 @@ public class PedidoUseCaseImpl implements IPedidoUseCase{
 	}
 
 	@Override
-	public List<Pedido> listarPendientes() {
-		return repositorio.listarPendientes();
-	}
-
-	@Override
 	public List<Pedido> buscarPorHorario(Integer idHorario) {
 		return repositorio.buscarPorHorario(idHorario);
 	}

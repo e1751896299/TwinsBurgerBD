@@ -1,0 +1,25 @@
+package com.uisrael.clienteweb.services.impl;
+
+import java.util.List;
+
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.uisrael.clienteweb.model.dto.response.HorarioRetiroResponseDto;
+import com.uisrael.clienteweb.services.IHorarioRetiroService;
+
+public class HorarioRetiroServiceImpl implements IHorarioRetiroService{
+	
+	private final WebClient webClient;
+
+	public HorarioRetiroServiceImpl(WebClient webClient) {
+		this.webClient = webClient;
+	}
+
+	@Override
+	public List<HorarioRetiroResponseDto> listarHorarioRetiro() {
+		return webClient.get().uri("/horarioretiro").retrieve().bodyToFlux(HorarioRetiroResponseDto.class).collectList().block();
+
+
+	}
+
+}

@@ -9,22 +9,15 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.ProductoEntity;
 
 public interface IProductoJpaRepositorio extends JpaRepository<ProductoEntity, Integer> {
 	
-	List<ProductoEntity> findByProdEstado(Boolean estado);
 
-	List<ProductoEntity> findByProdNombreContaining(String nombre);
+	List<ProductoEntity> findByProdNombre(String nombre);
 	
 	@Query("""
 			SELECT p
 			FROM ProductoEntity p
-			WHERE p.categoria.idCategoria = :idCategoria
+			WHERE p.fkCategoria.idCategoria = :idCategoria
 			""")
 			List<ProductoEntity> buscarPorCategoria(Integer idCategoria);
 	
-	@Query("""
-			SELECT p
-			FROM ProductoEntity p
-			WHERE p.prodEstado = true
-			""")
-			List<ProductoEntity> listarActivos();
 
 }
