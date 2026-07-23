@@ -46,6 +46,7 @@ public class DetallePedidoController {
 	
 	@DeleteMapping("/{idDetalle}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idDetalle){
+		detalleUseCase.eliminar(idDetalle);
 		return ResponseEntity.noContent().build();
 	}
 	

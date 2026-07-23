@@ -8,6 +8,29 @@ layout:decorate="~{layouts/principal}">
 
     <h1>Lista de pagos</h1>
 
+    <a th:href="@{/pago/nuevo}" class="btn btn-primary mb-3">Nuevo Pago</a>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pago : ${pagos}">
+                        <td th:text="${pago.pagoFecha}"></td>
+                        <td th:text="${pago.pagoMonto}"></td>
+                        <td th:text="${pago.pagoEstado}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 </html>

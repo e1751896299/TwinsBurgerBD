@@ -8,6 +8,29 @@ layout:decorate="~{layouts/principal}">
 
     <h1>Categorias</h1>
 
+    <a th:href="@{/categoria/nuevo}" class="btn btn-primary mb-3">Nueva Categoria</a>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="categoria : ${categorias}">
+                        <td th:text="${categoria.categoriaNombre}"></td>
+                        <td th:text="${categoria.categoriaDescripcion}"></td>
+                        <td th:text="${categoria.categoriaEstado}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 </html>

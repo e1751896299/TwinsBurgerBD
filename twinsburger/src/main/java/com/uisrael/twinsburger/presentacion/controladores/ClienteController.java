@@ -44,7 +44,7 @@ public class ClienteController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idCliente}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idCliente){
 		clienteUseCase.eliminar(idCliente);
 		return ResponseEntity.noContent().build();

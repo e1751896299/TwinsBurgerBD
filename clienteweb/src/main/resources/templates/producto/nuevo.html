@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
 
-</body>
+<div layout:fragment="contenido">
+
+    <h1>Nuevo Producto</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/producto}" th:object="${producto}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" th:field="*{prodNombre}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripcion</label>
+                    <input type="text" th:field="*{prodDescripcion}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Stock</label>
+                    <input type="number" th:field="*{prodStock}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Categoria</label>
+                    <input type="text" th:field="*{prodCategoria}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Fecha creacion</label>
+                    <input type="datetime-local" th:field="*{proFechaCreacion}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 </html>

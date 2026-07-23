@@ -4,20 +4,20 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalTime;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class PedidoRequestDto {
-	
+
 	private int idPedido;
-	@NotBlank
+	@NotNull
 	private Date pedidoFechaPedido;
-	@NotBlank
+	@NotNull
 	private LocalTime pedidoHoraRetiro;
-	@NotBlank
+
 	private boolean pedidoEstado;
-	@NotBlank
+	@NotNull
 	private BigDecimal pedidoTotal;
 	
 	private String pedidoDescripcion;

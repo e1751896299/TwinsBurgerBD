@@ -4,28 +4,44 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.uisrael.clienteweb.model.dto.request.ProductoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.ProductoResponseDto;
 import com.uisrael.clienteweb.services.IProductoService;
 
 @Controller
 @RequestMapping("/producto")
 public class ProductoController {
-	
+
 	@Autowired
 	public IProductoService servicioProducto;
-	
+
 	public ProductoController(IProductoService servicioProducto) {
 		this.servicioProducto = servicioProducto;
 	}
 
 	@GetMapping
-	public String listar() {
+	public String listar(Model model) {
 		List<ProductoResponseDto> resultadoBD = servicioProducto.listarProducto();
-		System.out.println(resultadoBD);
+		model.addAttribute("productos", resultadoBD);
 		return "/producto/lista";
+	}
+
+	@GetMapping("/nuevo")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("producto", new ProductoRequestDto());
+		return "/producto/nuevo";
+	}
+
+	@PostMapping
+	public String guardar(@ModelAttribute ProductoRequestDto producto) {
+		servicioProducto.crear(producto);
+		return "redirect:/producto";
 	}
 
 }

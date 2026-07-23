@@ -44,7 +44,7 @@ public class MetodoPagoController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idMetodoPago}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idMetodoPago){
 		metodoUseCase.eliminar(idMetodoPago);
 		return ResponseEntity.noContent().build();

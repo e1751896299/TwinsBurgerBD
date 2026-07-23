@@ -46,7 +46,7 @@ public class CategoriaController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idCategoria}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idCategoria){			categoriaUseCase.eliminar(idCategoria);
 		return ResponseEntity.noContent().build();
 	}

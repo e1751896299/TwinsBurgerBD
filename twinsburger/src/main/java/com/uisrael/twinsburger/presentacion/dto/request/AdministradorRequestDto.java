@@ -12,7 +12,7 @@ public class AdministradorRequestDto {
 	private String adminNombre;
 	@NotBlank
 	private String adminApellido;
-	@NotBlank@NotBlank
+	@NotBlank
 	private String adminCorreo;
 	@NotBlank
 	private String adminContrasena;

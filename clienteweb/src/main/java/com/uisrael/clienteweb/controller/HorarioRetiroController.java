@@ -4,16 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.uisrael.clienteweb.model.dto.request.HorarioRetiroRequestDto;
 import com.uisrael.clienteweb.model.dto.response.HorarioRetiroResponseDto;
 import com.uisrael.clienteweb.services.IHorarioRetiroService;
 
 @Controller
 @RequestMapping("/horario")
 public class HorarioRetiroController {
-	
+
 	@Autowired
 	public IHorarioRetiroService servicioHorarioRetiro;
 
@@ -22,10 +26,22 @@ public class HorarioRetiroController {
 	}
 
 	@GetMapping
-	public String listar() {
+	public String listar(Model model) {
 		List<HorarioRetiroResponseDto> resultadoBD = servicioHorarioRetiro.listarHorarioRetiro();
-		System.out.println(resultadoBD);
+		model.addAttribute("horarios", resultadoBD);
 		return "/horario/lista";
+	}
+
+	@GetMapping("/nuevo")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("horario", new HorarioRetiroRequestDto());
+		return "/horario/nuevo";
+	}
+
+	@PostMapping
+	public String guardar(@ModelAttribute HorarioRetiroRequestDto horario) {
+		servicioHorarioRetiro.crear(horario);
+		return "redirect:/horario";
 	}
 
 }
