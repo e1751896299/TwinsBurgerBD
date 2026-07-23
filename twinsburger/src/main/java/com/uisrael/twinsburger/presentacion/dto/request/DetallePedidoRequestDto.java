@@ -2,19 +2,18 @@ package com.uisrael.twinsburger.presentacion.dto.request;
 
 import java.math.BigDecimal;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class DetallePedidoRequestDto {
-	
-	@NotBlank
+
 	private int idDetallePedido;
-	@NotBlank
+
 	private int detalleCantidad;
-	@NotBlank
+	@NotNull
 	private BigDecimal detalleSubtotal;
-	@NotBlank
+	@NotNull
 	private BigDecimal detallePrecio;
 
 }

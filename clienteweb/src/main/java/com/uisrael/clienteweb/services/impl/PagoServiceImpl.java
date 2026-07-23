@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.uisrael.clienteweb.model.dto.request.PagoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.PagoResponseDto;
 import com.uisrael.clienteweb.services.IPagoService;
 
 @Service
 public class PagoServiceImpl implements IPagoService{
-	
+
 	private final WebClient webClient;
 
 	public PagoServiceImpl(WebClient webClient) {
@@ -21,6 +22,11 @@ public class PagoServiceImpl implements IPagoService{
 	public List<PagoResponseDto> listarPago() {
 		return webClient.get().uri("/pago").retrieve().bodyToFlux(PagoResponseDto.class).collectList().block();
 
+	}
+
+	@Override
+	public void crear(PagoRequestDto pago) {
+		webClient.post().uri("/pago").bodyValue(pago).retrieve().toBodilessEntity().block();
 	}
 
 }

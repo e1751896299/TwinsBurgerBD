@@ -44,7 +44,7 @@ public class HorarioRetiroController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idHorarioRetiro}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idHorarioRetiro){
 		horarioUseCase.eliminar(idHorarioRetiro);
 		return ResponseEntity.noContent().build();

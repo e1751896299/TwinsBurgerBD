@@ -8,6 +8,29 @@ layout:decorate="~{layouts/principal}">
 
     <h1>Horario de Retiros</h1>
 
+    <a th:href="@{/horario/nuevo}" class="btn btn-primary mb-3">Nuevo Horario</a>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th>Hora inicio</th>
+                        <th>Hora fin</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="horario : ${horarios}">
+                        <td th:text="${horario.hrInicio}"></td>
+                        <td th:text="${horario.hrFin}"></td>
+                        <td th:text="${horario.hrEstado}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 </html>

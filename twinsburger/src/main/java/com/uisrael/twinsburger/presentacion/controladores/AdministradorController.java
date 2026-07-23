@@ -45,7 +45,7 @@ public class AdministradorController {
 				.stream().map(mapper::toResponseDto).toList();
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{idAdministrador}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idAdministrador){
 		administradorUseCase.eliminar(idAdministrador);
 		return ResponseEntity.noContent().build();		

@@ -9,7 +9,7 @@ public class MetodoPagoRequestDto {
 	private int idMetodoPago;
 	@NotBlank
 	private String mpagoDescripcion;
-	@NotBlank
+
 	private boolean mpagoEstado;
 
 }

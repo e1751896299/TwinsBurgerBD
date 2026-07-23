@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
 
-</body>
+<div layout:fragment="contenido">
+
+    <h1>Nuevo Pago</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/pago}" th:object="${pago}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Fecha</label>
+                    <input type="datetime-local" th:field="*{pagoFecha}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Monto</label>
+                    <input type="number" step="0.01" th:field="*{pagoMonto}" class="form-control">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" th:field="*{pagoEstado}" class="form-check-input">
+                    <label class="form-check-label">Estado</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 </html>

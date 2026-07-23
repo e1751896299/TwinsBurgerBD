@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
 
-</body>
+<div layout:fragment="contenido">
+
+    <h1>Nuevo Pedido</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/pedido}" th:object="${pedido}" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Fecha pedido</label>
+                    <input type="date" th:field="*{pedidoFechaPedido}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Hora retiro</label>
+                    <input type="time" th:field="*{pedidoHoraRetiro}" class="form-control">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" th:field="*{pedidoEstado}" class="form-check-input">
+                    <label class="form-check-label">Estado</label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total</label>
+                    <input type="number" step="0.01" th:field="*{pedidoTotal}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Descripcion</label>
+                    <input type="text" th:field="*{pedidoDescripcion}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
 </html>

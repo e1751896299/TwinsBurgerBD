@@ -15,7 +15,7 @@ public class ClienteRequestDto {
 	private String cliCorreo;
 	
 	private String cliTelefono;
-	@NotBlank
+
 	private boolean cliEstado;
 
 }
