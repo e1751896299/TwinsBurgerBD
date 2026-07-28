@@ -23,6 +23,8 @@ public class AdministradorEntity {
 	private String adminApellido;
 	private String adminCorreo;
 	private String adminContrasena;
+	private boolean adminEstado = true;
+
 	
 	@OneToMany(mappedBy = "fkAdministrador")
 	private List<PedidoEntity> pedidos = new ArrayList<>();

@@ -35,12 +35,15 @@ public class HorarioRetiroRepositorioImpl implements IHorarioRetiroRepositorio{
 
 	@Override
 	public List<HorarioRetiro> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByHrEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idHorarioRetiro) {
-		jpaRepositorio.deleteById(idHorarioRetiro);
+		HorarioRetiroEntity horario  = jpaRepositorio.findById(idHorarioRetiro)
+	            .orElseThrow(() -> new RuntimeException("Horario no encontrado"));
+	 horario.setHrEstado(false);
+	 jpaRepositorio.save(horario);
 		
 	}
 

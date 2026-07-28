@@ -10,6 +10,6 @@ public class MetodoPagoRequestDto {
 	@NotBlank
 	private String mpagoDescripcion;
 
-	private boolean mpagoEstado;
+
 
 }

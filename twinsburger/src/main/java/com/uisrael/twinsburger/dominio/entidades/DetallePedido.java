@@ -8,14 +8,17 @@ public class DetallePedido {
 	private int detalleCantidad;
 	private BigDecimal detalleSubtotal;
 	private BigDecimal detallePrecio;
+	private boolean detalleEstado = true;
 	
-	public DetallePedido(int idDetallePedido, int detalleCantidad, BigDecimal detalleSubtotal,
-			BigDecimal detallePrecio) {
-		super();
-		this.idDetallePedido = idDetallePedido;
-		this.detalleCantidad = detalleCantidad;
-		this.detalleSubtotal = detalleSubtotal;
-		this.detallePrecio = detallePrecio;
+	public DetallePedido() {
+	}
+	
+	public boolean isDetalleEstado() {
+		return detalleEstado;
+	}
+	public void setDetalleEstado(boolean detalleEstado) {
+		this.detalleEstado = detalleEstado;
+
 	}
 	public int getIdDetallePedido() {
 		return idDetallePedido;

@@ -15,6 +15,6 @@ public class HorarioRetiroRequestDto {
 	@NotNull
 	private LocalTime hrFin;
 
-	private boolean hrEstado;
+
 
 }

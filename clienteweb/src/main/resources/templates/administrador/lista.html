@@ -6,9 +6,6 @@ layout:decorate="~{layouts/principal}">
 
 <div layout:fragment="contenido">
 
-    <h1>Lista de Administradores</h1>
-
-    <a th:href="@{/administrador/nuevo}" class="btn btn-primary mb-3">Nuevo Administrador</a>
 
     <div class="col-12">
 		
@@ -32,10 +29,10 @@ layout:decorate="~{layouts/principal}">
 			<div class="row w-full">
 				<div class="col">
 					<h3 class="card-title mb-0">
-						Employee
+						Administradores
 					</h3>
 					<p class="text-secondary m-0">
-						Table description.
+						Lista ed Administradores
 					</p>
 				</div>
 				<div class="col-md-auto col-sm-12">
@@ -61,38 +58,11 @@ layout:decorate="~{layouts/principal}">
 						</a>
 						
 
-<div class="dropdown">
-	<a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">Download</a>
-	<div class="dropdown-menu">
-		
-		<a class="dropdown-item" href="#">Action</a>
-		
-		<a class="dropdown-item" href="#">Another action</a>
-		
-		<a class="dropdown-item" href="#">Third action</a>
-		
-	</div>
-</div>
+    <a th:href="@{/administrador/nuevo}" class="btn btn-primary mb-3">Nuevo Administrador</a>
+
 						
 
 
-
-
-
-
-
-
-
-
-
-<a href="#" class="btn btn-0">
-
-
-
-Button
-
-
-</a>
 					</div>
 				</div>
 			</div>
@@ -124,40 +94,38 @@ Button
 									</button>
 								</th>
 							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-date">
-										Start date
-									</button>
-								</th>
-							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-tags">
-										Tags
-									</button>
-								</th>
-							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-category">
-										Category
-									</button>
-								</th>
+								<th></th>
+								<th></th>
+
 							
 						</tr>
 					</thead>
 
 					<tbody class="table-tbody">
 					
+					
+					
 						<tr th:each="admin : ${administradores}">
-
-	    					<td></td>
-	
-						    <td th:text="${admin.idAdmin}"></td>
+						
+							<td></td>	
 						
 						    <td th:text="${admin.adminNombre}"></td>
 						
 						    <td th:text="${admin.adminApellido}"></td>
 						
 						    <td th:text="${admin.adminCorreo}"></td>
+						    
+						    <td>
+    							<a th:href="@{/administrador/editar/{id}(id=${admin.idAdmin})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/administrador/eliminar/{id}(id=${admin.idAdmin})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
 			
 	
 						</tr>
@@ -184,52 +152,7 @@ Button
 					</div>
 				</div>
 
-				<ul class="pagination m-0 ms-auto">
-	<li class="page-item disabled">
-		<a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-			<!-- Download SVG icon from http://tabler.io/icons/icon/chevron-left -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M15 6l-6 6l6 6" /></svg>
-		</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">1</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">2</a>
-	</li>
-	<li class="page-item active">
-		<a class="page-link" href="#">3</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">4</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">5</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">6</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">7</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">8</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">9</a>
-	</li>
-	<li class="page-item">
-		<a class="page-link" href="#">10</a>
-	</li>
-	
-   <li class="page-item">
-      <a class="page-link" href="#">
-         <!-- Download SVG icon from http://tabler.io/icons/icon/chevron-right -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M9 6l6 6l-6 6" /></svg>
-         </a>
-   </li>
-	</ul>
-
+				
 			</div>
 		</div>
 	</div>

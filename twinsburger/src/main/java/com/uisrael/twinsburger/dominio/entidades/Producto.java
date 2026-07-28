@@ -10,6 +10,9 @@ public class Producto {
 	private int prodStock;
 	private String prodCategoria;
 	private LocalDateTime proFechaCreacion;
+	private boolean prodEstado = true;
+	public Producto() {
+	}
 	public int getIdProducto() {
 		return idProducto;
 	}
@@ -46,6 +49,13 @@ public class Producto {
 	public void setProFechaCreacion(LocalDateTime proFechaCreacion) {
 		this.proFechaCreacion = proFechaCreacion;
 	}
+	public boolean isProdEstado() {
+		return prodEstado;
+	}
+	public void setProdEstado(boolean prodEstado) {
+		this.prodEstado = prodEstado;
+	}
+	
 	
 	
 	 

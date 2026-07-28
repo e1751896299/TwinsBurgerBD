@@ -8,7 +8,7 @@ public class MetodoPagoRequestDto {
 	private int idMetodoPago;
 	
 	private String mpagoDescripcion;
-	
-	private boolean mpagoEstado;
+
+
 
 }

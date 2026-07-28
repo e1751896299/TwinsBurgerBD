@@ -26,5 +26,7 @@ public interface IPedidoJpaRepositorio extends JpaRepository<PedidoEntity, Integ
 		    WHERE p.fkHorarioRetiro.idHorarioRetiro = :idHorario
 		    """)
 		List<PedidoEntity> buscarPorHorario(@Param("idHorario") Integer idHorario);
+	
+	List<PedidoEntity> findByPedidoEstadoTrue();
 
 }

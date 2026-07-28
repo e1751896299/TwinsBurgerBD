@@ -34,12 +34,15 @@ public class ClienteRepositorioImpl implements IClienteRepositorio {
 
 	@Override
 	public List<Cliente> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByCliEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idCliente) {
-		jpaRepositorio.deleteById(idCliente);
+		ClienteEntity cliente = jpaRepositorio.findById(idCliente)
+	            .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+	 cliente.setCliEstado(false);
+	 jpaRepositorio.save(cliente);
 		
 	}
 

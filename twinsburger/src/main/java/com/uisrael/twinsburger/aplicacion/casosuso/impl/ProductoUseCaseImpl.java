@@ -33,7 +33,11 @@ public class ProductoUseCaseImpl implements IProductoUseCase{
 
 	@Override
 	public void eliminar(int idProducto) {
-		repositorio.eliminar(idProducto);
+		Producto producto = buscarPorId(idProducto);
+
+		    producto.setProdEstado(false);
+
+		    repositorio.guardar(producto);
 		
 	}
 

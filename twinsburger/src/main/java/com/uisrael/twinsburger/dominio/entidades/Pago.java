@@ -8,7 +8,9 @@ public class Pago {
 	private int idPago;
 	private LocalDateTime pagoFecha;
 	private BigDecimal pagoMonto;
-	private boolean pagoEstado;
+	private boolean pagoEstado = true;
+	public Pago() {
+	}
 	public int getIdPago() {
 		return idPago;
 	}
@@ -33,6 +35,7 @@ public class Pago {
 	public void setPagoEstado(boolean pagoEstado) {
 		this.pagoEstado = pagoEstado;
 	}
+	
 	
 	
 

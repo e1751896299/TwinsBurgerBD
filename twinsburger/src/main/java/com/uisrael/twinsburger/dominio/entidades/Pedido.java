@@ -9,9 +9,11 @@ public class Pedido {
 	private int idPedido;
 	private Date pedidoFechaPedido;
 	private LocalTime pedidoHoraRetiro;
-	private boolean pedidoEstado;
+	private boolean pedidoEstado = true;
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
+	public Pedido() {
+	}
 	public int getIdPedido() {
 		return idPedido;
 	}
@@ -48,7 +50,7 @@ public class Pedido {
 	public void setPedidoDescripcion(String pedidoDescripcion) {
 		this.pedidoDescripcion = pedidoDescripcion;
 	}
-	
+
 	
 
 }

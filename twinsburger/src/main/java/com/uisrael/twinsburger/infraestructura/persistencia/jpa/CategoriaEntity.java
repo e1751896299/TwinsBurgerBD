@@ -21,7 +21,8 @@ public class CategoriaEntity {
 	private int idCategoria;
 	private String categoriaNombre;
 	private String categoriaDescripcion;
-	private boolean categoriaEstado;
+	private boolean categoriaEstado = true;
+	
 	
 	@OneToMany(mappedBy = "fkCategoria")
 	private List<ProductoEntity> productos = new ArrayList<>();

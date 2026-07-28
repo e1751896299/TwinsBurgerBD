@@ -25,6 +25,19 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${categoria.categoriaNombre}"></td>
                         <td th:text="${categoria.categoriaDescripcion}"></td>
                         <td th:text="${categoria.categoriaEstado}"></td>
+                        
+                        <td>
+    							<a th:href="@{/categoria/editar/{id}(id=${ctegoria.idCategoria})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCtegoria})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+                        
                     </tr>
                 </tbody>
             </table>

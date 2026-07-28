@@ -34,7 +34,11 @@ public class DetallePedidoUseCaseImpl implements IDetallePedidoUseCase {
 
 	@Override
 	public void eliminar(int idDetalle) {
-		repositorio.eliminar(idDetalle);
+		 DetallePedido detalle = buscarPorId(idDetalle);
+
+		    detalle.setDetalleEstado(false);
+
+		    repositorio.guardar(detalle);
 		
 	}
 

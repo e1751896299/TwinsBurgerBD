@@ -19,5 +19,7 @@ public interface IClienteJpaRepositorio extends JpaRepository<ClienteEntity, Int
 			WHERE LOWER(c.cliNombre) LIKE LOWER(CONCAT('%', :nombre, '%'))
 			""")
 			List<ClienteEntity> buscarPorNombre(String nombre);
+	
+	List<ClienteEntity> findByCliEstadoTrue();
 
 }

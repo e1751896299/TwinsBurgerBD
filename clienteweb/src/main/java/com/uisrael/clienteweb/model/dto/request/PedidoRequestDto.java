@@ -8,15 +8,13 @@ import lombok.Data;
 
 @Data
 public class PedidoRequestDto {
-	
+
 	private int idPedido;
 	
 	private Date pedidoFechaPedido;
 	
 	private LocalTime pedidoHoraRetiro;
-	
-	private boolean pedidoEstado;
-	
+
 	private BigDecimal pedidoTotal;
 	
 	private String pedidoDescripcion;

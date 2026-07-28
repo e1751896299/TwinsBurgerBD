@@ -15,6 +15,6 @@ public class PagoRequestDto {
 	@NotNull
 	private BigDecimal pagoMonto;
 
-	private boolean pagoEstado;
+	
 
 }

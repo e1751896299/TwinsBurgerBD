@@ -23,7 +23,7 @@ public class ClienteEntity {
 	private String cliApellido;
 	private String cliCorreo;
 	private String cliTelefono;
-	private boolean cliEstado;
+	private boolean cliEstado = true;
 	
 	@OneToMany(mappedBy = "fkCliente")
 	private List<PedidoEntity> pedidos = new ArrayList<>();

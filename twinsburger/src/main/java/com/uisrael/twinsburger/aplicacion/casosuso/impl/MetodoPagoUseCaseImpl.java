@@ -33,7 +33,11 @@ public class MetodoPagoUseCaseImpl implements IMetodoPagoUseCase{
 
 	@Override
 	public void eliminar(int idMetodoPago) {
-		repositorio.eliminar(idMetodoPago);
+		  MetodoPago metodo = buscarPorId(idMetodoPago);
+
+		    metodo.setMpagoEstado(false);
+
+		    repositorio.guardar(metodo);
 	}
 
 	@Override

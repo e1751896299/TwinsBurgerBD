@@ -35,12 +35,15 @@ public class CategoriaRepositorioImpl implements ICategoriaRepositorio{
 
 	@Override
 	public List<Categoria> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByCategoriaEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idCategoria) {
-		jpaRepositorio.deleteById(idCategoria);
+		CategoriaEntity categoria  = jpaRepositorio.findById(idCategoria)
+	            .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+	 categoria.setCategoriaEstado(false);
+	 jpaRepositorio.save(categoria);
 	}
 
 	@Override

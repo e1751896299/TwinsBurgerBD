@@ -20,5 +20,7 @@ public class ProductoRequestDto {
 	private String prodCategoria;
 	@NotNull
 	private LocalDateTime proFechaCreacion;
+	
+	private boolean prodEstado;
 
 }

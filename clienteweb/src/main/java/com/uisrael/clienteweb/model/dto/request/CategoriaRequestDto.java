@@ -10,7 +10,6 @@ public class CategoriaRequestDto {
 	private String categoriaNombre;
 	
 	private String categoriaDescripcion;
-	
-	private boolean categoriaEstado;
+
 
 }

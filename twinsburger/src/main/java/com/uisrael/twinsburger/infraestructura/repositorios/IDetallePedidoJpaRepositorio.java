@@ -16,5 +16,7 @@ public interface IDetallePedidoJpaRepositorio extends JpaRepository<DetallePedid
 			WHERE d.fkPedido.idPedido = :idPedido
 			""")
 			List<DetallePedidoEntity> obtenerDetallePedido(Integer idPedido);
+	
+	List<DetallePedidoEntity> findByDetalleEstadoTrue();
 
 }

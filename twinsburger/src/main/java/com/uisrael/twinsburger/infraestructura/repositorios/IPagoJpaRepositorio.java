@@ -20,5 +20,7 @@ public interface IPagoJpaRepositorio extends JpaRepository<PagoEntity, Integer> 
 		    WHERE p.fkMetodoPago.idMetodoPago = :idMetodo
 		    """)
 		List<PagoEntity> buscarPorMetodo(@Param("idMetodo") Integer idMetodo);
+	
+	List<PagoEntity> findByPagoEstadoTrue();
 
 }

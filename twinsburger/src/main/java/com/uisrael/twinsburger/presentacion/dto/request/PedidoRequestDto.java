@@ -15,8 +15,6 @@ public class PedidoRequestDto {
 	private Date pedidoFechaPedido;
 	@NotNull
 	private LocalTime pedidoHoraRetiro;
-
-	private boolean pedidoEstado;
 	@NotNull
 	private BigDecimal pedidoTotal;
 	

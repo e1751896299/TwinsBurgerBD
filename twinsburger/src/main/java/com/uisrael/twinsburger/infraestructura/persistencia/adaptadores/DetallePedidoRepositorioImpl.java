@@ -35,12 +35,15 @@ public class DetallePedidoRepositorioImpl implements IDetallePedidoRepositorio{
 
 	@Override
 	public List<DetallePedido> listarTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByDetalleEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idDetalle) {
-		jpaRepositorio.deleteById(idDetalle);
+		DetallePedidoEntity detalle = jpaRepositorio.findById(idDetalle)
+	            .orElseThrow(() -> new RuntimeException("no se encontro detalles de este pedido"));
+	 detalle.setDetalleEstado(false);
+	 jpaRepositorio.save(detalle);
 		
 	}
 

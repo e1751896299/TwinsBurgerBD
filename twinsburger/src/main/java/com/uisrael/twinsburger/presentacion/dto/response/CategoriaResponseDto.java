@@ -5,9 +5,7 @@ public class CategoriaResponseDto {
 	private int idCategoria;
 	private String categoriaNombre;
 	private String categoriaDescripcion;
-	private boolean categoriaEstado;
 	public CategoriaResponseDto() {
-		super();
 	}
 	public int getIdCategoria() {
 		return idCategoria;
@@ -27,13 +25,6 @@ public class CategoriaResponseDto {
 	public void setCategoriaDescripcion(String categoriaDescripcion) {
 		this.categoriaDescripcion = categoriaDescripcion;
 	}
-	public boolean isCategoriaEstado() {
-		return categoriaEstado;
-	}
-	public void setCategoriaEstado(boolean categoriaEstado) {
-		this.categoriaEstado = categoriaEstado;
-	}
-	
-	
+		
 
 }

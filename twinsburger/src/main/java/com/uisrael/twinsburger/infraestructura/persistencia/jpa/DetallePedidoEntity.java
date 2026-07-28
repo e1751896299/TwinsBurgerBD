@@ -22,6 +22,8 @@ public class DetallePedidoEntity {
 	private int detalleCantidad;
 	private BigDecimal detalleSubtotal;
 	private BigDecimal detallePrecio;
+	private boolean detalleEstado = true;
+
 	
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")

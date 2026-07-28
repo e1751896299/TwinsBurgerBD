@@ -33,7 +33,11 @@ public class PagoUseCaseImpl implements IPagoUseCase{
 
 	@Override
 	public void eliminar(int idPago) {
-		repositorio.eliminar(idPago);
+		Pago pago = buscarPorId(idPago);
+
+		    pago.setPagoEstado(false);
+
+		    repositorio.guardar(pago);
 	}
 
 	@Override

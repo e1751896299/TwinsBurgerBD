@@ -23,7 +23,7 @@ public class PagoEntity {
 	private int idPago;
 	private LocalDateTime pagoFecha;
 	private BigDecimal pagoMonto;
-	private boolean pagoEstado;
+	private boolean pagoEstado = true;
 	
 	@OneToOne
 	@JoinColumn(name = "id_pedido")

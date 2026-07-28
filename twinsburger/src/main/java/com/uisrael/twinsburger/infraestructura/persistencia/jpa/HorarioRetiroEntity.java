@@ -22,7 +22,7 @@ public class HorarioRetiroEntity {
 	private int idHorarioRetiro;
 	private LocalTime hrInicio;
 	private LocalTime hrFin;
-	private boolean hrEstado;
+	private boolean hrEstado = true;
 	
 	@OneToMany(mappedBy = "fkHorarioRetiro")
 	private List<PedidoEntity> pedidos = new ArrayList<>();

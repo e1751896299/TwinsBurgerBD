@@ -27,7 +27,7 @@ public class PedidoEntity {
 	private int idPedido;
 	private Date pedidoFechaPedido;
 	private LocalTime pedidoHoraRetiro;
-	private boolean pedidoEstado;
+	private boolean pedidoEstado = true;
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
 	

@@ -29,6 +29,19 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${pedido.pedidoEstado}"></td>
                         <td th:text="${pedido.pedidoTotal}"></td>
                         <td th:text="${pedido.pedidoDescripcion}"></td>
+                        
+                        <td>
+    							<a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/pedido/eliminar/{id}(id=${pedido.idPedido})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+                        
                     </tr>
                 </tbody>
             </table>

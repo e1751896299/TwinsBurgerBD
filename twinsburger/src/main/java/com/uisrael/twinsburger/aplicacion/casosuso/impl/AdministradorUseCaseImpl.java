@@ -23,7 +23,7 @@ public class AdministradorUseCaseImpl implements IAdministradorUseCase{
 	@Override
 	public Administrador buscarPorId(int idAdministrador) {
 		return repositorio.buscarId(idAdministrador)
-				.orElseThrow(() -> new RuntimeException("Equipo no encontrado"));
+				.orElseThrow(() -> new RuntimeException("Administrador no encontrado"));
 	}
 
 	@Override
@@ -33,7 +33,11 @@ public class AdministradorUseCaseImpl implements IAdministradorUseCase{
 
 	@Override
 	public void eliminar(int idAdministrador) {
-		repositorio.eliminar(idAdministrador);
+		 Administrador admin = buscarPorId(idAdministrador);
+
+		    admin.setAdminEstado(false);
+
+		    repositorio.guardar(admin);
 	}
 
 	@Override

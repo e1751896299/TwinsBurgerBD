@@ -35,12 +35,15 @@ public class MetodoPagoRepositorioImpl implements IMetodoPagoRepositorio{
 
 	@Override
 	public List<MetodoPago> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByMpagoEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idMetodoPago) {
-		jpaRepositorio.deleteById(idMetodoPago);
+		MetodoPagoEntity metodo = jpaRepositorio.findById(idMetodoPago)
+	            .orElseThrow(() -> new RuntimeException("Metodo de pago no encontrado"));
+	 metodo.setMpagoEstado(false);
+	 jpaRepositorio.save(metodo);
 		
 	}
 

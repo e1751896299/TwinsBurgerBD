@@ -33,7 +33,11 @@ public class ClienteUseCaseImpl implements IClienteUseCase{
 
 	@Override
 	public void eliminar(int idCliente) {
-		repositorio.eliminar(idCliente);
+		 Cliente cliente = buscarPorId(idCliente);
+
+		    cliente.setCliEstado(false);
+
+		    repositorio.guardar(cliente);
 		
 	}
 

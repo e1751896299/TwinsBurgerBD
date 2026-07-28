@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="jakarta.persistence.OneToOne"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.PagoEntity"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.DetallePedidoEntity"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.ProductoEntity"/>
-    <fullyQualifiedTypeName name="org.hibernate.engine.transaction.jta.platform.internal.NarayanaJtaPlatform"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.ClienteResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.dominio.entidades.Cliente"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.dominio.entidades.Categoria"/>
@@ -23,7 +17,6 @@
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.AdministradorResponseDto"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.mapstruct.Mapper"/>
     <fullyQualifiedTypeName name="org.mapstruct.Mapping"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
@@ -48,16 +41,23 @@
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IHorarioRetiroService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.HorarioRetiroResponseDto"/>
     <fullyQualifiedTypeName name="groovy.transform.AutoExternalize"/>
-    <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.PagoResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IPagoService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IPedidoService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.PedidoResponseDto"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IProductoService"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.ProductoResponseDto"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.ICategoriaService"/>
     <fullyQualifiedTypeName name="org.springframework.web.reactive.function.client.WebClient"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="jakarta.validation.constraints.NotBlank"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.infraestructura.persistencia.jpa.CategoriaEntity"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.ZoneId"/>
+    <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.PagoResponseDto"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
 </qualifiedTypeNameHistroy>

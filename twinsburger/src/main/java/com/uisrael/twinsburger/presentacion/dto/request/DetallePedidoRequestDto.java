@@ -15,5 +15,8 @@ public class DetallePedidoRequestDto {
 	private BigDecimal detalleSubtotal;
 	@NotNull
 	private BigDecimal detallePrecio;
+	
+
+
 
 }

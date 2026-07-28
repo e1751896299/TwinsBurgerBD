@@ -20,7 +20,7 @@ public class MetodoPagoEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMetodoPago;
 	private String mpagoDescripcion;
-	private boolean mpagoEstado;
+	private boolean mpagoEstado = true;
 	
 	@OneToMany(mappedBy = "fkMetodoPago")
 	private List<PagoEntity> pagos = new ArrayList<>();

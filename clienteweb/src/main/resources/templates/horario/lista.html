@@ -25,6 +25,19 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${horario.hrInicio}"></td>
                         <td th:text="${horario.hrFin}"></td>
                         <td th:text="${horario.hrEstado}"></td>
+                        
+                        <td>
+    							<a th:href="@{/horario/editar/{id}(id=${horario.idHorarioRetiro})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/horario/eliminar/{id}(id=${horario.idHorarioRetiro})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+                        
                     </tr>
                 </tbody>
             </table>

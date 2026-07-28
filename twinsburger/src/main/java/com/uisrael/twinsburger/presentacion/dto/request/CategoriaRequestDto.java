@@ -12,6 +12,5 @@ public class CategoriaRequestDto {
 	
 	private String categoriaDescripcion;
 
-	private boolean categoriaEstado;
 
 }

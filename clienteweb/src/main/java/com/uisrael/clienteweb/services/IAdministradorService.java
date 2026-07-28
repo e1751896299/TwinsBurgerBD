@@ -10,5 +10,9 @@ public interface IAdministradorService {
 	List<AdministradorResponseDto> listarAdministrador();
 
 	void crear(AdministradorRequestDto administrador);
+	
+    void eliminar(int id);
+
+    void actualizar(int id, AdministradorRequestDto administrador);
 
 }

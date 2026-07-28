@@ -25,6 +25,19 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${pago.pagoFecha}"></td>
                         <td th:text="${pago.pagoMonto}"></td>
                         <td th:text="${pago.pagoEstado}"></td>
+                        
+                        <td>
+    							<a th:href="@{/pago/editar/{id}(id=${pago.idPago})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/pago/eliminar/{id}(id=${pago.idPago})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+                        
                     </tr>
                 </tbody>
             </table>

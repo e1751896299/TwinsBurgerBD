@@ -7,13 +7,13 @@ import lombok.Data;
 
 @Data
 public class PagoRequestDto {
-	
+
 	private int idPago;
 	
 	private LocalDateTime pagoFecha;
 	
 	private BigDecimal pagoMonto;
+
 	
-	private boolean pagoEstado;
 
 }

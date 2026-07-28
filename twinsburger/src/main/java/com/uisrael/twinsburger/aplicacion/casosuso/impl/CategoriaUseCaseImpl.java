@@ -33,8 +33,12 @@ public class CategoriaUseCaseImpl implements ICategoriaUseCase{
 	}
 
 	@Override
-	public void eliminar(int idCtegoria) {
-		repositorio.eliminar(idCtegoria);
+	public void eliminar(int idCategoria) {
+		  Categoria categoria = buscarPorId(idCategoria);
+
+		    categoria.setCategoriaEstado(false);
+
+		    repositorio.guardar(categoria);
 		
 	}
 

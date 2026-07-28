@@ -4,7 +4,9 @@ public class MetodoPago {
 	
 	private int idMetodoPago;
 	private String mpagoDescripcion;
-	private boolean mpagoEstado;
+	private boolean mpagoEstado = true;
+	public MetodoPago() {
+	}
 	public int getIdMetodoPago() {
 		return idMetodoPago;
 	}
@@ -23,6 +25,7 @@ public class MetodoPago {
 	public void setMpagoEstado(boolean mpagoEstado) {
 		this.mpagoEstado = mpagoEstado;
 	}
+	
 	
 	
 

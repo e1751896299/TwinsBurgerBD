@@ -19,5 +19,7 @@ public interface IProductoJpaRepositorio extends JpaRepository<ProductoEntity, I
 			""")
 			List<ProductoEntity> buscarPorCategoria(Integer idCategoria);
 	
+	List<ProductoEntity> findByProdEstadoTrue();
+	
 
 }

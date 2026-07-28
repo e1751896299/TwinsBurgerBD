@@ -34,12 +34,15 @@ public class PedidoRepositorioImpl implements IPedidoRepositorio {
 
 	@Override
 	public List<Pedido> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByPedidoEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idPedido) {
-		jpaRepositorio.deleteById(idPedido);
+		PedidoEntity pedido = jpaRepositorio.findById(idPedido)
+	            .orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+	 pedido.setPedidoEstado(false);
+	 jpaRepositorio.save(pedido);
 		
 	}
 

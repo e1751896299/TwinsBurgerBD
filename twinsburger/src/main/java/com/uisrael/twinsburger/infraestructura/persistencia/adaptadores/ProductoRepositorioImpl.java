@@ -35,12 +35,15 @@ public class ProductoRepositorioImpl implements IProductoRepositorio{
 
 	@Override
 	public List<Producto> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByProdEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idProducto) {
-		jpaRepositorio.deleteById(idProducto);
+		ProductoEntity producto = jpaRepositorio.findById(idProducto)
+	            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+	 producto.setProdEstado(false);
+	 jpaRepositorio.save(producto);
 		
 	}
 

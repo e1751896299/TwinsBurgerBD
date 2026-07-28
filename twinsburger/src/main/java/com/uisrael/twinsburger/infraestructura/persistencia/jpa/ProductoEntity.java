@@ -27,6 +27,8 @@ public class ProductoEntity {
 	private int prodStock;
 	private String prodCategoria;
 	private LocalDateTime proFechaCreacion;
+	private boolean prodEstado = true;
+
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")

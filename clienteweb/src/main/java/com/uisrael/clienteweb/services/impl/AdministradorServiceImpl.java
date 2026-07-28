@@ -28,4 +28,18 @@ public class AdministradorServiceImpl implements IAdministradorService{
 		webClient.post().uri("/administrador").bodyValue(administrador).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/administrador/{id}", id).retrieve().toBodilessEntity().block();
+		
+	}
+
+
+	@Override
+	public void actualizar(int id, AdministradorRequestDto administrador) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -16,5 +16,8 @@ public class AdministradorRequestDto {
 	private String adminCorreo;
 	@NotBlank
 	private String adminContrasena;
+	
+
+
 
 }

@@ -33,7 +33,11 @@ public class HorarioRetiroUseCaseImpl implements IHorarioRetiroUseCase{
 
 	@Override
 	public void eliminar(int idHorarioRetiro) {
-		repositorio.eliminar(idHorarioRetiro);
+		HorarioRetiro horario= buscarPorId(idHorarioRetiro);
+
+		    horario.setHrEstado(false);
+
+		    repositorio.guardar(horario);
 	}
 
 

@@ -34,12 +34,15 @@ public class PagoRepositorioImpl implements IPagoRepositorio{
 
 	@Override
 	public List<Pago> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByPagoEstadoTrue().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idPago) {
-		jpaRepositorio.deleteById(idPago);
+		PagoEntity pago = jpaRepositorio.findById(idPago)
+	            .orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+	 pago.setPagoEstado(false);
+	 jpaRepositorio.save(pago);
 		
 	}
 

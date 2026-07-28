@@ -34,12 +34,15 @@ public class AdministradorRepositorioImpl implements IAdministradorRepositorio {
 
 	@Override
 	public List<Administrador> listaTodos() {
-		return jpaRepositorio.findAll().stream().map(entityMapper::toDomain).toList();
+		return jpaRepositorio.findByAdminEstadoTrue	().stream().map(entityMapper::toDomain).toList();
 	}
 
 	@Override
 	public void eliminar(int idAdminsitrador) {
-		jpaRepositorio.deleteById(idAdminsitrador);		
+		 AdministradorEntity administrador = jpaRepositorio.findById(idAdminsitrador)
+		            .orElseThrow(() -> new RuntimeException("Administrador no encontrado"));
+		 administrador.setAdminEstado(false);
+		 jpaRepositorio.save(administrador);	
 	}
 
 	@Override

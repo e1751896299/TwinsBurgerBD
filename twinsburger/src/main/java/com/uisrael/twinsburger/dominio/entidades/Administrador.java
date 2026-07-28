@@ -7,6 +7,10 @@ public class Administrador {
 	private String adminApellido;
 	private String adminCorreo;
 	private String adminContrasena;
+	private boolean adminEstado = true;
+	public Administrador() {
+		super();
+	}
 	public int getIdAdmin() {
 		return idAdmin;
 	}
@@ -37,7 +41,11 @@ public class Administrador {
 	public void setAdminContrasena(String adminContrasena) {
 		this.adminContrasena = adminContrasena;
 	}
+	public boolean isAdminEstado() {
+		return adminEstado;
+	}
+	public void setAdminEstado(boolean adminEstado) {
+		this.adminEstado = adminEstado;
+	}
 	
-	
-
 }

@@ -33,7 +33,11 @@ public class PedidoUseCaseImpl implements IPedidoUseCase{
 
 	@Override
 	public void eliminar(int idPedido) {
-		repositorio.eliminar(idPedido);
+		Pedido pedido = buscarPorId(idPedido);
+
+		    pedido.setPedidoEstado(false);
+
+		    repositorio.guardar(pedido);
 	}
 
 	@Override
