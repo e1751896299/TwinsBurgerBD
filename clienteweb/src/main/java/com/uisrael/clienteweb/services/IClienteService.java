@@ -11,4 +11,6 @@ public interface IClienteService {
 
 	void crear(ClienteRequestDto cliente);
 
+	void eliminar(int id);
+
 }

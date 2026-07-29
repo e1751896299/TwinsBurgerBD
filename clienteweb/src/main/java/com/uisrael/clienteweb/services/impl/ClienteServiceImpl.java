@@ -29,4 +29,10 @@ public class ClienteServiceImpl implements IClienteService{
 		webClient.post().uri("/cliente").bodyValue(cliente).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/cliente/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
 }

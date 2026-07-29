@@ -11,4 +11,6 @@ public interface IPedidoService {
 
 	void crear(PedidoRequestDto pedido);
 
+	void eliminar(int id);
+
 }

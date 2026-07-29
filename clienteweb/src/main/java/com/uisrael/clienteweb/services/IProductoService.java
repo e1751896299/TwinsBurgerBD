@@ -11,4 +11,6 @@ public interface IProductoService {
 
 	void crear(ProductoRequestDto producto);
 
+	void eliminar(int id);
+
 }

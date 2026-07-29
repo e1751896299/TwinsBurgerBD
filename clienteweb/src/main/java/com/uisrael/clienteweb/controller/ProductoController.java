@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -42,6 +43,12 @@ public class ProductoController {
 	public String guardar(@ModelAttribute ProductoRequestDto producto) {
 		servicioProducto.crear(producto);
 		return "redirect:/producto";
+	}
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioProducto.eliminar(id);
+	    return "redirect:/producto";
 	}
 
 }

@@ -11,4 +11,6 @@ public interface IPagoService {
 
 	void crear(PagoRequestDto pago);
 
+	void eliminar(int id);
+
 }

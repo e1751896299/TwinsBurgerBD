@@ -10,4 +10,6 @@ public interface IHorarioRetiroService {
 	List<HorarioRetiroResponseDto> listarHorarioRetiro();
 
 	void crear(HorarioRetiroRequestDto horarioRetiro);
+
+	void eliminar(int id);
 }

@@ -11,4 +11,6 @@ public interface ICategoriaService {
 
 	void crear(CategoriaRequestDto categoria);
 
+	void eliminar(int id);
+
 }
