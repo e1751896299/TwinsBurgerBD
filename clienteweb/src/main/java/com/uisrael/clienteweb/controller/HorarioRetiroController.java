@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,17 @@ public class HorarioRetiroController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("horario", new HorarioRetiroRequestDto());
+		return "/horario/nuevo";
+	}
+
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		HorarioRetiroResponseDto existente = servicioHorarioRetiro.buscarPorId(id);
+		HorarioRetiroRequestDto horario = new HorarioRetiroRequestDto();
+		horario.setIdHorarioRetiro(existente.getIdHorarioRetiro());
+		horario.setHrInicio(existente.getHrInicio());
+		horario.setHrFin(existente.getHrFin());
+		model.addAttribute("horario", horario);
 		return "/horario/nuevo";
 	}
 

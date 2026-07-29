@@ -43,7 +43,12 @@ public class ProductoController {
 		return productoUseCase.listarTodo()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idProducto}")
+	public ProductoResponseDto buscarPorId(@PathVariable int idProducto) {
+		return mapper.toResponseDto(productoUseCase.buscarPorId(idProducto));
+	}
+
 	@DeleteMapping("/{idProducto}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idProducto){
 		productoUseCase.eliminar(idProducto);

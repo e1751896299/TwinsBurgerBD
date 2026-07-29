@@ -11,6 +11,7 @@ layout:decorate="~{layouts/principal}">
     <div class="card">
         <div class="card-body">
             <form th:action="@{/horario}" th:object="${horario}" method="post">
+                <input type="hidden" th:field="*{idHorarioRetiro}">
                 <div class="mb-3">
                     <label class="form-label">Hora inicio</label>
                     <input type="time" th:field="*{hrInicio}" class="form-control">
@@ -18,10 +19,6 @@ layout:decorate="~{layouts/principal}">
                 <div class="mb-3">
                     <label class="form-label">Hora fin</label>
                     <input type="time" th:field="*{hrFin}" class="form-control">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" th:field="*{hrEstado}" class="form-check-input">
-                    <label class="form-check-label">Estado</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

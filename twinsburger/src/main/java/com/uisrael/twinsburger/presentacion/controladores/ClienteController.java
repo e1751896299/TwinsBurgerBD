@@ -43,7 +43,12 @@ public class ClienteController {
 		return clienteUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idCliente}")
+	public ClienteResponseDto buscarPorId(@PathVariable int idCliente) {
+		return mapper.toResponseDto(clienteUseCase.buscarPorId(idCliente));
+	}
+
 	@DeleteMapping("/{idCliente}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idCliente){
 		clienteUseCase.eliminar(idCliente);

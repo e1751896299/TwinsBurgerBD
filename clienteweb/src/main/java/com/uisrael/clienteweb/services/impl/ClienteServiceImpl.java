@@ -25,6 +25,11 @@ public class ClienteServiceImpl implements IClienteService{
 	}
 
 	@Override
+	public ClienteResponseDto buscarPorId(int id) {
+		return webClient.get().uri("/cliente/{id}", id).retrieve().bodyToMono(ClienteResponseDto.class).block();
+	}
+
+	@Override
 	public void crear(ClienteRequestDto cliente) {
 		webClient.post().uri("/cliente").bodyValue(cliente).retrieve().toBodilessEntity().block();
 	}

@@ -9,6 +9,8 @@ public interface IProductoService {
 
 	List<ProductoResponseDto> listarProducto();
 
+	ProductoResponseDto buscarPorId(int id);
+
 	void crear(ProductoRequestDto producto);
 
 }

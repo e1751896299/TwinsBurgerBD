@@ -11,6 +11,7 @@ layout:decorate="~{layouts/principal}">
     <div class="card">
         <div class="card-body">
             <form th:action="@{/pedido}" th:object="${pedido}" method="post">
+                <input type="hidden" th:field="*{idPedido}">
                 <div class="mb-3">
                     <label class="form-label">Fecha pedido</label>
                     <input type="date" th:field="*{pedidoFechaPedido}" class="form-control">
@@ -18,10 +19,6 @@ layout:decorate="~{layouts/principal}">
                 <div class="mb-3">
                     <label class="form-label">Hora retiro</label>
                     <input type="time" th:field="*{pedidoHoraRetiro}" class="form-control">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" th:field="*{pedidoEstado}" class="form-check-input">
-                    <label class="form-check-label">Estado</label>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Total</label>

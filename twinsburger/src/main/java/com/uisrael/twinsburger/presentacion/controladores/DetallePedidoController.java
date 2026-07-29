@@ -43,7 +43,12 @@ public class DetallePedidoController {
 	public List<DetallePedidoResponseDto> lsitar(){
 		return detalleUseCase.listarTodos().stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idDetalle}")
+	public DetallePedidoResponseDto buscarPorId(@PathVariable int idDetalle) {
+		return mapper.toResponseDto(detalleUseCase.buscarPorId(idDetalle));
+	}
+
 	@DeleteMapping("/{idDetalle}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idDetalle){
 		detalleUseCase.eliminar(idDetalle);

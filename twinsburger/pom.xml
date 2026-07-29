@@ -144,7 +144,6 @@
 									<artifactId>mapstruct-processor</artifactId>
 									<groupId>org.mapstruct</groupId>
 									<version>1.6.3</version>
-									<scope>compile</scope>
 								</path>
 							</annotationProcessorPaths>
 						</configuration>

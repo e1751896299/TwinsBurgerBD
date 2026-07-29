@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,20 @@ public class ProductoController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("producto", new ProductoRequestDto());
+		return "/producto/nuevo";
+	}
+
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		ProductoResponseDto existente = servicioProducto.buscarPorId(id);
+		ProductoRequestDto producto = new ProductoRequestDto();
+		producto.setIdProducto(existente.getIdProducto());
+		producto.setProdNombre(existente.getProdNombre());
+		producto.setProdDescripcion(existente.getProdDescripcion());
+		producto.setProdStock(existente.getProdStock());
+		producto.setProdCategoria(existente.getProdCategoria());
+		producto.setProFechaCreacion(existente.getProFechaCreacion());
+		model.addAttribute("producto", producto);
 		return "/producto/nuevo";
 	}
 

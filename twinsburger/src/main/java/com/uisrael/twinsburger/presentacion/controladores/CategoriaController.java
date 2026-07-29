@@ -45,7 +45,12 @@ public class CategoriaController {
 		return categoriaUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idCategoria}")
+	public CategoriaResponseDto buscarPorId(@PathVariable int idCategoria) {
+		return mapper.toResponseDto(categoriaUseCase.buscarPorId(idCategoria));
+	}
+
 	@DeleteMapping("/{idCategoria}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idCategoria){			categoriaUseCase.eliminar(idCategoria);
 		return ResponseEntity.noContent().build();

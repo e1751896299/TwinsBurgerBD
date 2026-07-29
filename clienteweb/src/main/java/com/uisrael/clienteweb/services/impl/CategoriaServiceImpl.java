@@ -25,6 +25,11 @@ public class CategoriaServiceImpl implements ICategoriaService{
 	}
 
 	@Override
+	public CategoriaResponseDto buscarPorId(int id) {
+		return webClient.get().uri("/categoria/{id}", id).retrieve().bodyToMono(CategoriaResponseDto.class).block();
+	}
+
+	@Override
 	public void crear(CategoriaRequestDto categoria) {
 		webClient.post().uri("/categoria").bodyValue(categoria).retrieve().toBodilessEntity().block();
 	}

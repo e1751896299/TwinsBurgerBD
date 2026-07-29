@@ -9,6 +9,8 @@ public interface IClienteService {
 
 	List<ClienteResponseDto> listarCliente();
 
+	ClienteResponseDto buscarPorId(int id);
+
 	void crear(ClienteRequestDto cliente);
 
 }
