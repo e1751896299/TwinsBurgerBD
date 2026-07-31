@@ -27,13 +27,13 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${categoria.categoriaEstado}"></td>
                         
                         <td>
-    							<a th:href="@{/categoria/editar/{id}(id=${ctegoria.idCategoria})}">
+    							<a th:href="@{/categoria/editar/{id}(id=${categoria.idCategoria})}">
         							<img src="/core/dist/icons/edit.svg" width="20" height="20">
     							</a>
 							</td>
 
 							<td>
-    							<a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCtegoria})}">
+    							<a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCategoria})}">
         							<img src="/core/dist/icons/trash.svg" width="20" height="20">
     							</a>
 							</td>

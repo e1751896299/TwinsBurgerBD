@@ -34,4 +34,10 @@ public class CategoriaServiceImpl implements ICategoriaService{
 		webClient.post().uri("/categoria").bodyValue(categoria).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/categoria/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
 }

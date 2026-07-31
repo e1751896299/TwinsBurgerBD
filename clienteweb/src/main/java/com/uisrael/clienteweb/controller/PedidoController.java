@@ -77,4 +77,10 @@ public class PedidoController {
 		return "redirect:/pedido";
 	}
 
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioPedido.eliminar(id);
+	    return "redirect:/pedido";
+	}
+
 }

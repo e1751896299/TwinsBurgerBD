@@ -56,4 +56,10 @@ public class HorarioRetiroController {
 		return "redirect:/horario";
 	}
 
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioHorarioRetiro.eliminar(id);
+	    return "redirect:/horario";
+	}
+
 }

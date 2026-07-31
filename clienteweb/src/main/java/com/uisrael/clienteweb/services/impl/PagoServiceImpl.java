@@ -34,4 +34,10 @@ public class PagoServiceImpl implements IPagoService{
 		webClient.post().uri("/pago").bodyValue(pago).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/pago/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
 }

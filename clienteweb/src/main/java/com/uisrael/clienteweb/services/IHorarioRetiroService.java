@@ -12,4 +12,6 @@ public interface IHorarioRetiroService {
 	HorarioRetiroResponseDto buscarPorId(int id);
 
 	void crear(HorarioRetiroRequestDto horarioRetiro);
+
+	void eliminar(int id);
 }

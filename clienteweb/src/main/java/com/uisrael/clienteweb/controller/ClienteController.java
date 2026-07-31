@@ -58,4 +58,10 @@ public class ClienteController {
 		return "redirect:/cliente";
 	}
 
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioCliente.eliminar(id);
+	    return "redirect:/cliente";
+	}
+
 }

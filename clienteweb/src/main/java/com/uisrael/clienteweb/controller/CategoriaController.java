@@ -56,4 +56,10 @@ public class CategoriaController {
 		return "redirect:/categoria";
 	}
 
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioCategoria.eliminar(id);
+	    return "redirect:/categoria";
+	}
+
 }

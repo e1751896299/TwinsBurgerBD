@@ -35,4 +35,10 @@ public class ProductoServiceImpl implements IProductoService{
 		webClient.post().uri("/producto").bodyValue(producto).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/producto/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
 }

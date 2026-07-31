@@ -35,4 +35,10 @@ public class HorarioRetiroServiceImpl implements IHorarioRetiroService{
 		webClient.post().uri("/horarioretiro").bodyValue(horarioRetiro).retrieve().toBodilessEntity().block();
 	}
 
+	@Override
+	public void eliminar(int id) {
+	    webClient.delete()
+	            .uri("/horarioretiro/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
 }

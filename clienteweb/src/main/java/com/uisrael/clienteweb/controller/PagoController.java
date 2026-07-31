@@ -58,4 +58,10 @@ public class PagoController {
 		return "redirect:/pago";
 	}
 
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioPago.eliminar(id);
+	    return "redirect:/pago";
+	}
+
 }

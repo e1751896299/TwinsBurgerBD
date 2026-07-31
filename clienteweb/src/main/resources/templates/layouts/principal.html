@@ -11,13 +11,13 @@
 	<title>Dashboard - Tabler - Premium and Open Source dashboard template with responsive and high quality UI.</title>
 
 	
-		<link rel="icon" href="./favicon-dev.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="./favicon-dev.ico" type="image/x-icon" />
+		<link rel="icon" th:href="@{/favicon-dev.ico}" type="image/x-icon" />
+		<link rel="shortcut icon" th:href="@{/favicon-dev.ico}" type="image/x-icon" />
 	
 
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
-<link href="./dist/libs/jsvectormap/dist/jsvectormap.css?1783927713" rel="stylesheet"/>
+<link th:href="@{/core/dist/libs/jsvectormap/dist/jsvectormap.css}" rel="stylesheet"/>
 <!-- END PAGE LEVEL STYLES -->
 
 
@@ -27,16 +27,16 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 
 <!-- BEGIN PLUGINS STYLES -->
-<link href="./core/dist/css/tabler-flags.css?1783927713" rel="stylesheet"/>
-	<link href="./core/dist/css/tabler-socials.css?1783927713" rel="stylesheet"/>
-	<link href="./core/dist/css/tabler-payments.css?1783927713" rel="stylesheet"/>
-	<link href="./core/dist/css/tabler-vendors.css?1783927713" rel="stylesheet"/>
-	<link href="./core/dist/css/tabler-marketing.css?1783927713" rel="stylesheet"/>
-	<link href="./core/dist/css/tabler-themes.css?1783927713" rel="stylesheet"/>
+<link th:href="@{/core/dist/css/tabler-flags.css}" rel="stylesheet"/>
+	<link th:href="@{/core/dist/css/tabler-socials.css}" rel="stylesheet"/>
+	<link th:href="@{/core/dist/css/tabler-payments.css}" rel="stylesheet"/>
+	<link th:href="@{/core/dist/css/tabler-vendors.css}" rel="stylesheet"/>
+	<link th:href="@{/core/dist/css/tabler-marketing.css}" rel="stylesheet"/>
+	<link th:href="@{/core/dist/css/tabler-themes.css}" rel="stylesheet"/>
 	<!-- END PLUGINS STYLES -->
 
 <!-- BEGIN DEMO STYLES -->
-<link href="./preview/css/demo.css?1783927713" rel="stylesheet"/>
+<link th:href="@{/preview/css/demo.css}" rel="stylesheet"/>
 <!-- END DEMO STYLES -->
 	
 
@@ -50,7 +50,7 @@
 
 <body>
 	<!-- BEGIN GLOBAL THEME SCRIPT -->
-	<script src="./core/dist/js/tabler-theme.js"></script>
+	<script th:src="@{/core/dist/js/tabler-theme.js}"></script>
 	<!-- END GLOBAL THEME SCRIPT -->
 
 	
@@ -875,7 +875,7 @@ Mark all as read
 	
 		
 		<li class="nav-item active">
-			<a class="nav-link" href="./" >
+			<a class="nav-link" th:href="@{/}" >
 				
 				<span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler.io/icons/icon/home -->
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg></span>
@@ -1765,19 +1765,19 @@ Create new report
 
 	
 	<!-- BEGIN PAGE LIBRARIES -->
-<script src="./core/dist/libs/apexcharts/dist/apexcharts.min.js" defer></script>
-<script src="./core/dist/libs/jsvectormap/dist/jsvectormap.min.js" defer></script>
-<script src="./core/dist/libs/jsvectormap/dist/maps/world.js" defer></script>
-<script src="./core/dist/libs/jsvectormap/dist/maps/world-merc.js" defer></script>
+<script th:src="@{/core/dist/libs/apexcharts/dist/apexcharts.min.js}" defer></script>
+<script th:src="@{/core/dist/libs/jsvectormap/dist/jsvectormap.min.js}" defer></script>
+<script th:src="@{/core/dist/libs/jsvectormap/dist/maps/world.js}" defer></script>
+<script th:src="@{/core/dist/libs/jsvectormap/dist/maps/world-merc.js}" defer></script>
 <!-- END PAGE LIBRARIES -->
 
 
 <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-<script src="./core/dist/js/tabler.js" defer></script>
+<script th:src="@{/core/dist/js/tabler.js}" defer></script>
 <!-- END GLOBAL MANDATORY SCRIPTS -->
 
 <!-- BEGIN DEMO SCRIPTS -->
-<script src="./preview/js/demo.js" defer></script>
+<script th:src="@{/preview/js/demo.js}" defer></script>
 <!-- END DEMO SCRIPTS -->
 
 
