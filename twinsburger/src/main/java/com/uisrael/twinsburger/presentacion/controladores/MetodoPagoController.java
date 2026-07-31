@@ -43,7 +43,12 @@ public class MetodoPagoController {
 		return metodoUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idMetodoPago}")
+	public MetodoPagoResponseDto buscarPorId(@PathVariable int idMetodoPago) {
+		return mapper.toResponseDto(metodoUseCase.buscarPorId(idMetodoPago));
+	}
+
 	@DeleteMapping("/{idMetodoPago}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idMetodoPago){
 		metodoUseCase.eliminar(idMetodoPago);

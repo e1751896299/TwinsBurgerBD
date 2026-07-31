@@ -43,7 +43,12 @@ public class HorarioRetiroController {
 		return horarioUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idHorarioRetiro}")
+	public HorarioRetiroResponseDto buscarPorId(@PathVariable int idHorarioRetiro) {
+		return mapper.toResponseDto(horarioUseCase.buscarPorId(idHorarioRetiro));
+	}
+
 	@DeleteMapping("/{idHorarioRetiro}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idHorarioRetiro){
 		horarioUseCase.eliminar(idHorarioRetiro);

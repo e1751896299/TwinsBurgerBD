@@ -12,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -54,6 +55,19 @@ public class PedidoController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("pedido", new PedidoRequestDto());
+		return "/pedido/nuevo";
+	}
+
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		PedidoResponseDto existente = servicioPedido.buscarPorId(id);
+		PedidoRequestDto pedido = new PedidoRequestDto();
+		pedido.setIdPedido(existente.getIdPedido());
+		pedido.setPedidoFechaPedido(new Date(existente.getPedidoFechaPedido().getTime()));
+		pedido.setPedidoHoraRetiro(existente.getPedidoHoraRetiro());
+		pedido.setPedidoTotal(existente.getPedidoTotal());
+		pedido.setPedidoDescripcion(existente.getPedidoDescripcion());
+		model.addAttribute("pedido", pedido);
 		return "/pedido/nuevo";
 	}
 

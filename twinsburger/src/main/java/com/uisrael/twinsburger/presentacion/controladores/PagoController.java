@@ -43,7 +43,12 @@ public class PagoController {
 		return pagoUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idPago}")
+	public PagoResponseDto buscarPorId(@PathVariable int idPago) {
+		return mapper.toResponseDto(pagoUseCase.buscarPorId(idPago));
+	}
+
 	@DeleteMapping("/{idPago}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idPago){
 		pagoUseCase.eliminar(idPago);

@@ -40,6 +40,19 @@ public class AdministradorController {
 		return "/administrador/nuevo";
 	}
 
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		AdministradorResponseDto existente = servicioAdmin.buscarPorId(id);
+		AdministradorRequestDto administrador = new AdministradorRequestDto();
+		administrador.setIdAdmin(existente.getIdAdmin());
+		administrador.setAdminNombre(existente.getAdminNombre());
+		administrador.setAdminApellido(existente.getAdminApellido());
+		administrador.setAdminCorreo(existente.getAdminCorreo());
+		administrador.setAdminContrasena(existente.getAdminContrasena());
+		model.addAttribute("administrador", administrador);
+		return "/administrador/nuevo";
+	}
+
 	@PostMapping
 	public String guardar(@ModelAttribute AdministradorRequestDto administrador) {
 		servicioAdmin.crear(administrador);

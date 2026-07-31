@@ -25,6 +25,11 @@ public class PagoServiceImpl implements IPagoService{
 	}
 
 	@Override
+	public PagoResponseDto buscarPorId(int id) {
+		return webClient.get().uri("/pago/{id}", id).retrieve().bodyToMono(PagoResponseDto.class).block();
+	}
+
+	@Override
 	public void crear(PagoRequestDto pago) {
 		webClient.post().uri("/pago").bodyValue(pago).retrieve().toBodilessEntity().block();
 	}
