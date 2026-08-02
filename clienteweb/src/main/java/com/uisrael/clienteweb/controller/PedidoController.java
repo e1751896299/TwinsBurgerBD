@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.uisrael.clienteweb.model.dto.request.PedidoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.PedidoResponseDto;
+import com.uisrael.clienteweb.services.IAdministradorService;
+import com.uisrael.clienteweb.services.IClienteService;
+import com.uisrael.clienteweb.services.IHorarioRetiroService;
 import com.uisrael.clienteweb.services.IPedidoService;
 
 @Controller
@@ -27,8 +30,22 @@ public class PedidoController {
 	@Autowired
 	public IPedidoService servicioPedido;
 
-	public PedidoController(IPedidoService servicioPedido) {
+	private final IClienteService servicioCliente;
+	private final IAdministradorService servicioAdministrador;
+	private final IHorarioRetiroService servicioHorarioRetiro;
+
+	public PedidoController(IPedidoService servicioPedido, IClienteService servicioCliente,
+			IAdministradorService servicioAdministrador, IHorarioRetiroService servicioHorarioRetiro) {
 		this.servicioPedido = servicioPedido;
+		this.servicioCliente = servicioCliente;
+		this.servicioAdministrador = servicioAdministrador;
+		this.servicioHorarioRetiro = servicioHorarioRetiro;
+	}
+
+	private void agregarListasParaSelects(Model model) {
+		model.addAttribute("clientes", servicioCliente.listarCliente());
+		model.addAttribute("administradores", servicioAdministrador.listarAdministrador());
+		model.addAttribute("horarios", servicioHorarioRetiro.listarHorarioRetiro());
 	}
 
 	@InitBinder
@@ -55,6 +72,7 @@ public class PedidoController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("pedido", new PedidoRequestDto());
+		agregarListasParaSelects(model);
 		return "/pedido/nuevo";
 	}
 
@@ -67,7 +85,11 @@ public class PedidoController {
 		pedido.setPedidoHoraRetiro(existente.getPedidoHoraRetiro());
 		pedido.setPedidoTotal(existente.getPedidoTotal());
 		pedido.setPedidoDescripcion(existente.getPedidoDescripcion());
+		pedido.setIdCliente(existente.getIdCliente());
+		pedido.setIdAdministrador(existente.getIdAdministrador());
+		pedido.setIdHorarioRetiro(existente.getIdHorarioRetiro());
 		model.addAttribute("pedido", pedido);
+		agregarListasParaSelects(model);
 		return "/pedido/nuevo";
 	}
 

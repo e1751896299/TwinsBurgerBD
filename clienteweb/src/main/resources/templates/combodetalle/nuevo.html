@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+    <h1>Nuevo Detalle de Combo</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/combodetalle}" th:object="${detalle}" method="post">
+                <input type="hidden" th:field="*{idComboDetalle}">
+                <div class="mb-3">
+                    <label class="form-label">Combo</label>
+                    <select th:field="*{idCombo}" class="form-control">
+                        <option th:each="combo : ${combos}" th:value="${combo.idCombo}" th:text="${combo.comboNombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Producto</label>
+                    <select th:field="*{idProducto}" class="form-control">
+                        <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.prodNombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" th:field="*{cdCantidad}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</html>

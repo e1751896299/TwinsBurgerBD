@@ -14,11 +14,11 @@ public class ProductoRequestDto {
 	private String prodDescripcion;
 
 	private int prodStock;
-	
-	private String prodCategoria;
-	
+
+	private int idCategoria;
+
 	private LocalDateTime proFechaCreacion;
 	
-	private boolean prodEstado;
+	private boolean prodEstado = true;
 
 }

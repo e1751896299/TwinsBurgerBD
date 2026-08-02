@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import com.uisrael.clienteweb.model.dto.request.AdministradorRequestDto;
 import com.uisrael.clienteweb.model.dto.response.AdministradorResponseDto;
@@ -26,6 +27,16 @@ public class AdministradorServiceImpl implements IAdministradorService{
 	@Override
 	public AdministradorResponseDto buscarPorId(int id) {
 		return webClient.get().uri("/administrador/{id}", id).retrieve().bodyToMono(AdministradorResponseDto.class).block();
+	}
+
+	@Override
+	public AdministradorResponseDto buscarPorCorreo(String correo) {
+		try {
+			return webClient.get().uri("/administrador/correo/{correo}", correo).retrieve()
+					.bodyToMono(AdministradorResponseDto.class).block();
+		} catch (WebClientResponseException ex) {
+			return null;
+		}
 	}
 
 	@Override

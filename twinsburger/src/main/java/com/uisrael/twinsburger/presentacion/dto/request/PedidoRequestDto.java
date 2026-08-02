@@ -20,4 +20,8 @@ public class PedidoRequestDto {
 	
 	private String pedidoDescripcion;
 
+	private int idCliente;
+	private int idAdministrador;
+	private int idHorarioRetiro;
+
 }

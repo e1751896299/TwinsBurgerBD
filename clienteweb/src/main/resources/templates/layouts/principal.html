@@ -847,7 +847,7 @@ Mark all as read
 			<a href="#" class="dropdown-item">Feedback</a>
 			<div class="dropdown-divider"></div>
 			<a href="./settings.html" class="dropdown-item">Settings</a>
-			<a href="./sign-in.html" class="dropdown-item">Logout</a>
+			<a th:href="@{/logout}" class="dropdown-item">Logout</a>
 		</div>
 	</div>
 </div>
@@ -1009,6 +1009,29 @@ Mark all as read
 	
 		
 		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#navbar-compras" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
+
+				<span class="nav-link-title">
+					Compras
+				</span>
+
+			</a>
+
+			<div class="dropdown-menu">
+
+				<a class="dropdown-item" th:href="@{/ordencompra}">
+					Ordenes de Compra
+				</a>
+
+				<a class="dropdown-item" th:href="@{/detalleordencompra}">
+					Detalle de Compra
+				</a>
+
+			</div>
+
+		</li>
+
+		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#navbar-extra" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="false" >
 				
 				<span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler.io/icons/icon/star -->
@@ -1057,16 +1080,23 @@ Mark all as read
 
 						Categorias
 
-						
+
+					</a>
+
+					<a class="dropdown-item" th:href="@{/combo}">
+						Combos
+					</a>
+
+					<a class="dropdown-item" th:href="@{/combodetalle}">
+						Detalle de Combo
 					</a>
 
 
-					
-				
+
 
 				</div></div>
 				</div>
-			
+
 		</li>
 
 		

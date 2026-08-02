@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+    <h1>Detalle de Ordenes de Compra</h1>
+
+    <a th:href="@{/detalleordencompra/nuevo}" class="btn btn-primary mb-3">Nuevo Detalle</a>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th>Orden de Compra</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio unitario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detalle : ${detalles}">
+                        <td th:text="${detalle.idOrdenCompra}"></td>
+                        <td th:text="${detalle.productoNombre}"></td>
+                        <td th:text="${detalle.docCantidad}"></td>
+                        <td th:text="${detalle.docPrecioUnitario}"></td>
+
+                        <td>
+    							<a th:href="@{/detalleordencompra/editar/{id}(id=${detalle.idDetalleOrdenCompra})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/detalleordencompra/eliminar/{id}(id=${detalle.idDetalleOrdenCompra})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</html>

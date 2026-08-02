@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+    <h1>Nueva Orden de Compra</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/ordencompra}" th:object="${ordenCompra}" method="post">
+                <input type="hidden" th:field="*{idOrdenCompra}">
+                <div class="mb-3">
+                    <label class="form-label">Fecha</label>
+                    <input type="datetime-local" th:field="*{ocFecha}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Proveedor</label>
+                    <input type="text" th:field="*{ocProveedor}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</html>

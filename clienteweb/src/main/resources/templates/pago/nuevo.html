@@ -20,6 +20,18 @@ layout:decorate="~{layouts/principal}">
                     <label class="form-label">Monto</label>
                     <input type="number" step="0.01" th:field="*{pagoMonto}" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Pedido</label>
+                    <select th:field="*{idPedido}" class="form-control">
+                        <option th:each="pedido : ${pedidos}" th:value="${pedido.idPedido}" th:text="'Pedido #' + ${pedido.idPedido} + ' - ' + ${pedido.pedidoDescripcion}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Metodo de pago</label>
+                    <select th:field="*{idMetodoPago}" class="form-control">
+                        <option th:each="metodoPago : ${metodosPago}" th:value="${metodoPago.idMetodoPago}" th:text="${metodoPago.mpagoDescripcion}"></option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>

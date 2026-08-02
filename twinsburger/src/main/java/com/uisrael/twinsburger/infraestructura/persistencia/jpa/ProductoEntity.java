@@ -25,7 +25,6 @@ public class ProductoEntity {
 	private String prodNombre;
 	private String prodDescripcion;
 	private int prodStock;
-	private String prodCategoria;
 	private LocalDateTime proFechaCreacion;
 	private boolean prodEstado = true;
 

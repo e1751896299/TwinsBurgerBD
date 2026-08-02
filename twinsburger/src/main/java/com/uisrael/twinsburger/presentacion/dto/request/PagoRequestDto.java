@@ -15,6 +15,7 @@ public class PagoRequestDto {
 	@NotNull
 	private BigDecimal pagoMonto;
 
-	
+	private int idPedido;
+	private int idMetodoPago;
 
 }

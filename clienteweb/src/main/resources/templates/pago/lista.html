@@ -18,6 +18,8 @@ layout:decorate="~{layouts/principal}">
                         <th>Fecha</th>
                         <th>Monto</th>
                         <th>Estado</th>
+                        <th>Pedido</th>
+                        <th>Metodo de pago</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +27,8 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${pago.pagoFecha}"></td>
                         <td th:text="${pago.pagoMonto}"></td>
                         <td th:text="${pago.pagoEstado}"></td>
+                        <td th:text="${pago.idPedido}"></td>
+                        <td th:text="${pago.metodoPagoDescripcion}"></td>
                         
                         <td>
     							<a th:href="@{/pago/editar/{id}(id=${pago.idPago})}">

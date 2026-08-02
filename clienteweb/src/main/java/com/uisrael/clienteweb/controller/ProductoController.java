@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.uisrael.clienteweb.model.dto.request.ProductoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.ProductoResponseDto;
+import com.uisrael.clienteweb.services.ICategoriaService;
 import com.uisrael.clienteweb.services.IProductoService;
 
 @Controller
@@ -22,8 +23,11 @@ public class ProductoController {
 	@Autowired
 	public IProductoService servicioProducto;
 
-	public ProductoController(IProductoService servicioProducto) {
+	private final ICategoriaService servicioCategoria;
+
+	public ProductoController(IProductoService servicioProducto, ICategoriaService servicioCategoria) {
 		this.servicioProducto = servicioProducto;
+		this.servicioCategoria = servicioCategoria;
 	}
 
 	@GetMapping
@@ -36,6 +40,7 @@ public class ProductoController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("producto", new ProductoRequestDto());
+		model.addAttribute("categorias", servicioCategoria.listarCategoria());
 		return "/producto/nuevo";
 	}
 
@@ -47,9 +52,10 @@ public class ProductoController {
 		producto.setProdNombre(existente.getProdNombre());
 		producto.setProdDescripcion(existente.getProdDescripcion());
 		producto.setProdStock(existente.getProdStock());
-		producto.setProdCategoria(existente.getProdCategoria());
+		producto.setIdCategoria(existente.getIdCategoria());
 		producto.setProFechaCreacion(existente.getProFechaCreacion());
 		model.addAttribute("producto", producto);
+		model.addAttribute("categorias", servicioCategoria.listarCategoria());
 		return "/producto/nuevo";
 	}
 

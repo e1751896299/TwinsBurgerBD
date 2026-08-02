@@ -28,6 +28,24 @@ layout:decorate="~{layouts/principal}">
                     <label class="form-label">Descripcion</label>
                     <input type="text" th:field="*{pedidoDescripcion}" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Cliente</label>
+                    <select th:field="*{idCliente}" class="form-control">
+                        <option th:each="cliente : ${clientes}" th:value="${cliente.idCliente}" th:text="${cliente.cliNombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Administrador</label>
+                    <select th:field="*{idAdministrador}" class="form-control">
+                        <option th:each="administrador : ${administradores}" th:value="${administrador.idAdmin}" th:text="${administrador.adminNombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Horario de retiro</label>
+                    <select th:field="*{idHorarioRetiro}" class="form-control">
+                        <option th:each="horario : ${horarios}" th:value="${horario.idHorarioRetiro}" th:text="${horario.hrInicio} + ' - ' + ${horario.hrFin}"></option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>

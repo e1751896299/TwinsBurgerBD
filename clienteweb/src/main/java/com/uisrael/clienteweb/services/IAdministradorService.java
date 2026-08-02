@@ -11,6 +11,8 @@ public interface IAdministradorService {
 
 	AdministradorResponseDto buscarPorId(int id);
 
+	AdministradorResponseDto buscarPorCorreo(String correo);
+
 	void crear(AdministradorRequestDto administrador);
 	
     void eliminar(int id);

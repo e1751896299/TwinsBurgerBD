@@ -5,24 +5,47 @@ import java.util.Optional;
 
 import com.uisrael.twinsburger.dominio.entidades.Pedido;
 import com.uisrael.twinsburger.dominio.repositorios.IPedidoRepositorio;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.AdministradorEntity;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.ClienteEntity;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.HorarioRetiroEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PedidoEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IPedidoJpaMapper;
+import com.uisrael.twinsburger.infraestructura.repositorios.IAdministradorJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IClienteJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IHorarioRetiroJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IPedidoJpaRepositorio;
 
 public class PedidoRepositorioImpl implements IPedidoRepositorio {
-	
+
 	private final IPedidoJpaRepositorio jpaRepositorio;
 	private final IPedidoJpaMapper entityMapper;
-	
+	private final IClienteJpaRepositorio clienteJpaRepositorio;
+	private final IAdministradorJpaRepositorio administradorJpaRepositorio;
+	private final IHorarioRetiroJpaRepositorio horarioRetiroJpaRepositorio;
 
-	public PedidoRepositorioImpl(IPedidoJpaRepositorio jpaRepositorio, IPedidoJpaMapper entityMapper) {
+
+	public PedidoRepositorioImpl(IPedidoJpaRepositorio jpaRepositorio, IPedidoJpaMapper entityMapper,
+			IClienteJpaRepositorio clienteJpaRepositorio, IAdministradorJpaRepositorio administradorJpaRepositorio,
+			IHorarioRetiroJpaRepositorio horarioRetiroJpaRepositorio) {
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
+		this.clienteJpaRepositorio = clienteJpaRepositorio;
+		this.administradorJpaRepositorio = administradorJpaRepositorio;
+		this.horarioRetiroJpaRepositorio = horarioRetiroJpaRepositorio;
 	}
 
 	@Override
 	public Pedido guardar(Pedido nuevoPedido) {
 		PedidoEntity entity = entityMapper.toEntity(nuevoPedido);
+		ClienteEntity cliente = clienteJpaRepositorio.findById(nuevoPedido.getIdCliente())
+				.orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
+		AdministradorEntity administrador = administradorJpaRepositorio.findById(nuevoPedido.getIdAdministrador())
+				.orElseThrow(() -> new RuntimeException("Administrador no encontrado"));
+		HorarioRetiroEntity horario = horarioRetiroJpaRepositorio.findById(nuevoPedido.getIdHorarioRetiro())
+				.orElseThrow(() -> new RuntimeException("HorarioRetiro no encontrado"));
+		entity.setFkCliente(cliente);
+		entity.setFkAdministrador(administrador);
+		entity.setFkHorarioRetiro(horario);
 		PedidoEntity guardado = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardado);
 	}

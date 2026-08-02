@@ -20,6 +20,8 @@ layout:decorate="~{layouts/principal}">
                         <th>Estado</th>
                         <th>Total</th>
                         <th>Descripcion</th>
+                        <th>Cliente</th>
+                        <th>Administrador</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +31,8 @@ layout:decorate="~{layouts/principal}">
                         <td th:text="${pedido.pedidoEstado}"></td>
                         <td th:text="${pedido.pedidoTotal}"></td>
                         <td th:text="${pedido.pedidoDescripcion}"></td>
+                        <td th:text="${pedido.clienteNombre}"></td>
+                        <td th:text="${pedido.administradorNombre}"></td>
                         
                         <td>
     							<a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}">

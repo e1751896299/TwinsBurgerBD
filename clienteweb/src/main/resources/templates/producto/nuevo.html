@@ -22,11 +22,14 @@ layout:decorate="~{layouts/principal}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Stock</label>
-                    <input type="number" th:field="*{prodStock}" class="form-control">
+                    <input type="number" th:field="*{prodStock}" class="form-control" readonly>
+                    <small class="form-hint">El stock se maneja desde Ordenes de Compra, no se edita a mano.</small>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Categoria</label>
-                    <input type="text" th:field="*{prodCategoria}" class="form-control">
+                    <select th:field="*{idCategoria}" class="form-control">
+                        <option th:each="categoria : ${categorias}" th:value="${categoria.idCategoria}" th:text="${categoria.categoriaNombre}"></option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Fecha creacion</label>

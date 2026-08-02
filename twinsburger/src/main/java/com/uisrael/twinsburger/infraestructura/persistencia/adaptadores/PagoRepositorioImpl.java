@@ -5,24 +5,39 @@ import java.util.Optional;
 
 import com.uisrael.twinsburger.dominio.entidades.Pago;
 import com.uisrael.twinsburger.dominio.repositorios.IPagoRepositorio;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.MetodoPagoEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PagoEntity;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PedidoEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.mapeadores.IPagoJpaMapper;
+import com.uisrael.twinsburger.infraestructura.repositorios.IMetodoPagoJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IPagoJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IPedidoJpaRepositorio;
 
 public class PagoRepositorioImpl implements IPagoRepositorio{
-	
+
 	private final IPagoJpaRepositorio jpaRepositorio;
 	private final IPagoJpaMapper entityMapper;
-	
-	public PagoRepositorioImpl(IPagoJpaRepositorio jpaRepositorio, IPagoJpaMapper entityMapper) {
+	private final IPedidoJpaRepositorio pedidoJpaRepositorio;
+	private final IMetodoPagoJpaRepositorio metodoPagoJpaRepositorio;
+
+	public PagoRepositorioImpl(IPagoJpaRepositorio jpaRepositorio, IPagoJpaMapper entityMapper,
+			IPedidoJpaRepositorio pedidoJpaRepositorio, IMetodoPagoJpaRepositorio metodoPagoJpaRepositorio) {
 		this.jpaRepositorio = jpaRepositorio;
 		this.entityMapper = entityMapper;
+		this.pedidoJpaRepositorio = pedidoJpaRepositorio;
+		this.metodoPagoJpaRepositorio = metodoPagoJpaRepositorio;
 	}
 
 
 	@Override
 	public Pago guardar(Pago nuevoPago) {
 		PagoEntity entity = entityMapper.toEntity(nuevoPago);
+		PedidoEntity pedido = pedidoJpaRepositorio.findById(nuevoPago.getIdPedido())
+				.orElseThrow(() -> new RuntimeException("Pedido no encontrado"));
+		MetodoPagoEntity metodoPago = metodoPagoJpaRepositorio.findById(nuevoPago.getIdMetodoPago())
+				.orElseThrow(() -> new RuntimeException("MetodoPago no encontrado"));
+		entity.setFkPedido(pedido);
+		entity.setFkMetodoPago(metodoPago);
 		PagoEntity guardado = jpaRepositorio.save(entity);
 		return entityMapper.toDomain(guardado);
 	}

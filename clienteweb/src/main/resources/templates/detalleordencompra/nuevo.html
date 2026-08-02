@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+    <h1>Nuevo Detalle de Orden de Compra</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/detalleordencompra}" th:object="${detalle}" method="post">
+                <input type="hidden" th:field="*{idDetalleOrdenCompra}">
+                <div class="mb-3">
+                    <label class="form-label">Orden de Compra</label>
+                    <select th:field="*{idOrdenCompra}" class="form-control">
+                        <option th:each="ordenCompra : ${ordenesCompra}" th:value="${ordenCompra.idOrdenCompra}" th:text="'Orden #' + ${ordenCompra.idOrdenCompra} + ' - ' + ${ordenCompra.ocProveedor}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Producto</label>
+                    <select th:field="*{idProducto}" class="form-control">
+                        <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.prodNombre}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" th:field="*{docCantidad}" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Precio unitario</label>
+                    <input type="number" step="0.01" th:field="*{docPrecioUnitario}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</html>

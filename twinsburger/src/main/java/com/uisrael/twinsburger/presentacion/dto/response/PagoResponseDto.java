@@ -8,7 +8,10 @@ public class PagoResponseDto {
 	private int idPago;
 	private LocalDateTime pagoFecha;
 	private BigDecimal pagoMonto;
-	
+	private int idPedido;
+	private int idMetodoPago;
+	private String metodoPagoDescripcion;
+
 	public PagoResponseDto() {
 	}
 
@@ -36,7 +39,28 @@ public class PagoResponseDto {
 		this.pagoMonto = pagoMonto;
 	}
 
+	public int getIdPedido() {
+		return idPedido;
+	}
 
-		
+	public void setIdPedido(int idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public int getIdMetodoPago() {
+		return idMetodoPago;
+	}
+
+	public void setIdMetodoPago(int idMetodoPago) {
+		this.idMetodoPago = idMetodoPago;
+	}
+
+	public String getMetodoPagoDescripcion() {
+		return metodoPagoDescripcion;
+	}
+
+	public void setMetodoPagoDescripcion(String metodoPagoDescripcion) {
+		this.metodoPagoDescripcion = metodoPagoDescripcion;
+	}
 
 }

@@ -16,11 +16,10 @@ public class ProductoRequestDto {
 	private String prodDescripcion;
 
 	private int prodStock;
-	@NotBlank
-	private String prodCategoria;
+	private int idCategoria;
 	@NotNull
 	private LocalDateTime proFechaCreacion;
 	
-	private boolean prodEstado;
+	private boolean prodEstado = true;
 
 }

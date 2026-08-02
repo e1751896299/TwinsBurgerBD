@@ -14,6 +14,7 @@ public class PagoRequestDto {
 	
 	private BigDecimal pagoMonto;
 
-	
+	private int idPedido;
+	private int idMetodoPago;
 
 }

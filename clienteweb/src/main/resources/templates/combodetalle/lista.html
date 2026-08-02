@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+    <h1>Detalle de Combos</h1>
+
+    <a th:href="@{/combodetalle/nuevo}" class="btn btn-primary mb-3">Nuevo Detalle</a>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th>Combo</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detalle : ${detalles}">
+                        <td th:text="${detalle.idCombo}"></td>
+                        <td th:text="${detalle.productoNombre}"></td>
+                        <td th:text="${detalle.cdCantidad}"></td>
+
+                        <td>
+    							<a th:href="@{/combodetalle/editar/{id}(id=${detalle.idComboDetalle})}">
+        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
+    							</a>
+							</td>
+
+							<td>
+    							<a th:href="@{/combodetalle/eliminar/{id}(id=${detalle.idComboDetalle})}">
+        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
+    							</a>
+							</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</html>
