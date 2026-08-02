@@ -28,11 +28,14 @@ layout:decorate="~{layouts/principal}">
                     <label class="form-label">Telefono</label>
                     <input type="text" th:field="*{cliTelefono}" class="form-control">
                 </div>
+<<<<<<< HEAD
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
                     <input type="password" th:field="*{cliContrasena}" class="form-control" th:required="${cliente.idCliente == 0}" minlength="8">
                     <small class="form-hint" th:if="${cliente.idCliente != 0}">Déjala vacía para conservar la contraseña actual.</small>
                 </div>
+=======
+>>>>>>> 3347d3e92094bc42e2f20cd536cbc2fc2cd9c596
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>

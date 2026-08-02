@@ -48,8 +48,12 @@ public class ProductoController {
 		producto.setProdDescripcion(existente.getProdDescripcion());
 		producto.setProdStock(existente.getProdStock());
 		producto.setProdCategoria(existente.getProdCategoria());
+<<<<<<< HEAD
 		producto.setProdPrecio(existente.getProdPrecio());
 		producto.setProdImagen(existente.getProdImagen());
+=======
+		producto.setProFechaCreacion(existente.getProFechaCreacion());
+>>>>>>> 3347d3e92094bc42e2f20cd536cbc2fc2cd9c596
 		model.addAttribute("producto", producto);
 		return "/producto/nuevo";
 	}

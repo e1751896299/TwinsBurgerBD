@@ -44,7 +44,12 @@ public class AdministradorController {
 		return administradorUseCase.listarTodos()
 				.stream().map(mapper::toResponseDto).toList();
 	}
-	
+
+	@GetMapping("/{idAdministrador}")
+	public AdministradorResponseDto buscarPorId(@PathVariable int idAdministrador) {
+		return mapper.toResponseDto(administradorUseCase.buscarPorId(idAdministrador));
+	}
+
 	@DeleteMapping("/{idAdministrador}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idAdministrador){
 		administradorUseCase.eliminar(idAdministrador);
