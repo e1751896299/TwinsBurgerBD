@@ -1,9 +1,11 @@
 package com.uisrael.twinsburger.presentacion.dto.request;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 @Data
@@ -14,13 +16,16 @@ public class ProductoRequestDto {
 	private String prodNombre;
 
 	private String prodDescripcion;
-
+	
+	@PositiveOrZero(message = "El stock no puede ser negativo")
 	private int prodStock;
 	@NotBlank
 	private String prodCategoria;
-	@NotNull
-	private LocalDateTime proFechaCreacion;
+		
+	@NotNull(message = "El precio es obligatorio")
+	@DecimalMin(value = "0.01", message = "El precio debe ser mayor que cero")
+	private BigDecimal prodPrecio;
 	
-	private boolean prodEstado;
+	private String prodImagen;
 
 }

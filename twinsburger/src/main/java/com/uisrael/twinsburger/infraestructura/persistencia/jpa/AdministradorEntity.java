@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -21,6 +22,7 @@ public class AdministradorEntity {
 	private int idAdmin;
 	private String adminNombre;
 	private String adminApellido;
+	@Column(unique = true, nullable = false)
 	private String adminCorreo;
 	private String adminContrasena;
 	private boolean adminEstado = true;

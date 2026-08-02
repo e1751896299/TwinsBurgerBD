@@ -1,5 +1,6 @@
 package com.uisrael.twinsburger.dominio.entidades;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Producto {
@@ -11,6 +12,21 @@ public class Producto {
 	private String prodCategoria;
 	private LocalDateTime proFechaCreacion;
 	private boolean prodEstado = true;
+	private BigDecimal prodPrecio;
+	private String prodImagen;
+	
+	public BigDecimal getProdPrecio() {
+		return prodPrecio;
+	}
+	public void setProdPrecio(BigDecimal prodPrecio) {
+		this.prodPrecio = prodPrecio;
+	}
+	public String getProdImagen() {
+		return prodImagen;
+	}
+	public void setProdImagen(String prodImagen) {
+		this.prodImagen = prodImagen;
+	}
 	public Producto() {
 	}
 	public int getIdProducto() {

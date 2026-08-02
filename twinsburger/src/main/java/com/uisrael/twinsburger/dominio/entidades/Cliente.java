@@ -7,8 +7,18 @@ public class Cliente {
 	private String cliApellido;
 	private String cliCorreo;
 	private String cliTelefono;
+	private String cliContrasena;
 	private boolean cliEstado = true;
+	private boolean cliActivo;
 	
+	public boolean isCliActivo() {
+		return cliActivo;
+	}
+
+	public void setCliActivo(boolean cliActivo) {
+		this.cliActivo = cliActivo;
+	}
+
 	public Cliente() {
 	}
 
@@ -50,6 +60,14 @@ public class Cliente {
 
 	public void setCliTelefono(String cliTelefono) {
 		this.cliTelefono = cliTelefono;
+	}
+
+	public String getCliContrasena() {
+		return cliContrasena;
+	}
+
+	public void setCliContrasena(String cliContrasena) {
+		this.cliContrasena = cliContrasena;
 	}
 
 	public boolean isCliEstado() {

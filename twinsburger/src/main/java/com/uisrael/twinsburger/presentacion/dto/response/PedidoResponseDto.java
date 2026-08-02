@@ -11,7 +11,17 @@ public class PedidoResponseDto {
 	private LocalTime pedidoHoraRetiro;
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
+	private boolean pedidoEntrega;
+
 	
+	public boolean isPedidoEntrega() {
+		return pedidoEntrega;
+	}
+
+	public void setPedidoEntrega(boolean pedidoEntrega) {
+		this.pedidoEntrega = pedidoEntrega;
+	}
+
 	public PedidoResponseDto() {
 	}
 

@@ -1,4 +1,4 @@
-package com.uisrael.clienteweb.controller;
+	package com.uisrael.clienteweb.controller;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,10 +39,31 @@ public class ProductoController {
 		return "/producto/nuevo";
 	}
 
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		ProductoResponseDto existente = servicioProducto.buscarPorId(id);
+		ProductoRequestDto producto = new ProductoRequestDto();
+		producto.setIdProducto(existente.getIdProducto());
+		producto.setProdNombre(existente.getProdNombre());
+		producto.setProdDescripcion(existente.getProdDescripcion());
+		producto.setProdStock(existente.getProdStock());
+		producto.setProdCategoria(existente.getProdCategoria());
+		producto.setProdPrecio(existente.getProdPrecio());
+		producto.setProdImagen(existente.getProdImagen());
+		model.addAttribute("producto", producto);
+		return "/producto/nuevo";
+	}
+
 	@PostMapping
 	public String guardar(@ModelAttribute ProductoRequestDto producto) {
 		servicioProducto.crear(producto);
 		return "redirect:/producto";
+	}
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioProducto.eliminar(id);
+	    return "redirect:/producto";
 	}
 
 }

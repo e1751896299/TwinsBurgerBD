@@ -9,6 +9,10 @@ public interface IPagoService {
 
 	List<PagoResponseDto> listarPago();
 
+	PagoResponseDto buscarPorId(int id);
+
 	void crear(PagoRequestDto pago);
+
+	void eliminar(int id);
 
 }

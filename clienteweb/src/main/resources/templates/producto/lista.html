@@ -15,32 +15,111 @@ layout:decorate="~{layouts/principal}">
             <table class="table table-vcenter card-table">
                 <thead>
                     <tr>
+						<th>Imagen</th>                    
                         <th>Nombre</th>
                         <th>Descripcion</th>
+                        <th>Precio</th>
                         <th>Stock</th>
                         <th>Categoria</th>
                         <th>Fecha creacion</th>
+                        <th>Acciones</th>
+						
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="producto : ${productos}">
-                        <td th:text="${producto.prodNombre}"></td>
-                        <td th:text="${producto.prodDescripcion}"></td>
-                        <td th:text="${producto.prodStock}"></td>
-                        <td th:text="${producto.prodCategoria}"></td>
-                        <td th:text="${producto.proFechaCreacion}"></td>
-                        
-                        <td>
-    							<a th:href="@{/producto/editar/{id}(id=${producto.idProducto})}">
-        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
-    							</a>
-							</td>
+                    
+                    <!-- Imagen -->
+        <td>
+            <img
+                th:if="${producto.prodImagen != null and !producto.prodImagen.isBlank()}"
+                th:src="${producto.prodImagen}"
+                th:alt="${producto.prodNombre}"
+                class="avatar avatar-md rounded">
 
-							<td>
-    							<a th:href="@{/producto/eliminar/{id}(id=${producto.idProducto})}">
-        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
-    							</a>
-							</td>
+            <span
+                th:if="${producto.prodImagen == null or producto.prodImagen.isBlank()}"
+                class="avatar avatar-md bg-secondary-lt">
+                TB
+            </span>
+        </td>
+
+        <!-- Nombre -->
+        <td th:text="${producto.prodNombre}">
+            Nombre
+        </td>
+
+        <!-- Descripción -->
+        <td th:text="${producto.prodDescripcion}">
+            Descripción
+        </td>
+
+        <!-- Precio -->
+        <td>
+            <span
+                th:if="${producto.prodPrecio != null}"
+                class="fw-bold"
+                th:text="'$' + ${#numbers.formatDecimal(producto.prodPrecio, 1, 2)}">
+                $0.00
+            </span>
+
+            <span
+                th:if="${producto.prodPrecio == null}"
+                class="text-secondary">
+                Sin precio
+            </span>
+        </td>
+
+        <!-- Stock -->
+        <td th:text="${producto.prodStock}">
+            0
+        </td>
+
+        <!-- Categoría -->
+        <td th:text="${producto.prodCategoria}">
+            Categoría
+        </td>
+
+        <!-- Fecha -->
+        <td
+            th:text="${producto.proFechaCreacion != null
+                ? #temporals.format(producto.proFechaCreacion, 'dd/MM/yyyy HH:mm')
+                : 'Sin fecha'}">
+            Sin fecha
+        </td>
+
+        <!-- Acciones -->
+        <td>
+            <div class="btn-list flex-nowrap">
+
+                <a
+                    th:href="@{/producto/editar/{id}(id=${producto.idProducto})}"
+                    class="btn btn-sm btn-outline-primary"
+                    title="Editar producto">
+
+                    <img
+                        th:src="@{/core/dist/icons/edit.svg}"
+                        width="20"
+                        height="20"
+                        alt="Editar">
+                </a>
+
+                <a
+                    th:href="@{/producto/eliminar/{id}(id=${producto.idProducto})}"
+                    class="btn btn-sm btn-outline-danger"
+                    title="Eliminar producto"
+                    onclick="return confirm('¿Deseas eliminar este producto?')">
+
+                    <img
+                        th:src="@{/core/dist/icons/trash.svg}"
+                        width="20"
+                        height="20"
+                        alt="Eliminar">
+                </a>
+
+            </div>
+        </td>
+                        
                         
                     </tr>
                 </tbody>

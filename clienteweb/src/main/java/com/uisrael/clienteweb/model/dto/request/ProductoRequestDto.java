@@ -1,6 +1,6 @@
 package com.uisrael.clienteweb.model.dto.request;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import lombok.Data;
 
@@ -16,9 +16,9 @@ public class ProductoRequestDto {
 	private int prodStock;
 	
 	private String prodCategoria;
+		
+	private BigDecimal prodPrecio;
 	
-	private LocalDateTime proFechaCreacion;
-	
-	private boolean prodEstado;
+	private String prodImagen;
 
 }

@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data
@@ -21,9 +22,12 @@ public class ClienteEntity {
 	private int idCliente;
 	private String cliNombre;
 	private String cliApellido;
+	@Column(unique = true, nullable = false)
 	private String cliCorreo;
 	private String cliTelefono;
+	private String cliContrasena;
 	private boolean cliEstado = true;
+	private boolean cliActivo;
 	
 	@OneToMany(mappedBy = "fkCliente")
 	private List<PedidoEntity> pedidos = new ArrayList<>();

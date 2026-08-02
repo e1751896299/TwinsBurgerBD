@@ -7,7 +7,26 @@ public class ClienteResponseDto {
 	private String cliApellido;
 	private String cliCorreo;
 	private String cliTelefono;
+	private boolean cliActivo;
+	private boolean cliEstado;
+
 	
+	public boolean isCliActivo() {
+		return cliActivo;
+	}
+
+	public void setCliActivo(boolean cliActivo) {
+		this.cliActivo = cliActivo;
+	}
+
+	public boolean isCliEstado() {
+		return cliEstado;
+	}
+
+	public void setCliEstado(boolean cliEstado) {
+		this.cliEstado = cliEstado;
+	}
+
 	public ClienteResponseDto() {
 	}
 

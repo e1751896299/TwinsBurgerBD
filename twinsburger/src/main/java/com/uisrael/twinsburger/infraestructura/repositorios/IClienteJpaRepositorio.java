@@ -10,8 +10,7 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.ClienteEntity;
 
 public interface IClienteJpaRepositorio extends JpaRepository<ClienteEntity, Integer>{
 	
-	@Query("SELECT c FROM ClienteEntity c WHERE c.cliCorreo = :correo")
-	Optional<ClienteEntity> findByCliCorreo(String correo);
+	Optional<ClienteEntity> findByCliCorreoIgnoreCase(String correo);
 	
 	@Query("""
 			SELECT c

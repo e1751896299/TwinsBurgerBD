@@ -14,7 +14,6 @@ public class AdministradorRequestDto {
 	private String adminApellido;
 	@NotBlank
 	private String adminCorreo;
-	@NotBlank
 	private String adminContrasena;
 	
 

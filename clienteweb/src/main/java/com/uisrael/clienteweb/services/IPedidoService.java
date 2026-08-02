@@ -9,6 +9,10 @@ public interface IPedidoService {
 
 	List<PedidoResponseDto> listarPedido();
 
+	PedidoResponseDto buscarPorId(int id);
+
 	void crear(PedidoRequestDto pedido);
+
+	void eliminar(int id);
 
 }

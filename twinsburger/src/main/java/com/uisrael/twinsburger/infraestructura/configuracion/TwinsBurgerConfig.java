@@ -2,6 +2,8 @@ package com.uisrael.twinsburger.infraestructura.configuracion;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IAdministradorUseCase;
@@ -61,6 +63,11 @@ import com.uisrael.twinsburger.infraestructura.repositorios.IProductoJpaReposito
 
 @Configuration
 public class TwinsBurgerConfig {
+
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	@Bean
 	IAdministradorRepositorio administradorRepositorio(IAdministradorJpaRepositorio jpaRepositorio, IAdministradorJpaMapper jpaMapper) {
@@ -103,8 +110,8 @@ public class TwinsBurgerConfig {
 	}
 	
 	@Bean
-	IAdministradorUseCase administradorUseCase(IAdministradorRepositorio repositorio) {
-	    return new AdministradorUseCaseImpl(repositorio);
+	IAdministradorUseCase administradorUseCase(IAdministradorRepositorio repositorio, PasswordEncoder passwordEncoder) {
+	    return new AdministradorUseCaseImpl(repositorio, passwordEncoder);
 	}
 
 	@Bean
@@ -113,8 +120,8 @@ public class TwinsBurgerConfig {
 	}
 
 	@Bean
-	IClienteUseCase clienteUseCase(IClienteRepositorio repositorio) {
-	    return new ClienteUseCaseImpl(repositorio);
+	IClienteUseCase clienteUseCase(IClienteRepositorio repositorio, PasswordEncoder passwordEncoder) {
+	    return new ClienteUseCaseImpl(repositorio, passwordEncoder);
 	}
 
 	@Bean

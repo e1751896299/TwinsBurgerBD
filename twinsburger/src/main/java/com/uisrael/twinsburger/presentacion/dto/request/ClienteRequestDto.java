@@ -15,6 +15,10 @@ public class ClienteRequestDto {
 	private String cliCorreo;
 	
 	private String cliTelefono;
+	private String cliContrasena;
+	
+	private boolean cliActivo;
+
 
 
 }

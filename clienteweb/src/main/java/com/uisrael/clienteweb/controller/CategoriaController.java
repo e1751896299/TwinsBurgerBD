@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -38,10 +39,27 @@ public class CategoriaController {
 		return "/categoria/nuevo";
 	}
 
+	@GetMapping("/editar/{id}")
+	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
+		CategoriaResponseDto existente = servicioCategoria.buscarPorId(id);
+		CategoriaRequestDto categoria = new CategoriaRequestDto();
+		categoria.setIdCategoria(existente.getIdCategoria());
+		categoria.setCategoriaNombre(existente.getCategoriaNombre());
+		categoria.setCategoriaDescripcion(existente.getCategoriaDescripcion());
+		model.addAttribute("categoria", categoria);
+		return "/categoria/nuevo";
+	}
+
 	@PostMapping
 	public String guardar(@ModelAttribute CategoriaRequestDto categoria) {
 		servicioCategoria.crear(categoria);
 		return "redirect:/categoria";
+	}
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+	    servicioCategoria.eliminar(id);
+	    return "redirect:/categoria";
 	}
 
 }

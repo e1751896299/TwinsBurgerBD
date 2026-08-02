@@ -6,7 +6,7 @@ public class AdministradorResponseDto {
 	private String adminNombre;
 	private String adminApellido;
 	private String adminCorreo;
-	private String adminContrasena;
+	private boolean adminEstado;
 	
 	public AdministradorResponseDto() {
 		
@@ -44,13 +44,14 @@ public class AdministradorResponseDto {
 		this.adminCorreo = adminCorreo;
 	}
 
-	public String getAdminContrasena() {
-		return adminContrasena;
+	public boolean isAdminEstado() {
+		return adminEstado;
 	}
 
-	public void setAdminContrasena(String adminContrasena) {
-		this.adminContrasena = adminContrasena;
+	public void setAdminEstado(boolean adminEstado) {
+		this.adminEstado = adminEstado;
 	}
+
 
 
 	

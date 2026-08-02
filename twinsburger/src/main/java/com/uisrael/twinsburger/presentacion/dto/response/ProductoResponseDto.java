@@ -1,5 +1,6 @@
 package com.uisrael.twinsburger.presentacion.dto.response;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ProductoResponseDto {
@@ -9,7 +10,25 @@ public class ProductoResponseDto {
 	private int prodStock;
 	private String prodCategoria;
 	private LocalDateTime proFechaCreacion;
+	private BigDecimal prodPrecio;
+	private String prodImagen;
 	
+	public BigDecimal getProdPrecio() {
+		return prodPrecio;
+	}
+
+	public void setProdPrecio(BigDecimal prodPrecio) {
+		this.prodPrecio = prodPrecio;
+	}
+
+	public String getProdImagen() {
+		return prodImagen;
+	}
+
+	public void setProdImagen(String prodImagen) {
+		this.prodImagen = prodImagen;
+	}
+
 	public ProductoResponseDto() {
 	}
 

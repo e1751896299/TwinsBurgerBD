@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceso denegado | Twins Burger</title>
+  <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
+</head>
+<body class="d-flex flex-column">
+  <div class="page page-center">
+    <div class="container-tight py-4 text-center">
+      <div class="display-1 text-danger">403</div>
+      <h1>No tienes permiso para entrar aquí</h1>
+      <p class="text-secondary">Tu cuenta está activa, pero esta página pertenece a otro tipo de usuario.</p>
+      <form th:action="@{/logout}" method="post">
+        <button class="btn btn-primary" type="submit">Cerrar sesión y volver</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -24,6 +24,11 @@ public class AdministradorServiceImpl implements IAdministradorService{
 	}
 
 	@Override
+	public AdministradorResponseDto buscarPorId(int id) {
+		return webClient.get().uri("/administrador/{id}", id).retrieve().bodyToMono(AdministradorResponseDto.class).block();
+	}
+
+	@Override
 	public void crear(AdministradorRequestDto administrador) {
 		webClient.post().uri("/administrador").bodyValue(administrador).retrieve().toBodilessEntity().block();
 	}

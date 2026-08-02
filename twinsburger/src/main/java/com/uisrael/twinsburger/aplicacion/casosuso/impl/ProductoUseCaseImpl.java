@@ -1,5 +1,6 @@
 package com.uisrael.twinsburger.aplicacion.casosuso.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.uisrael.twinsburger.aplicacion.casosuso.entrada.IProductoUseCase;
@@ -17,7 +18,31 @@ public class ProductoUseCaseImpl implements IProductoUseCase{
 
 	@Override
 	public Producto guardar(Producto nuevoProducto) {
-		return repositorio.guardar(nuevoProducto);
+
+		    if (nuevoProducto.getIdProducto() == 0) {
+
+		        nuevoProducto.setProFechaCreacion(
+		                LocalDateTime.now()
+		        );
+
+		        nuevoProducto.setProdEstado(true);
+
+		    } else {
+
+		        Producto productoActual =
+		                buscarPorId(nuevoProducto.getIdProducto());
+
+		        nuevoProducto.setProFechaCreacion(
+		                productoActual.getProFechaCreacion()
+		        );
+
+		        nuevoProducto.setProdEstado(
+		                productoActual.isProdEstado()
+		        );
+		    }
+
+		    return repositorio.guardar(nuevoProducto);
+		 
 	}
 
 	@Override

@@ -18,5 +18,8 @@ public class PedidoRequestDto {
 	private BigDecimal pedidoTotal;
 	
 	private String pedidoDescripcion;
+	
+	private boolean pedidoEntrega;
+
 
 }

@@ -11,6 +11,7 @@ layout:decorate="~{layouts/principal}">
     <div class="card">
         <div class="card-body">
             <form th:action="@{/producto}" th:object="${producto}" method="post">
+                <input type="hidden" th:field="*{idProducto}">
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input type="text" th:field="*{prodNombre}" class="form-control">
@@ -19,6 +20,61 @@ layout:decorate="~{layouts/principal}">
                     <label class="form-label">Descripcion</label>
                     <input type="text" th:field="*{prodDescripcion}" class="form-control">
                 </div>
+                <div class="mb-3">
+   					 <label class="form-label" for="prodPrecio">
+        				Precio
+   					 </label>
+
+  				  <div class="input-group">
+        				<span class="input-group-text">$</span>
+
+       						 <input
+           						 id="prodPrecio"
+								 type="number"
+						            th:field="*{prodPrecio}"
+						            class="form-control"
+						            placeholder="0.00"
+						            min="0.01"
+						            step="0.01"
+						            required>
+						    </div>
+						    <small class="form-hint">
+        
+						    </small>
+						</div>
+						
+						<div class="mb-3">
+						    <label class="form-label" for="prodImagen">
+						        URL de la imagen
+						    </label>
+						
+						    <input
+						        id="prodImagen"
+						        type="url"
+						        th:field="*{prodImagen}"
+						        class="form-control"
+						        placeholder="https://ejemplo.com/hamburguesa.jpg">
+						
+						    <small class="form-hint">
+						        Por ahora utilizaremos una dirección web. Después podemos implementar carga de archivos.
+						    </small>
+						</div>
+						
+						<div
+						    class="mt-3"
+						    th:if="${producto.prodImagen != null and !producto.prodImagen.isBlank()}">
+						
+						    <label class="form-label">Imagen actual</label>
+						
+						    <div>
+						        <img
+						            th:src="${producto.prodImagen}"
+						            alt="Imagen del producto"
+						            class="rounded border"
+						            style="width: 180px; height: 120px; object-fit: cover;">
+						    </div>
+						</div>
+                
                 <div class="mb-3">
                     <label class="form-label">Stock</label>
                     <input type="number" th:field="*{prodStock}" class="form-control">
@@ -29,7 +85,6 @@ layout:decorate="~{layouts/principal}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Fecha creacion</label>
-                    <input type="datetime-local" th:field="*{proFechaCreacion}" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

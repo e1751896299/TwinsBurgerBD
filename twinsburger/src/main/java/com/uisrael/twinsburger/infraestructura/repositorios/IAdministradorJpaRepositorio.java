@@ -9,7 +9,7 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.AdministradorEnt
 
 public interface IAdministradorJpaRepositorio extends JpaRepository<AdministradorEntity, Integer> {
 	
-	Optional<AdministradorEntity> findByAdminCorreo(String correo);
+	Optional<AdministradorEntity> findByAdminCorreoIgnoreCase(String correo);
 	
 	List<AdministradorEntity> findByAdminEstadoTrue();
 

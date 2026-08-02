@@ -12,8 +12,19 @@ public class Pedido {
 	private boolean pedidoEstado = true;
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
+	private boolean pedidoEntrega;
+	
+	public boolean isPedidoEntrega() {
+		return pedidoEntrega;
+	}
+
+	public void setPedidoEntrega(boolean pedidoEntrega) {
+		this.pedidoEntrega = pedidoEntrega;
+	}
+
 	public Pedido() {
 	}
+	
 	public int getIdPedido() {
 		return idPedido;
 	}

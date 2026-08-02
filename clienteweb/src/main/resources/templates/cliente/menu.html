@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menú | Twins Burger</title>
+  <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
+</head>
+<body><div class="page">
+  <header class="navbar navbar-expand-md navbar-dark bg-dark"><div class="container-xl">
+    <a class="navbar-brand" th:href="@{/menu}">Twins Burger</a>
+    <div class="ms-auto d-flex gap-2 align-items-center">
+      <div sec:authorize="isAnonymous()" class="d-flex gap-2">
+        <a class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a>
+        <a class="btn btn-warning" th:href="@{/registro}">Crear cuenta</a>
+      </div>
+      <div sec:authorize="hasRole('CLIENTE')" class="d-flex gap-2">
+        <a class="btn btn-warning" th:href="@{/carrito}">Carrito (<span th:text="${cantidadCarrito}">0</span>)</a>
+        <form th:action="@{/logout}" method="post"><button class="btn btn-outline-light">Cerrar sesión</button></form>
+      </div>
+      <div sec:authorize="hasRole('ADMIN')" class="d-flex gap-2">
+        <a class="btn btn-warning" th:href="@{/}">Panel administrativo</a>
+        <form th:action="@{/logout}" method="post"><button class="btn btn-outline-light">Cerrar sesión</button></form>
+      </div>
+    </div>
+  </div></header>
+  <main class="page-wrapper"><div class="page-header"><div class="container-xl">
+    <h1 class="page-title">Nuestro menú</h1><p class="text-secondary">Elige tus productos y confirma tu compra.</p>
+  </div></div><div class="page-body"><div class="container-xl">
+    <div th:if="${param.agregado}" class="alert alert-success">Producto agregado al carrito.</div>
+    <div th:if="${param.errorCarrito}" class="alert alert-danger">No se pudo agregar: revisa el stock disponible.</div>
+    <div th:if="${apiDisponible == false}" class="alert alert-danger">No se pudo conectar con la API en el puerto 8080.</div>
+    <div th:if="${apiDisponible and !#lists.isEmpty(categorias)}" class="btn-list mb-4">
+      <button type="button" class="btn btn-primary filtro active" data-categoria="TODOS">Todos</button>
+      <button type="button" class="btn btn-outline-primary filtro" th:each="c : ${categorias}" th:attr="data-categoria=${c}" th:text="${c}">Categoría</button>
+    </div>
+    <div th:if="${apiDisponible and #lists.isEmpty(productos)}" class="empty"><p class="empty-title">No hay productos disponibles</p></div>
+    <div class="row row-cards" th:if="${apiDisponible}">
+      <div class="col-sm-6 col-lg-4 producto" th:each="p : ${productos}" th:attr="data-categoria=${p.prodCategoria}">
+        <article class="card h-100">
+          <img th:if="${p.prodImagen != null and !p.prodImagen.isBlank()}" th:src="${p.prodImagen}" th:alt="${p.prodNombre}" class="card-img-top" style="height:220px;object-fit:cover">
+          <div th:unless="${p.prodImagen != null and !p.prodImagen.isBlank()}" class="bg-secondary-lt d-flex align-items-center justify-content-center" style="height:220px">Twins Burger</div>
+          <div class="card-body"><span class="badge bg-orange-lt" th:text="${p.prodCategoria}">Categoría</span>
+            <h2 class="card-title mt-2" th:text="${p.prodNombre}">Producto</h2><p class="text-secondary" th:text="${p.prodDescripcion}">Descripción</p>
+            <strong class="fs-2 text-primary" th:if="${p.prodPrecio != null}" th:text="${'$' + #numbers.formatDecimal(p.prodPrecio,1,2)}">$0.00</strong>
+          </div>
+          <div class="card-footer">
+            <form th:if="${p.prodStock > 0 and p.prodPrecio != null}" th:action="@{/carrito/agregar/{id}(id=${p.idProducto})}" method="post" class="d-flex gap-2">
+              <input class="form-control" style="width:90px" type="number" name="cantidad" value="1" min="1" th:max="${p.prodStock}">
+              <button class="btn btn-primary flex-fill" sec:authorize="hasRole('CLIENTE')">Agregar</button>
+              <a class="btn btn-primary flex-fill" sec:authorize="isAnonymous()" th:href="@{/login}">Ingresar para comprar</a>
+            </form>
+            <span th:unless="${p.prodStock > 0 and p.prodPrecio != null}" class="badge bg-danger-lt">Agotado o sin precio</span>
+            <small class="d-block text-secondary mt-2" th:text="${'Stock: ' + p.prodStock}">Stock</small>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div></div></main>
+</div>
+<script th:src="@{/core/dist/js/tabler.js}"></script>
+<script>document.querySelectorAll('.filtro').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.producto').forEach(p=>p.style.display=b.dataset.categoria==='TODOS'||p.dataset.categoria===b.dataset.categoria?'':'none');document.querySelectorAll('.filtro').forEach(x=>{x.classList.remove('btn-primary','active');x.classList.add('btn-outline-primary')});b.classList.remove('btn-outline-primary');b.classList.add('btn-primary','active')}));</script>
+</body></html>

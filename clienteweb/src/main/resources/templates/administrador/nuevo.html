@@ -11,6 +11,7 @@ layout:decorate="~{layouts/principal}">
     <div class="card">
         <div class="card-body">
             <form th:action="@{/administrador}" th:object="${administrador}" method="post">
+                <input type="hidden" th:field="*{idAdmin}">
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input type="text" th:field="*{adminNombre}" class="form-control">
@@ -25,7 +26,8 @@ layout:decorate="~{layouts/principal}">
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
-                    <input type="password" th:field="*{adminContrasena}" class="form-control">
+                    <input type="password" th:field="*{adminContrasena}" class="form-control" th:required="${administrador.idAdmin == 0}" minlength="8">
+                    <small class="form-hint" th:if="${administrador.idAdmin != 0}">Déjala vacía para conservar la contraseña actual.</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

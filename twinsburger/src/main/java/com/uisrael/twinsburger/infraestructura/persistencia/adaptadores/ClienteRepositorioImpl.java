@@ -48,7 +48,7 @@ public class ClienteRepositorioImpl implements IClienteRepositorio {
 
 	@Override
 	public Optional<Cliente> findByCliCorreo(String correo) {
-		return jpaRepositorio.findByCliCorreo(correo).map(entityMapper::toDomain);
+		return jpaRepositorio.findByCliCorreoIgnoreCase(correo).map(entityMapper::toDomain);
 	}
 
 	@Override

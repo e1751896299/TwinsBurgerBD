@@ -9,6 +9,10 @@ public interface ICategoriaService {
 
 	List<CategoriaResponseDto> listarCategoria();
 
+	CategoriaResponseDto buscarPorId(int id);
+
 	void crear(CategoriaRequestDto categoria);
+
+	void eliminar(int id);
 
 }

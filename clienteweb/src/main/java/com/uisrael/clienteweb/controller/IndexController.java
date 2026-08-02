@@ -121,7 +121,7 @@ public class IndexController {
 		int clientesActivos = 0;
 
 		for (ClienteResponseDto cliente : clientes) {
-			if (cliente.isCliEstado()) {
+			if (cliente.isCliActivo()) {
 				clientesActivos++;
 			}
 		}
@@ -132,7 +132,7 @@ public class IndexController {
 
 		for (PedidoResponseDto pedido : pedidos) {
 
-			if (pedido.isPedidoEstado()) {
+			if (pedido.isPedidoEntrega()) {
 				pedidosActivos++;
 			}
 

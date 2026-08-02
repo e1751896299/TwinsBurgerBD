@@ -47,7 +47,7 @@ public class AdministradorRepositorioImpl implements IAdministradorRepositorio {
 
 	@Override
 	public Optional<Administrador> findByAdminCorreo(String correo) {
-		return jpaRepositorio.findByAdminCorreo(correo).map(entityMapper::toDomain);
+		return jpaRepositorio.findByAdminCorreoIgnoreCase(correo).map(entityMapper::toDomain);
 	}
 
 }

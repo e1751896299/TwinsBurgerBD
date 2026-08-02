@@ -30,6 +30,8 @@ public class PedidoEntity {
 	private boolean pedidoEstado = true;
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
+	private boolean pedidoEntrega;
+
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
