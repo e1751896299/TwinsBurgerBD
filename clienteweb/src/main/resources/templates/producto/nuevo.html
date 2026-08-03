@@ -10,8 +10,7 @@ layout:decorate="~{layouts/principal}">
 
     <div class="card">
         <div class="card-body">
-            <form th:action="@{/producto}" th:object="${producto}" method="post">
-                <input type="hidden" th:field="*{idProducto}">
+            <form th:action="@{/producto/nuevo}" th:object="${producto}" method="post">
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
                     <input type="text" th:field="*{prodNombre}" class="form-control">
@@ -75,16 +74,27 @@ layout:decorate="~{layouts/principal}">
 						    </div>
 						</div>
                 
-                <div class="mb-3">
-                    <label class="form-label">Stock</label>
-                    <input type="number" th:field="*{prodStock}" class="form-control">
-                </div>
+                	<div class="mb-3">
+					    <label class="form-label" for="prodStock">
+					        Stock inicial
+					    </label>
+					
+					    <input
+					        id="prodStock"
+					        type="number"
+					        th:field="*{prodStock}"
+					        class="form-control"
+					        min="0"
+					        step="1"
+					        required>
+					
+					    <small class="form-hint">
+					        Cantidad disponible antes de registrar ventas.
+					    </small>
+				</div>
                 <div class="mb-3">
                     <label class="form-label">Categoria</label>
                     <input type="text" th:field="*{prodCategoria}" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha creacion</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>

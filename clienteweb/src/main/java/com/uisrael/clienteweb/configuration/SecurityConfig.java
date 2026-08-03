@@ -20,7 +20,7 @@ public class SecurityConfig {
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/login", "/registro", "/acceso-denegado", "/error",
 						"/menu", "/menu/**", "/core/**", "/css/**", "/preview/**", "/static/**", "/favicon-dev.ico").permitAll()
-				.requestMatchers("/carrito/**").hasRole("CLIENTE")
+				.requestMatchers("/carrito/**", "/mis-pedidos/**").hasRole("CLIENTE")
 				.anyRequest().hasRole("ADMIN"))
 			.formLogin(form -> form
 				.loginPage("/login")

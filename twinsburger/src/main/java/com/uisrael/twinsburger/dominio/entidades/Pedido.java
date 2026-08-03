@@ -14,6 +14,16 @@ public class Pedido {
 	private String pedidoDescripcion;
 	private boolean pedidoEntrega;
 	
+	private EstadoPedido pedidoEstadoProceso = EstadoPedido.PENDIENTE;
+	
+	public EstadoPedido getPedidoEstadoProceso() {
+		return pedidoEstadoProceso;
+	}
+
+	public void setPedidoEstadoProceso(EstadoPedido pedidoEstadoProceso) {
+		this.pedidoEstadoProceso = pedidoEstadoProceso;
+	}
+
 	public boolean isPedidoEntrega() {
 		return pedidoEntrega;
 	}

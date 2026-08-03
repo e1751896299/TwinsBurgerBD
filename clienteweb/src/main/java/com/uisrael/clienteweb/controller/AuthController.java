@@ -1,4 +1,4 @@
-package com.uisrael.clienteweb.controller;
+ package com.uisrael.clienteweb.controller;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +16,7 @@ import com.uisrael.clienteweb.model.dto.response.ProductoResponseDto;
 import com.uisrael.clienteweb.services.IClienteService;
 import com.uisrael.clienteweb.services.IProductoService;
 import com.uisrael.clienteweb.services.CarritoService;
+import com.uisrael.clienteweb.services.IComboService;
 
 import jakarta.validation.Valid;
 
@@ -25,12 +26,15 @@ public class AuthController {
 	private final IClienteService clienteService;
 	private final IProductoService productoService;
 	private final CarritoService carritoService;
+	private final IComboService comboService;
 	
 
-	public AuthController(IClienteService clienteService, IProductoService productoService, CarritoService carritoService) {
+	public AuthController(IClienteService clienteService, IProductoService productoService,
+			CarritoService carritoService, IComboService comboService) {
 		this.clienteService = clienteService;
 		this.productoService = productoService;
 		this.carritoService = carritoService;
+		this.comboService = comboService;
 	}
 
 	@GetMapping("/login")
@@ -100,6 +104,7 @@ public class AuthController {
 	                "categorias",
 	                categorias
 	        );
+	        model.addAttribute("combos", comboService.listar());
 
 	        model.addAttribute(
 	                "apiDisponible",
@@ -117,6 +122,7 @@ public class AuthController {
 	                "categorias",
 	                List.of()
 	        );
+	        model.addAttribute("combos", List.of());
 
 	        model.addAttribute(
 	                "apiDisponible",

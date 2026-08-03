@@ -33,4 +33,8 @@ public class DetallePedidoEntity {
 	@JoinColumn(name = "id_producto")
 	private ProductoEntity fkProducto;
 
+	@ManyToOne
+	@JoinColumn(name = "id_combo")
+	private ComboEntity fkCombo;
+
 }

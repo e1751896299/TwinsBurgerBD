@@ -11,6 +11,8 @@ import com.uisrael.twinsburger.presentacion.dto.response.ProductoResponseDto;
 public interface IProductoDtoMapper {
 	@Mapping(source = "prodPrecio", target = "prodPrecio")
 	@Mapping(source = "prodImagen", target = "prodImagen")
+	@Mapping(target = "proFechaCreacion", ignore = true)
+	@Mapping(target = "prodEstado", ignore = true)
 	Producto toDomain(ProductoRequestDto dto);
 
 	@Mapping(source = "prodPrecio", target = "prodPrecio")

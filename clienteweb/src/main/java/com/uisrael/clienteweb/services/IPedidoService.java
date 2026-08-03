@@ -14,5 +14,9 @@ public interface IPedidoService {
 	void crear(PedidoRequestDto pedido);
 
 	void eliminar(int id);
+	
+	List<PedidoResponseDto> listarPorCliente(int idCliente);
+	
+	void cambiarEstado(int idPedido, String estado);
 
 }

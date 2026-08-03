@@ -1,0 +1,11 @@
+<!doctype html><html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/principal}">
+<head><meta charset="utf-8"><title>Formulario de combo</title></head><body><div layout:fragment="contenido"><h1 class="page-title mb-3" th:text="${combo.idCombo == 0 ? 'Nuevo combo' : 'Editar combo'}">Combo</h1>
+<div th:if="${param.sinProductos}" class="alert alert-warning">Selecciona al menos un producto con cantidad mayor que cero.</div>
+<form th:action="@{/combo}" th:object="${combo}" method="post" class="card"><div class="card-body"><input type="hidden" th:field="*{idCombo}">
+<div class="mb-3"><label class="form-label">Nombre</label><input class="form-control" th:field="*{comboNombre}" required></div>
+<div class="mb-3"><label class="form-label">Descripción</label><textarea class="form-control" th:field="*{comboDescripcion}"></textarea></div>
+<div class="mb-3"><label class="form-label">Precio</label><input class="form-control" type="number" min="0.01" step="0.01" th:field="*{comboPrecio}" required></div>
+<div class="mb-3"><label class="form-label">URL de imagen</label><input class="form-control" type="url" th:field="*{comboImagen}"></div>
+<h3>Productos incluidos</h3><p class="text-secondary">Escribe 0 si el producto no pertenece al combo.</p><div class="row row-cards">
+<div class="col-md-6" th:each="p : ${productos}"><div class="card card-sm"><div class="card-body d-flex align-items-center"><div><strong th:text="${p.prodNombre}">Producto</strong><div class="text-secondary" th:text="${'Stock: ' + p.prodStock}"></div></div><input class="form-control ms-auto" style="width:90px" type="number" min="0" th:name="${'cantidad_' + p.idProducto}" th:value="${cantidades.get(p.idProducto) ?: 0}"></div></div></div>
+</div></div><div class="card-footer"><button class="btn btn-primary">Guardar combo</button><a class="btn btn-link" th:href="@{/combo}">Cancelar</a></div></form></div></body></html>

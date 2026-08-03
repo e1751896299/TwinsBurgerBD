@@ -11,6 +11,8 @@ import com.uisrael.twinsburger.presentacion.dto.response.DetallePedidoResponseDt
 public interface IDetallePedidoDtoMapper {
 	
 	@Mapping(target = "detalleEstado", ignore = true)
+	@Mapping(target = "idProducto", ignore = true)
+	@Mapping(target = "prodNombre", ignore = true)
 	DetallePedido toDomain(DetallePedidoRequestDto dto);
 	
 	DetallePedidoResponseDto toResponseDto(DetallePedido detallePojo);

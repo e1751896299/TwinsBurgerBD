@@ -19,4 +19,6 @@ public interface IDetallePedidoJpaRepositorio extends JpaRepository<DetallePedid
 	
 	List<DetallePedidoEntity> findByDetalleEstadoTrue();
 
+	boolean existsByFkComboIdCombo(Integer idCombo);
+
 }

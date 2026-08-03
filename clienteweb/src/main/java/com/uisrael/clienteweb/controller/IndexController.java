@@ -132,17 +132,34 @@ public class IndexController {
 
 		for (PedidoResponseDto pedido : pedidos) {
 
-			if (pedido.isPedidoEntrega()) {
-				pedidosActivos++;
-			}
+		    String estado =
+		            pedido.getPedidoEstadoProceso();
 
-			if (esFechaActual(pedido.getPedidoFechaPedido())) {
-				pedidosHoy++;
-			}
+		    if (estado == null
+		            || (!estado.equals("ENTREGADO")
+		                && !estado.equals("CANCELADO"))) {
+
+		        pedidosActivos++;
+		    }
+
+		    if (esFechaActual(
+		            pedido.getPedidoFechaPedido())) {
+
+		        pedidosHoy++;
+		    }
 		}
 
-		int pedidosPendientes =
-				pedidos.size() - pedidosActivos;
+		int pedidosPendientes = 0;
+
+		for (PedidoResponseDto pedido : pedidos) {
+
+		    if (pedido.getPedidoEstadoProceso() == null
+		            || pedido.getPedidoEstadoProceso()
+		                    .equals("PENDIENTE")) {
+
+		        pedidosPendientes++;
+		    }
+		}
 
 		
 		int stockTotal = 0;

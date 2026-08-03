@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Mis pedidos | Twins Burger</title>
+  <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
+</head>
+<body><div class="page">
+  <header class="navbar navbar-dark bg-dark"><div class="container-xl">
+    <a class="navbar-brand" th:href="@{/menu}">Twins Burger</a>
+    <div class="ms-auto d-flex gap-2"><a class="btn btn-warning" th:href="@{/menu}">Ver menú</a><a class="btn btn-outline-light" th:href="@{/carrito}">Carrito</a>
+      <form th:action="@{/logout}" method="post"><button class="btn btn-outline-light">Cerrar sesión</button></form>
+    </div>
+  </div></header>
+  <main class="page-wrapper"><div class="page-header"><div class="container-xl"><h1 class="page-title">Mis pedidos</h1><p class="text-secondary">Historial de tus compras</p></div></div>
+  <div class="page-body"><div class="container-xl">
+    <div th:if="${param.pedidoNoEncontrado}" class="alert alert-danger">El pedido no existe o no pertenece a tu cuenta.</div>
+    <div th:if="${apiDisponible == false}" class="alert alert-danger">No se pudieron consultar los pedidos. Comprueba que la API esté ejecutándose.</div>
+    <div th:if="${apiDisponible and #lists.isEmpty(pedidos)}" class="empty"><p class="empty-title">Todavía no tienes pedidos</p><a class="btn btn-primary" th:href="@{/menu}">Ver menú</a></div>
+    <div class="row row-cards" th:if="${apiDisponible and !#lists.isEmpty(pedidos)}">
+      <div class="col-md-6" th:each="pedido : ${pedidos}"><article class="card h-100">
+        <div class="card-header"><h2 class="card-title" th:text="${'Pedido #' + pedido.idPedido}">Pedido</h2></div>
+        <div class="card-body">
+          <div class="mb-3">
+            <span class="badge bg-yellow-lt" th:if="${pedido.pedidoEstadoProceso == null or pedido.pedidoEstadoProceso == 'PENDIENTE'}">Pendiente</span>
+            <span class="badge bg-blue-lt" th:if="${pedido.pedidoEstadoProceso == 'EN_PREPARACION'}">En preparación</span>
+            <span class="badge bg-green-lt" th:if="${pedido.pedidoEstadoProceso == 'LISTO'}">Listo para retirar</span>
+            <span class="badge bg-success-lt" th:if="${pedido.pedidoEstadoProceso == 'ENTREGADO'}">Entregado</span>
+            <span class="badge bg-danger-lt" th:if="${pedido.pedidoEstadoProceso == 'CANCELADO'}">Cancelado</span>
+          </div>
+          <dl class="row"><dt class="col-5">Fecha</dt><dd class="col-7" th:text="${#dates.format(pedido.pedidoFechaPedido,'dd/MM/yyyy')}">Fecha</dd>
+            <dt class="col-5">Hora</dt><dd class="col-7" th:text="${pedido.pedidoHoraRetiro}">Hora</dd>
+            <dt class="col-5">Modalidad</dt><dd class="col-7" th:text="${pedido.pedidoEntrega ? 'Entrega' : 'Retiro'}">Retiro</dd>
+            <dt class="col-5">Descripción</dt><dd class="col-7" th:text="${pedido.pedidoDescripcion}">Descripción</dd></dl>
+        </div>
+        <div class="card-footer d-flex align-items-center"><a class="btn btn-outline-primary" th:href="@{/mis-pedidos/{id}(id=${pedido.idPedido})}">Ver detalle</a>
+          <strong class="ms-auto fs-2 text-primary" th:text="${'$' + #numbers.formatDecimal(pedido.pedidoTotal,1,2)}">$0.00</strong></div>
+      </article></div>
+    </div>
+  </div></div></main>
+</div><script th:src="@{/core/dist/js/tabler.js}"></script></body></html>

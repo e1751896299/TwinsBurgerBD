@@ -48,11 +48,7 @@ public class ProductoController {
 	public ProductoResponseDto buscarPorId(@PathVariable int idProducto) {
 		return mapper.toResponseDto(productoUseCase.buscarPorId(idProducto));
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 3347d3e92094bc42e2f20cd536cbc2fc2cd9c596
 	@DeleteMapping("/{idProducto}")
 	public ResponseEntity<Void> eliminar(@PathVariable int idProducto){
 		productoUseCase.eliminar(idProducto);

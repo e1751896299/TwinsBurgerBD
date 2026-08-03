@@ -8,8 +8,30 @@ public class DetallePedidoResponseDto {
 	private int detalleCantidad;
 	private BigDecimal detalleSubtotal;
 	private BigDecimal detallePrecio;
+	private int idProducto;
+	private String prodNombre;
 
 	
+	public int getIdProducto() {
+		return idProducto;
+	}
+
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+
+	public String getProdNombre() {
+		return prodNombre;
+	}
+
+
+	public void setProdNombre(String prodNombre) {
+		this.prodNombre = prodNombre;
+	}
+
+
 	public DetallePedidoResponseDto() {
 	}
 

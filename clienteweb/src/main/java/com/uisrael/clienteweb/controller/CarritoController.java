@@ -14,6 +14,7 @@ import com.uisrael.clienteweb.model.dto.request.CompraRequestDto;
 import com.uisrael.clienteweb.model.dto.request.ItemCompraRequestDto;
 import com.uisrael.clienteweb.services.CarritoService;
 import com.uisrael.clienteweb.services.IProductoService;
+import com.uisrael.clienteweb.services.IComboService;
 import com.uisrael.clienteweb.configuration.UsuarioAutenticado;
 
 @Controller
@@ -21,12 +22,20 @@ import com.uisrael.clienteweb.configuration.UsuarioAutenticado;
 public class CarritoController {
     private final CarritoService carrito;
     private final IProductoService productos;
+    private final IComboService combos;
     private final WebClient webClient;
 
-    public CarritoController(CarritoService carrito, IProductoService productos, WebClient webClient) {
+    public CarritoController(CarritoService carrito, IProductoService productos, IComboService combos, WebClient webClient) {
         this.carrito = carrito;
         this.productos = productos;
+        this.combos = combos;
         this.webClient = webClient;
+    }
+
+    @PostMapping("/agregar-combo/{id}")
+    public String agregarCombo(@PathVariable int id, @RequestParam(defaultValue = "1") int cantidad) {
+        try { carrito.agregarCombo(combos.buscar(id), cantidad); return "redirect:/menu?agregado"; }
+        catch (RuntimeException ex) { return "redirect:/menu?errorCarrito"; }
     }
 
     @GetMapping
@@ -53,6 +62,15 @@ public class CarritoController {
         return "redirect:/carrito";
     }
 
+    @PostMapping("/actualizar-articulo/{clave}")
+    public String actualizarArticulo(@PathVariable String clave, @RequestParam int cantidad) {
+        try { carrito.actualizarClave(clave, cantidad); } catch (RuntimeException ex) { return "redirect:/carrito?errorCantidad"; }
+        return "redirect:/carrito";
+    }
+
+    @PostMapping("/eliminar-articulo/{clave}")
+    public String eliminarArticulo(@PathVariable String clave) { carrito.eliminarClave(clave); return "redirect:/carrito"; }
+
     @PostMapping("/eliminar/{id}")
     public String eliminar(@PathVariable int id) {
         carrito.eliminar(id);
@@ -63,7 +81,7 @@ public class CarritoController {
     public String confirmar(@AuthenticationPrincipal UsuarioAutenticado usuario) {
         if (carrito.estaVacio()) return "redirect:/carrito?vacio";
         CompraRequestDto compra = new CompraRequestDto(usuario.getId(), carrito.getItems().stream()
-                .map(i -> new ItemCompraRequestDto(i.getIdProducto(), i.getCantidad())).toList());
+                .map(i -> new ItemCompraRequestDto(i.getIdProducto(), i.getIdCombo(), i.getCantidad())).toList());
         try {
             webClient.post().uri("/compras").bodyValue(compra).retrieve().toBodilessEntity().block();
             carrito.vaciar();

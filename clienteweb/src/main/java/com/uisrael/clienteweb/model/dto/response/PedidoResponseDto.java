@@ -12,8 +12,17 @@ public class PedidoResponseDto {
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
 	private boolean pedidoEntrega;
+	private String pedidoEstadoProceso;
 
 	
+
+	public String getPedidoEstadoProceso() {
+		return pedidoEstadoProceso;
+	}
+
+	public void setPedidoEstadoProceso(String pedidoEstadoProceso) {
+		this.pedidoEstadoProceso = pedidoEstadoProceso;
+	}
 
 	public PedidoResponseDto() {
 	}

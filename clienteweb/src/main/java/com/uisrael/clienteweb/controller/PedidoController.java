@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uisrael.clienteweb.model.dto.request.PedidoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.PedidoResponseDto;
@@ -81,6 +82,19 @@ public class PedidoController {
 	public String eliminar(@PathVariable int id) {
 	    servicioPedido.eliminar(id);
 	    return "redirect:/pedido";
+	}
+	
+	@PostMapping("/{idPedido}/estado")
+	public String cambiarEstado(@PathVariable int idPedido, @RequestParam String estado) {
+	    try {
+	        servicioPedido.cambiarEstado(idPedido, estado);
+	        return "redirect:/pedido?estadoActualizado";
+
+	    } 
+	    
+	    catch (RuntimeException ex) {
+	        return "redirect:/pedido?errorEstado";
+	    }
 	}
 
 }

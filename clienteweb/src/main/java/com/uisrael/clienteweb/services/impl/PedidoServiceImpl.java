@@ -1,5 +1,6 @@
 package com.uisrael.clienteweb.services.impl;
 
+import com.uisrael.clienteweb.model.dto.request.CambioEstadoPedidoRequestDto;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import com.uisrael.clienteweb.services.IPedidoService;
 public class PedidoServiceImpl implements IPedidoService{
 
 	private final WebClient webClient;
-
+	
 	public PedidoServiceImpl(WebClient webClient) {
 		this.webClient = webClient;
 	}
@@ -38,6 +39,20 @@ public class PedidoServiceImpl implements IPedidoService{
 	public void eliminar(int id) {
 	    webClient.delete()
 	            .uri("/pedido/{id}", id).retrieve().toBodilessEntity().block();
+	}
+
+	@Override
+	public List<PedidoResponseDto> listarPorCliente(int idCliente) {
+
+	    return webClient.get().uri("/pedido/idCliente/{idCliente}", idCliente).retrieve().bodyToFlux(PedidoResponseDto.class).collectList().block();
+	}
+
+	@Override
+	public void cambiarEstado(int idPedido, String estado) {
+		CambioEstadoPedidoRequestDto request = new CambioEstadoPedidoRequestDto(estado);
+
+		webClient.patch().uri("/pedido/{idPedido}/estado", idPedido).bodyValue(request).retrieve().toBodilessEntity().block();
+		
 	}
 
 }

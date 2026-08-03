@@ -11,6 +11,7 @@ import com.uisrael.twinsburger.presentacion.dto.response.PedidoResponseDto;
 public interface IPedidoDtoMapper {
 	
 	@Mapping(target = "pedidoEstado", ignore = true)
+	@Mapping(target = "pedidoEstadoProceso", ignore = true)
 	Pedido toDomain(PedidoRequestDto dto);
 	
 	PedidoResponseDto toResponseDto(Pedido pedidoPojo);

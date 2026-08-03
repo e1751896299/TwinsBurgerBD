@@ -7,5 +7,7 @@ import com.uisrael.clienteweb.model.dto.response.DetallePedidoResponseDto;
 public interface IDetallePedidoService {
 	
 	List<DetallePedidoResponseDto> listarDetallePedido();
+	
+	List<DetallePedidoResponseDto> listarPorPedido(int idPedido);
 
 }

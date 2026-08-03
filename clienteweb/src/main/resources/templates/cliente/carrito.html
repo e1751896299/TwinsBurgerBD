@@ -11,7 +11,7 @@
 <div class="card" th:unless="${#lists.isEmpty(items)}"><div class="table-responsive"><table class="table card-table table-vcenter">
 <thead><tr><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Subtotal</th><th></th></tr></thead><tbody>
 <tr th:each="item : ${items}"><td th:text="${item.nombre}">Producto</td><td th:text="${'$' + #numbers.formatDecimal(item.precio,1,2)}">$0</td>
-<td><form class="d-flex gap-2" th:action="@{/carrito/actualizar/{id}(id=${item.idProducto})}" method="post"><input class="form-control" style="width:90px" type="number" name="cantidad" min="1" th:max="${item.stockDisponible}" th:value="${item.cantidad}"><button class="btn btn-outline-primary">Actualizar</button></form></td>
-<td class="fw-bold" th:text="${'$' + #numbers.formatDecimal(item.subtotal,1,2)}">$0</td><td><form th:action="@{/carrito/eliminar/{id}(id=${item.idProducto})}" method="post"><button class="btn btn-outline-danger">Quitar</button></form></td></tr>
+<td><form class="d-flex gap-2" th:action="@{/carrito/actualizar-articulo/{clave}(clave=${item.clave})}" method="post"><input class="form-control" style="width:90px" type="number" name="cantidad" min="1" th:max="${item.stockDisponible}" th:value="${item.cantidad}"><button class="btn btn-outline-primary">Actualizar</button></form></td>
+<td class="fw-bold" th:text="${'$' + #numbers.formatDecimal(item.subtotal,1,2)}">$0</td><td><form th:action="@{/carrito/eliminar-articulo/{clave}(clave=${item.clave})}" method="post"><button class="btn btn-outline-danger">Quitar</button></form></td></tr>
 </tbody></table></div><div class="card-footer d-flex align-items-center"><strong class="fs-2" th:text="${'Total: $' + #numbers.formatDecimal(total,1,2)}">Total</strong><form class="ms-auto" th:action="@{/carrito/confirmar}" method="post"><button class="btn btn-success btn-lg">Confirmar compra</button></form></div></div>
 </div></div></main></div></body></html>

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.PagoResponseDto"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.CategoriaResponseDto"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.MetodoPagoResponseDto"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.dominio.entidades.HorarioRetiro"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroresponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroResponseDto"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
@@ -24,7 +19,6 @@
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.controller.HorarioRetiroController"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.MetodoPagoResponseDto"/>
-    <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IDetallePedidoService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.DetallePedidoResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IMetodoPagoService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.CategoriaResponseDto"/>
@@ -51,13 +45,19 @@
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.PagoResponseDto"/>
     <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.mapstruct.Mapping"/>
-    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
     <fullyQualifiedTypeName name="java.math.BigDecimal"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="jakarta.validation.constraints.NotNull"/>
     <fullyQualifiedTypeName name="jakarta.validation.constraints.DecimalMin"/>
     <fullyQualifiedTypeName name="jakarta.validation.constraints.PositiveOrZero"/>
     <fullyQualifiedTypeName name="java.util.Objects"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IDetallePedidoService"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Enumerated"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.EnumType"/>
+    <fullyQualifiedTypeName name="jakarta.persistence.Column"/>
+    <fullyQualifiedTypeName name="com.uisrael.twinsburger.dominio.entidades.EstadoPedido"/>
+    <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.request.CambioEstadoPedidoRequestDto"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
 </qualifiedTypeNameHistroy>

@@ -48,10 +48,7 @@ public class AdministradorController {
 		administrador.setAdminNombre(existente.getAdminNombre());
 		administrador.setAdminApellido(existente.getAdminApellido());
 		administrador.setAdminCorreo(existente.getAdminCorreo());
-<<<<<<< HEAD
-=======
-		administrador.setAdminContrasena(existente.getAdminContrasena());
->>>>>>> 3347d3e92094bc42e2f20cd536cbc2fc2cd9c596
+
 		model.addAttribute("administrador", administrador);
 		return "/administrador/nuevo";
 	}

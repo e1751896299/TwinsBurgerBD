@@ -26,21 +26,80 @@ layout:decorate="~{layouts/principal}">
                     <tr th:each="pedido : ${pedidos}">
                         <td th:text="${pedido.pedidoFechaPedido}"></td>
                         <td th:text="${pedido.pedidoHoraRetiro}"></td>
-                        <td th:text="${pedido.pedidoEstado}"></td>
-                        <td th:text="${pedido.pedidoTotal}"></td>
-                        <td th:text="${pedido.pedidoDescripcion}"></td>
-                        
                         <td>
-    							<a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}">
-        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
-    							</a>
-							</td>
 
-							<td>
-    							<a th:href="@{/pedido/eliminar/{id}(id=${pedido.idPedido})}">
-        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
-    							</a>
-							</td>
+						    <form
+						        th:action="@{/pedido/{id}/estado(id=${pedido.idPedido})}"
+						        method="post"
+						        class="d-flex gap-2">
+						
+						        <select
+						            name="estado"
+						            class="form-select"
+						            th:disabled="${pedido.pedidoEstadoProceso
+						                == 'ENTREGADO'
+						                or pedido.pedidoEstadoProceso
+						                == 'CANCELADO'}">
+						
+						            <option
+						                th:value="${pedido.pedidoEstadoProceso}"
+						                th:text="${pedido.pedidoEstadoProceso}"
+						                selected>
+						                PENDIENTE
+						            </option>
+						
+						            <option
+						                th:if="${pedido.pedidoEstadoProceso
+						                    == null
+						                    or pedido.pedidoEstadoProceso
+						                    == 'PENDIENTE'}"
+						                value="EN_PREPARACION">
+						                En preparación
+						            </option>
+						
+						            <option
+						                th:if="${pedido.pedidoEstadoProceso
+						                    == null
+						                    or pedido.pedidoEstadoProceso
+						                    == 'PENDIENTE'
+						                    or pedido.pedidoEstadoProceso
+						                    == 'EN_PREPARACION'}"
+						                value="CANCELADO">
+						                Cancelado
+						            </option>
+						
+						            <option
+						                th:if="${pedido.pedidoEstadoProceso
+						                    == 'EN_PREPARACION'}"
+						                value="LISTO">
+						                Listo
+						            </option>
+						
+						            <option
+						                th:if="${pedido.pedidoEstadoProceso
+						                    == 'LISTO'}"
+						                value="ENTREGADO">
+						                Entregado
+						            </option>
+						
+						        </select>
+						
+						        <button
+						            type="submit"
+						            class="btn btn-primary"
+						            th:disabled="${pedido.pedidoEstadoProceso
+						                == 'ENTREGADO'
+						                or pedido.pedidoEstadoProceso
+						                == 'CANCELADO'}">
+						            Cambiar
+						        </button>
+						
+						    </form>
+						</td>
+						
+                        <td th:text="${pedido.pedidoTotal}"> </td>
+                        <td th:text="${pedido.pedidoDescripcion}"></td>
+                       
                         
                     </tr>
                 </tbody>

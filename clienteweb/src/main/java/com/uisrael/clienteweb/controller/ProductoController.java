@@ -33,29 +33,50 @@ public class ProductoController {
 		return "/producto/lista";
 	}
 
-	@GetMapping("/nuevo")
-	public String mostrarFormulario(Model model) {
-		model.addAttribute("producto", new ProductoRequestDto());
-		return "/producto/nuevo";
+	@PostMapping("/nuevo")
+	public String guardarNuevo(
+        @ModelAttribute("producto") ProductoRequestDto producto) {
+	    producto.setIdProducto(0);
+
+	    servicioProducto.crear(producto);
+
+	    return "redirect:/producto?creado";
 	}
 
 	@GetMapping("/editar/{id}")
-	public String mostrarFormularioEditar(@PathVariable int id, Model model) {
-		ProductoResponseDto existente = servicioProducto.buscarPorId(id);
-		ProductoRequestDto producto = new ProductoRequestDto();
-		producto.setIdProducto(existente.getIdProducto());
-		producto.setProdNombre(existente.getProdNombre());
-		producto.setProdDescripcion(existente.getProdDescripcion());
-		producto.setProdStock(existente.getProdStock());
-		producto.setProdCategoria(existente.getProdCategoria());
-<<<<<<< HEAD
-		producto.setProdPrecio(existente.getProdPrecio());
-		producto.setProdImagen(existente.getProdImagen());
-=======
-		producto.setProFechaCreacion(existente.getProFechaCreacion());
->>>>>>> 3347d3e92094bc42e2f20cd536cbc2fc2cd9c596
-		model.addAttribute("producto", producto);
-		return "/producto/nuevo";
+	public String mostrarFormularioEditar(
+	        @PathVariable int id,
+	        Model model) {
+
+	    ProductoResponseDto existente =
+	            servicioProducto.buscarPorId(id);
+
+	    ProductoRequestDto producto =
+	            new ProductoRequestDto();
+
+	    producto.setIdProducto(existente.getIdProducto());
+	    producto.setProdNombre(existente.getProdNombre());
+	    producto.setProdDescripcion(existente.getProdDescripcion());
+	    producto.setProdStock(existente.getProdStock());
+	    producto.setProdCategoria(existente.getProdCategoria());
+	    producto.setProdPrecio(existente.getProdPrecio());
+	    producto.setProdImagen(existente.getProdImagen());
+
+	    model.addAttribute("producto", producto);
+
+	    return "producto/editar";
+	}
+	
+	@PostMapping("/editar/{id}")
+	public String guardarEdicion(
+	        @PathVariable int id,
+	        @ModelAttribute("producto") ProductoRequestDto producto) {
+
+	    producto.setIdProducto(id);
+
+	    servicioProducto.crear(producto);
+
+	    return "redirect:/producto?editado";
 	}
 
 	@PostMapping

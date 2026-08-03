@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.Date;
 
+import com.uisrael.twinsburger.dominio.entidades.EstadoPedido;
+
 public class PedidoResponseDto {
 	
 	private int idPedido;
@@ -12,8 +14,17 @@ public class PedidoResponseDto {
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
 	private boolean pedidoEntrega;
+	private EstadoPedido pedidoEstadoProceso;
 
 	
+	public EstadoPedido getPedidoEstadoProceso() {
+		return pedidoEstadoProceso;
+	}
+
+	public void setPedidoEstadoProceso(EstadoPedido pedidoEstadoProceso) {
+		this.pedidoEstadoProceso = pedidoEstadoProceso;
+	}
+
 	public boolean isPedidoEntrega() {
 		return pedidoEntrega;
 	}

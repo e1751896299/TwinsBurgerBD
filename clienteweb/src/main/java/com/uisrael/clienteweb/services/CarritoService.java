@@ -9,6 +9,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 import com.uisrael.clienteweb.model.carrito.ItemCarrito;
 import com.uisrael.clienteweb.model.dto.response.ProductoResponseDto;
+import com.uisrael.clienteweb.model.dto.response.ComboResponseDto;
 
 @Service
 @SessionScope
@@ -35,6 +36,17 @@ public class CarritoService {
         }
     }
 
+    public void agregarCombo(ComboResponseDto combo, int cantidad) {
+        if (combo.comboPrecio() == null || combo.comboStockDisponible() <= 0) throw new IllegalArgumentException("Combo agotado");
+        int valida = Math.max(1, cantidad);
+        ItemCarrito existente = items.stream().filter(i -> i.getIdCombo() == combo.idCombo()).findFirst().orElse(null);
+        int nueva = valida + (existente == null ? 0 : existente.getCantidad());
+        if (nueva > combo.comboStockDisponible()) throw new IllegalArgumentException("Cantidad sin stock");
+        if (existente == null) items.add(ItemCarrito.desdeCombo(combo.idCombo(), combo.comboNombre(),
+                combo.comboPrecio(), valida, combo.comboStockDisponible()));
+        else existente.setCantidad(nueva);
+    }
+
     public void actualizar(int idProducto, int cantidad) {
         ItemCarrito item = buscar(idProducto);
         if (cantidad <= 0) { eliminar(idProducto); return; }
@@ -43,6 +55,17 @@ public class CarritoService {
         }
         item.setCantidad(cantidad);
     }
+
+    public void actualizarClave(String clave, int cantidad) {
+        ItemCarrito item = buscarClave(clave);
+        if (cantidad <= 0) { eliminarClave(clave); return; }
+        if (cantidad > item.getStockDisponible()) throw new IllegalArgumentException("Cantidad sin stock");
+        item.setCantidad(cantidad);
+    }
+
+    private ItemCarrito buscarClave(String clave) { return items.stream().filter(i -> i.getClave().equals(clave)).findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("Artículo no encontrado")); }
+    public void eliminarClave(String clave) { items.removeIf(i -> i.getClave().equals(clave)); }
 
     private ItemCarrito buscar(int idProducto) {
         return items.stream().filter(i -> i.getIdProducto() == idProducto).findFirst()

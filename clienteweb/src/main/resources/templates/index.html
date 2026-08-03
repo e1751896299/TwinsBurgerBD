@@ -386,12 +386,21 @@
 	                      </td>
 	                      <td>
 	                        <span
-	                          class="badge"
-	                          th:classappend="${pedido.pedidoEstado} ? 'bg-green-lt text-green' : 'bg-yellow-lt text-yellow'"
-	                          th:text="${pedido.pedidoEstado} ? 'Activo' : 'Pendiente'"
-	                        >
-	                          Estado
-	                        </span>
+							    class="badge"
+							    th:classappend="${pedido.pedidoEstadoProceso == 'CANCELADO'}
+							        ? 'bg-red-lt text-red'
+							        : (${pedido.pedidoEstadoProceso == 'ENTREGADO'}
+							            ? 'bg-green-lt text-green'
+							            : 'bg-yellow-lt text-yellow')"
+							    th:text="${pedido.pedidoEstadoProceso == null
+							        ? 'PENDIENTE'
+							        : #strings.replace(
+							            pedido.pedidoEstadoProceso,
+							            '_',
+							            ' '
+							        )}">
+							    Estado
+							</span>
 	                      </td>
 	                    </tr>
 	                  </tbody>

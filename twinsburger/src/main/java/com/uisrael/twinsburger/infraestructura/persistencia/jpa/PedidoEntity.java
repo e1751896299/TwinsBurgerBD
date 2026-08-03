@@ -6,7 +6,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uisrael.twinsburger.dominio.entidades.EstadoPedido;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +36,9 @@ public class PedidoEntity {
 	private BigDecimal pedidoTotal;
 	private String pedidoDescripcion;
 	private boolean pedidoEntrega;
+	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
+	private EstadoPedido pedidoEstadoProceso = EstadoPedido.PENDIENTE;
 
 	
 	@ManyToOne

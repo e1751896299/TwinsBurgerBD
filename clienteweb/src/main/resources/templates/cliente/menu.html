@@ -14,6 +14,7 @@
         <a class="btn btn-warning" th:href="@{/registro}">Crear cuenta</a>
       </div>
       <div sec:authorize="hasRole('CLIENTE')" class="d-flex gap-2">
+		      	<a class="btn btn-outline-light" th:href="@{/mis-pedidos}">Mis pedidos</a>
         <a class="btn btn-warning" th:href="@{/carrito}">Carrito (<span th:text="${cantidadCarrito}">0</span>)</a>
         <form th:action="@{/logout}" method="post"><button class="btn btn-outline-light">Cerrar sesión</button></form>
       </div>
@@ -29,6 +30,21 @@
     <div th:if="${param.agregado}" class="alert alert-success">Producto agregado al carrito.</div>
     <div th:if="${param.errorCarrito}" class="alert alert-danger">No se pudo agregar: revisa el stock disponible.</div>
     <div th:if="${apiDisponible == false}" class="alert alert-danger">No se pudo conectar con la API en el puerto 8080.</div>
+    <h2 class="mb-3" th:if="${apiDisponible and !#lists.isEmpty(combos)}">Combos</h2>
+    <div class="row row-cards mb-5" th:if="${apiDisponible and !#lists.isEmpty(combos)}">
+      <div class="col-sm-6 col-lg-4" th:each="c : ${combos}"><article class="card h-100 border-warning">
+        <img th:if="${c.comboImagen != null and !c.comboImagen.isBlank()}" th:src="${c.comboImagen}" class="card-img-top" style="height:220px;object-fit:cover">
+        <div th:unless="${c.comboImagen != null and !c.comboImagen.isBlank()}" class="bg-yellow-lt d-flex align-items-center justify-content-center" style="height:220px">Combo Twins Burger</div>
+        <div class="card-body"><span class="badge bg-yellow-lt">COMBO</span><h2 class="card-title mt-2" th:text="${c.comboNombre}">Combo</h2><p th:text="${c.comboDescripcion}"></p>
+          <p class="text-secondary"><span th:each="p,st : ${c.productos}" th:text="${p.cantidad + ' x ' + p.prodNombre + (!st.last ? ', ' : '')}"></span></p>
+          <strong class="fs-2 text-primary" th:text="${'$' + #numbers.formatDecimal(c.comboPrecio,1,2)}">$0</strong></div>
+        <div class="card-footer"><form th:if="${c.comboStockDisponible > 0}" th:action="@{/carrito/agregar-combo/{id}(id=${c.idCombo})}" method="post" class="d-flex gap-2">
+          <input class="form-control" style="width:90px" type="number" name="cantidad" value="1" min="1" th:max="${c.comboStockDisponible}">
+          <button class="btn btn-warning flex-fill" sec:authorize="hasRole('CLIENTE')">Agregar combo</button><a class="btn btn-warning flex-fill" sec:authorize="isAnonymous()" th:href="@{/login}">Ingresar para comprar</a></form>
+          <span th:unless="${c.comboStockDisponible > 0}" class="badge bg-danger-lt">Combo agotado</span><small class="d-block text-secondary mt-2" th:text="${'Disponibles: ' + c.comboStockDisponible}"></small></div>
+      </article></div>
+    </div>
+    <h2 class="mb-3" th:if="${apiDisponible}">Productos individuales</h2>
     <div th:if="${apiDisponible and !#lists.isEmpty(categorias)}" class="btn-list mb-4">
       <button type="button" class="btn btn-primary filtro active" data-categoria="TODOS">Todos</button>
       <button type="button" class="btn btn-outline-primary filtro" th:each="c : ${categorias}" th:attr="data-categoria=${c}" th:text="${c}">Categoría</button>

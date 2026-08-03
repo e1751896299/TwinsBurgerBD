@@ -19,8 +19,13 @@ public class DetallePedidoServiceImpl implements IDetallePedidoService {
 
 	@Override
 	public List<DetallePedidoResponseDto> listarDetallePedido() {
-		return webClient.get().uri("/detalleproducto").retrieve().bodyToFlux(DetallePedidoResponseDto.class).collectList().block();
+		   return webClient.get().uri("/detallepedido").retrieve().bodyToFlux(DetallePedidoResponseDto.class).collectList().block();
+		}
 
+	@Override
+	public List<DetallePedidoResponseDto> listarPorPedido(int idPedido) {
+
+	    return webClient.get().uri("/detallepedido/idPedido/{idPedido}", idPedido).retrieve().bodyToFlux(DetallePedidoResponseDto.class).collectList().block();
 	}
 
 }
