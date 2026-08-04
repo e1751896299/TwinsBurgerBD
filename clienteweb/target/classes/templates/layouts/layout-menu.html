@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title layout:fragment="titulo">Twins Burger</title>
+    <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
+    <style>
+        :root { --tblr-primary: #f76707; }
+        body { background: #f6f8fb; }
+        .cliente-brand { gap: .65rem; color: #182433; text-decoration: none; }
+        .cliente-brand-name { font-size: 1.05rem; font-weight: 800; letter-spacing: .02em; }
+        .cliente-navbar { border-bottom: 1px solid rgba(98, 105, 118, .16); }
+        .cliente-nav-link { border-radius: .5rem; }
+        .cliente-nav-link:hover { background: rgba(247, 103, 7, .08); color: #f76707; }
+        .cliente-avatar { color: #f76707; background: rgba(247, 103, 7, .12); }
+        .cliente-footer { border-top: 1px solid rgba(98, 105, 118, .16); }
+        .cliente-card { transition: transform .18s ease, box-shadow .18s ease; }
+        .cliente-card:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1.5rem rgba(24, 36, 51, .09); }
+    </style>
+    <th:block layout:fragment="estilos"></th:block>
+</head>
+<body class="layout-boxed">
+<div class="page">
+    <header class="navbar navbar-expand-md d-print-none bg-white">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#cliente-navbar" aria-controls="cliente-navbar"
+                    aria-expanded="false" aria-label="Abrir navegación">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand cliente-brand d-flex align-items-center" th:href="@{/menu}">
+                <img th:src="@{/core/img/twinsburger/logo.png}" alt="Logo Twins Burger"
+                     style="width:45px;height:45px;object-fit:contain;">
+                <span class="cliente-brand-name">TWINS BURGER</span>
+            </a>
+
+            <div class="navbar-nav flex-row order-md-last align-items-center gap-2">
+                <div sec:authorize="isAnonymous()" class="d-flex gap-2">
+                    <a class="btn btn-ghost-secondary" th:href="@{/login}">Iniciar sesión</a>
+                    <a class="btn btn-primary d-none d-sm-inline-flex" th:href="@{/registro}">Crear cuenta</a>
+                </div>
+
+                <a sec:authorize="hasRole('CLIENTE')" class="btn btn-ghost-secondary btn-icon"
+                   th:href="@{/carrito}" title="Ver carrito" aria-label="Ver carrito">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" class="icon">
+                        <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                        <path d="M12.5 17h-6.5v-14h-2"/><path d="M6 5l14 1l-1 7h-13"/>
+                        <path d="M16 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"/>
+                    </svg>
+                </a>
+
+                <div sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a href="#" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown"
+                       aria-label="Abrir menú de usuario">
+                        <span class="avatar avatar-sm cliente-avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/>
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/></svg>
+                        </span>
+                        <div class="d-none d-xl-block ps-2">
+                            <div sec:authentication="principal.nombre">Usuario</div>
+                            <div class="mt-1 small text-secondary" sec:authentication="principal.rol">Cliente</div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <a sec:authorize="hasRole('CLIENTE')" class="dropdown-item" th:href="@{/mis-pedidos}">Mis pedidos</a>
+                        <a sec:authorize="hasRole('CLIENTE')" class="dropdown-item" th:href="@{/carrito}">Mi carrito</a>
+                        <a sec:authorize="hasRole('ADMIN')" class="dropdown-item" th:href="@{/}">Panel administrativo</a>
+                        <div class="dropdown-divider"></div>
+                        <form th:action="@{/logout}" method="post">
+                            <button type="submit" class="dropdown-item text-danger">Cerrar sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <header class="navbar-expand-md bg-white cliente-navbar">
+        <div class="collapse navbar-collapse" id="cliente-navbar">
+            <div class="navbar">
+                <div class="container-xl">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link cliente-nav-link" th:href="@{/menu}"><span class="nav-link-title">Menú</span></a>
+                        </li>
+                        <li class="nav-item" sec:authorize="hasRole('CLIENTE')">
+                            <a class="nav-link cliente-nav-link" th:href="@{/mis-pedidos}"><span class="nav-link-title">Mis pedidos</span></a>
+                        </li>
+                        <li class="nav-item" sec:authorize="hasRole('CLIENTE')">
+                            <a class="nav-link cliente-nav-link" th:href="@{/carrito}"><span class="nav-link-title">Carrito</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-body">
+            <div class="container-xl" layout:fragment="contenido">
+                <p>Contenido</p>
+            </div>
+        </div>
+
+        <footer class="footer footer-transparent d-print-none cliente-footer">
+            <div class="container-xl">
+                <div class="row align-items-center gy-2">
+                    <div class="col-md text-center text-md-start text-secondary">
+                        © 2026 Twins Burger · Hecho al momento, disfrutado en grande.
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="d-flex justify-content-center gap-3">
+                            <a class="link-secondary" th:href="@{/menu}">Explorar menú</a>
+                            <a sec:authorize="hasRole('CLIENTE')" class="link-secondary" th:href="@{/mis-pedidos}">Seguimiento de pedidos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+</div>
+<script th:src="@{/core/dist/js/tabler.js}"></script>
+<th:block layout:fragment="scripts"></th:block>
+</body>
+</html>

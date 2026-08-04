@@ -1,8 +1,10 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout-menu}">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Mis pedidos | Twins Burger</title>
+  <title layout:fragment="titulo">Mis pedidos | Twins Burger</title>
   <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
 </head>
 <body><div class="page">
@@ -12,7 +14,7 @@
       <form th:action="@{/logout}" method="post"><button class="btn btn-outline-light">Cerrar sesión</button></form>
     </div>
   </div></header>
-  <main class="page-wrapper"><div class="page-header"><div class="container-xl"><h1 class="page-title">Mis pedidos</h1><p class="text-secondary">Historial de tus compras</p></div></div>
+  <main layout:fragment="contenido"><div class="page-header"><div class="container-xl"><h1 class="page-title">Mis pedidos</h1><p class="text-secondary">Historial de tus compras</p></div></div>
   <div class="page-body"><div class="container-xl">
     <div th:if="${param.pedidoNoEncontrado}" class="alert alert-danger">El pedido no existe o no pertenece a tu cuenta.</div>
     <div th:if="${apiDisponible == false}" class="alert alert-danger">No se pudieron consultar los pedidos. Comprueba que la API esté ejecutándose.</div>

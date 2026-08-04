@@ -2,7 +2,9 @@
 
 <html
     lang="es"
-    xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/layout-menu}">
 
 <head>
     <meta charset="utf-8">
@@ -11,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1">
 
-    <title>Detalle del pedido | Twins Burger</title>
+    <title layout:fragment="titulo">Detalle del pedido | Twins Burger</title>
 
     <link
         rel="stylesheet"
@@ -42,7 +44,7 @@
 
     </header>
 
-    <main class="page-wrapper">
+    <main layout:fragment="contenido">
 
         <div class="page-header">
 

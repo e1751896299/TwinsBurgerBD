@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout-menu}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Menú | Twins Burger</title>
+<title layout:fragment="titulo">Menú | Twins Burger</title>
 <link rel="stylesheet" th:href="@{/core/dist/css/tabler.css}">
 </head>
 <body>
@@ -36,7 +38,7 @@
 				</div>
 			</div>
 		</header>
-		<main class="page-wrapper">
+		<main layout:fragment="contenido">
 			<div class="page-header">
 				<div class="container-xl">
 					<h1 class="page-title">Nuestro menú</h1>
@@ -156,6 +158,6 @@
 		</main>
 	</div>
 	<script th:src="@{/core/dist/js/tabler.js}"></script>
-	<script>document.querySelectorAll('.filtro').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.producto').forEach(p=>p.style.display=b.dataset.categoria==='TODOS'||p.dataset.categoria===b.dataset.categoria?'':'none');document.querySelectorAll('.filtro').forEach(x=>{x.classList.remove('btn-primary','active');x.classList.add('btn-outline-primary')});b.classList.remove('btn-outline-primary');b.classList.add('btn-primary','active')}));</script>
+	<script layout:fragment="scripts">document.querySelectorAll('.filtro').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.producto').forEach(p=>p.style.display=b.dataset.categoria==='TODOS'||p.dataset.categoria===b.dataset.categoria?'':'none');document.querySelectorAll('.filtro').forEach(x=>{x.classList.remove('btn-primary','active');x.classList.add('btn-outline-primary')});b.classList.remove('btn-outline-primary');b.classList.add('btn-primary','active')}));</script>
 </body>
 </html>
