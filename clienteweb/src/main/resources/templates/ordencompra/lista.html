@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/principal}">
+
+	<div layout:fragment="contenido">
+
+		  <div class="col-12">
+
+   			 <h1>Bienvenido</h1>
+
+		<div class="card">
+				<div class="card-header">
+
+
+		<div class="row align-items-center g-3 w-100">
+			<div class="col-12 col-lg-6">
+			<h1 class="card-title mb-0">
+				Ordenes de Compra
+			</h1>
+			<p class="text-secondary m-0">
+				Reposicion de stock por compra a proveedor
+			</p>
+			</div>
+			<div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end">
+			<a class="btn btn-primary" th:href="@{/ordencompra/nuevo}">Nueva
+				orden de compra</a>
+				</div>
+		</div>
+		<div th:if="${param.guardado}" class="alert alert-success">Orden
+			de compra registrada, el stock ya fue actualizado.</div>
+		<div th:if="${param.errorGuardado}" class="alert alert-danger">No
+			se pudo registrar la orden de compra.</div>
+		</div>
+		</div>
+		<div class="card">
+			<div class="table-responsive">
+				<table class="table card-table table-vcenter">
+					<thead>
+						<tr>
+							<th class="border-end">Fecha</th>
+							<th class="border-end">Proveedor</th>
+							<th class="border-end">Productos repuestos</th>
+							<th class="border-end">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="o : ${ordenesCompra}">
+
+							<td class="border-end align-middle" th:text="${o.ocFecha}"></td>
+
+							<td class="border-end align-middle fw-semibold" th:text="${o.ocProveedor}"></td>
+
+							<td class="border-end align-middle text-secondary">
+							<span th:each="p,st : ${o.productos}"
+								th:text="${p.cantidad + ' x ' + p.prodNombre + (!st.last ? ', ' : '')}"></span></td>
+
+							<td class="text-center align-middle">
+            <div class="d-inline-flex align-items-center gap-4">
+
+                <form
+				    th:action="@{/ordencompra/eliminar/{id}
+				        (id=${o.idOrdenCompra})}"
+				    method="post"
+				    class="d-inline">
+
+				    <button
+				        type="submit"
+				        class="btn btn-sm btn-outline-danger"
+				        title="Desactivar orden de compra"
+				        onclick="return confirm(
+				            '¿Deseas desactivar esta orden de compra? Esto no revierte el stock ya sumado.'
+				        )">
+
+				        <img
+				            th:src="@{/core/dist/icons/trash.svg}"
+				            width="20"
+				            height="20"
+				            alt="Desactivar">
+
+				    </button>
+
+				</form>
+            </div>
+        </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		</div>
+	</div>
+
+</html>

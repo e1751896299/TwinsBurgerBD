@@ -96,23 +96,23 @@ layout:decorate="~{layouts/principal}">
 
 				    <label
 				        class="form-label"
-				        for="prodCategoria">
+				        for="idCategoria">
 				        Categoría
 				    </label>
-				
+
 				    <select
-				        id="prodCategoria"
-				        th:field="*{prodCategoria}"
+				        id="idCategoria"
+				        th:field="*{idCategoria}"
 				        class="form-select"
 				        required>
-				
+
 				        <option value="">
 				            Selecciona una categoría
 				        </option>
-				
+
 				        <option
 				            th:each="categoria : ${categorias}"
-				            th:value="${categoria.categoriaNombre}"
+				            th:value="${categoria.idCategoria}"
 				            th:text="${categoria.categoriaNombre}">
 				            Hamburguesas
 				        </option>

@@ -19,9 +19,9 @@ public class ProductoRequestDto {
 	
 	@PositiveOrZero(message = "El stock no puede ser negativo")
 	private int prodStock;
-	@NotBlank
-	private String prodCategoria;
-		
+	@NotNull(message = "La categoria es obligatoria")
+	private Integer idCategoria;
+
 	@NotNull(message = "El precio es obligatorio")
 	@DecimalMin(value = "0.01", message = "El precio debe ser mayor que cero")
 	private BigDecimal prodPrecio;

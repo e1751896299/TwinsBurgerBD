@@ -8,7 +8,8 @@ public class ProductoResponseDto {
 	private String prodNombre;
 	private String prodDescripcion;
 	private int prodStock;
-	private String prodCategoria;
+	private int idCategoria;
+	private String categoriaNombre;
 	private LocalDateTime proFechaCreacion;
 	private BigDecimal prodPrecio;
 	private String prodImagen;
@@ -64,12 +65,20 @@ public class ProductoResponseDto {
 		this.prodStock = prodStock;
 	}
 
-	public String getProdCategoria() {
-		return prodCategoria;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
 
-	public void setProdCategoria(String prodCategoria) {
-		this.prodCategoria = prodCategoria;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+
+	public String getCategoriaNombre() {
+		return categoriaNombre;
+	}
+
+	public void setCategoriaNombre(String categoriaNombre) {
+		this.categoriaNombre = categoriaNombre;
 	}
 
 	public LocalDateTime getProFechaCreacion() {

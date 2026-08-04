@@ -14,9 +14,9 @@ public class ProductoRequestDto {
 	private String prodDescripcion;
 
 	private int prodStock;
-	
-	private String prodCategoria;
-		
+
+	private Integer idCategoria;
+
 	private BigDecimal prodPrecio;
 	
 	private String prodImagen;

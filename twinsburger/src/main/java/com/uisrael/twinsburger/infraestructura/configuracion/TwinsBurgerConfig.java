@@ -105,8 +105,8 @@ public class TwinsBurgerConfig {
 	}
 
 	@Bean
-	IProductoRepositorio productoRepositorio(IProductoJpaRepositorio jpaRepositorio, IProductoJpaMapper jpaMapper) {
-	    return new ProductoRepositorioImpl(jpaRepositorio, jpaMapper);
+	IProductoRepositorio productoRepositorio(IProductoJpaRepositorio jpaRepositorio, IProductoJpaMapper jpaMapper, ICategoriaJpaRepositorio categoriaJpaRepositorio) {
+	    return new ProductoRepositorioImpl(jpaRepositorio, jpaMapper, categoriaJpaRepositorio);
 	}
 	
 	@Bean
