@@ -9,7 +9,8 @@ public class Producto {
 	private String prodNombre;
 	private String prodDescripcion;
 	private int prodStock;
-	private String prodCategoria;
+	private int idCategoria;
+	private String categoriaNombre;
 	private LocalDateTime proFechaCreacion;
 	private boolean prodEstado = true;
 	private BigDecimal prodPrecio;
@@ -53,11 +54,17 @@ public class Producto {
 	public void setProdStock(int prodStock) {
 		this.prodStock = prodStock;
 	}
-	public String getProdCategoria() {
-		return prodCategoria;
+	public int getIdCategoria() {
+		return idCategoria;
 	}
-	public void setProdCategoria(String prodCategoria) {
-		this.prodCategoria = prodCategoria;
+	public void setIdCategoria(int idCategoria) {
+		this.idCategoria = idCategoria;
+	}
+	public String getCategoriaNombre() {
+		return categoriaNombre;
+	}
+	public void setCategoriaNombre(String categoriaNombre) {
+		this.categoriaNombre = categoriaNombre;
 	}
 	public LocalDateTime getProFechaCreacion() {
 		return proFechaCreacion;

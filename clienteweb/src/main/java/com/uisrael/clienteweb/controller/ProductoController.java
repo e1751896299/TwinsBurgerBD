@@ -94,8 +94,8 @@ public class ProductoController {
                 existente.getProdStock()
         );
 
-        producto.setProdCategoria(
-                existente.getProdCategoria()
+        producto.setIdCategoria(
+                existente.getIdCategoria()
         );
 
         producto.setProdPrecio(

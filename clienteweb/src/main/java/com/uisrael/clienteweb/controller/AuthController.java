@@ -86,7 +86,7 @@ public class AuthController {
 	                productoService.listarProducto();
 
 	        List<String> categorias = productos.stream()
-	                .map(ProductoResponseDto::getProdCategoria)
+	                .map(ProductoResponseDto::getCategoriaNombre)
 	                .filter(categoria ->
 	                        categoria != null
 	                        && !categoria.isBlank())

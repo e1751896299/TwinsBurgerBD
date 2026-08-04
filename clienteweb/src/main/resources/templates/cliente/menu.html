@@ -116,7 +116,7 @@
 					</div>
 					<div class="row row-cards" th:if="${apiDisponible}">
 						<div class="col-sm-6 col-lg-4 producto" th:each="p : ${productos}"
-							th:attr="data-categoria=${p.prodCategoria}">
+							th:attr="data-categoria=${p.categoriaNombre}">
 							<article class="card h-100">
 								<img th:if="${p.prodImagen != null and !p.prodImagen.isBlank()}"
 									th:src="${p.prodImagen}" th:alt="${p.prodNombre}"
@@ -126,7 +126,7 @@
 									class="bg-secondary-lt d-flex align-items-center justify-content-center"
 									style="height: 220px">Twins Burger</div>
 								<div class="card-body">
-									<span class="badge bg-orange-lt" th:text="${p.prodCategoria}">Categoría</span>
+									<span class="badge bg-orange-lt" th:text="${p.categoriaNombre}">Categoría</span>
 									<h2 class="card-title mt-2" th:text="${p.prodNombre}">Producto</h2>
 									<p class="text-secondary" th:text="${p.prodDescripcion}">Descripción</p>
 									<strong class="fs-2 text-primary"
