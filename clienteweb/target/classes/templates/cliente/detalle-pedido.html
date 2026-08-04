@@ -1,0 +1,183 @@
+<!doctype html>
+
+<html
+    lang="es"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1">
+
+    <title>Detalle del pedido | Twins Burger</title>
+
+    <link
+        rel="stylesheet"
+        th:href="@{/core/dist/css/tabler.css}">
+</head>
+
+<body>
+
+<div class="page">
+
+    <header class="navbar navbar-dark bg-dark">
+
+        <div class="container-xl">
+
+            <a
+                class="navbar-brand"
+                th:href="@{/menu}">
+                Twins Burger
+            </a>
+
+            <a
+                class="btn btn-outline-light"
+                th:href="@{/mis-pedidos}">
+                Volver a mis pedidos
+            </a>
+
+        </div>
+
+    </header>
+
+    <main class="page-wrapper">
+
+        <div class="page-header">
+
+            <div class="container-xl">
+
+                <h1
+                    class="page-title"
+                    th:text="${'Pedido #'
+                        + pedido.idPedido}">
+                    Pedido #1
+                </h1>
+
+                <p
+                    class="text-secondary"
+                    th:text="${'Fecha: '
+                        + #dates.format(
+                            pedido.pedidoFechaPedido,
+                            'dd/MM/yyyy'
+                        )}">
+                    Fecha
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="page-body">
+
+            <div class="container-xl">
+
+                <div
+                    th:if="${#lists.isEmpty(detalles)}"
+                    class="alert alert-warning">
+                    El pedido no contiene detalles.
+                </div>
+
+                <div
+                    class="card"
+                    th:unless="${#lists.isEmpty(detalles)}">
+
+                    <div class="table-responsive">
+
+                        <table
+                            class="table
+                                   table-vcenter
+                                   card-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <tr
+                                    th:each="detalle : ${detalles}">
+
+                                    <td
+                                        th:text="${detalle.prodNombre}">
+                                        Hamburguesa
+                                    </td>
+
+                                    <td
+                                        th:text="${'$'
+                                            + #numbers.formatDecimal(
+                                                detalle.detallePrecio,
+                                                1,
+                                                2
+                                            )}">
+                                        $0.00
+                                    </td>
+
+                                    <td
+                                        th:text="${detalle.detalleCantidad}">
+                                        1
+                                    </td>
+
+                                    <td
+                                        class="fw-bold"
+                                        th:text="${'$'
+                                            + #numbers.formatDecimal(
+                                                detalle.detalleSubtotal,
+                                                1,
+                                                2
+                                            )}">
+                                        $0.00
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div
+                        class="card-footer
+                               d-flex
+                               align-items-center">
+
+                        <span class="fs-3">
+                            Total del pedido
+                        </span>
+
+                        <strong
+                            class="ms-auto fs-2 text-primary"
+                            th:text="${'$'
+                                + #numbers.formatDecimal(
+                                    pedido.pedidoTotal,
+                                    1,
+                                    2
+                                )}">
+                            $0.00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script th:src="@{/core/dist/js/tabler.js}"></script>
+
+</body>
+</html>

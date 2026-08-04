@@ -9,6 +9,8 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PagoEntity;
 @Mapper(componentModel = "spring")
 public interface IPagoJpaMapper {
 	
+	@Mapping(target = "idPedido", expression = "java(pagoEntity.getFkPedido() == null ? 0 : pagoEntity.getFkPedido().getIdPedido())")
+	@Mapping(target = "metodoPago", expression = "java(pagoEntity.getFkMetodoPago() == null ? null : pagoEntity.getFkMetodoPago().getMpagoDescripcion())")
 	Pago toDomain(PagoEntity pagoEntity);
 	
 	@Mapping(target = "fkMetodoPago", ignore = true)

@@ -36,7 +36,7 @@ public class CategoriaController {
 	@GetMapping("/nuevo")
 	public String mostrarFormulario(Model model) {
 		model.addAttribute("categoria", new CategoriaRequestDto());
-		return "/categoria/nuevo";
+		return "/categoria/editar";
 	}
 
 	@GetMapping("/editar/{id}")
@@ -56,7 +56,7 @@ public class CategoriaController {
 		return "redirect:/categoria";
 	}
 
-	@GetMapping("/eliminar/{id}")
+	@PostMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable int id) {
 	    servicioCategoria.eliminar(id);
 	    return "redirect:/categoria";

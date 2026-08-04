@@ -20,11 +20,14 @@ import com.uisrael.twinsburger.infraestructura.persistencia.jpa.ComboEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.DetallePedidoEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.ProductoEntity;
 import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PedidoEntity;
+import com.uisrael.twinsburger.infraestructura.persistencia.jpa.PagoEntity;
 import com.uisrael.twinsburger.infraestructura.repositorios.IClienteJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IComboJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IDetallePedidoJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IPedidoJpaRepositorio;
 import com.uisrael.twinsburger.infraestructura.repositorios.IProductoJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IMetodoPagoJpaRepositorio;
+import com.uisrael.twinsburger.infraestructura.repositorios.IPagoJpaRepositorio;
 import com.uisrael.twinsburger.presentacion.dto.request.CompraRequestDto;
 import com.uisrael.twinsburger.presentacion.dto.response.CompraResponseDto;
 
@@ -38,12 +41,16 @@ public class CompraController {
     private final IClienteJpaRepositorio clientes;
     private final IPedidoJpaRepositorio pedidos;
     private final IDetallePedidoJpaRepositorio detalles;
+    private final IMetodoPagoJpaRepositorio metodosPago;
+    private final IPagoJpaRepositorio pagos;
 
     public CompraController(IProductoJpaRepositorio productos, IComboJpaRepositorio combos,
             IClienteJpaRepositorio clientes, IPedidoJpaRepositorio pedidos,
-            IDetallePedidoJpaRepositorio detalles) {
+            IDetallePedidoJpaRepositorio detalles, IMetodoPagoJpaRepositorio metodosPago,
+            IPagoJpaRepositorio pagos) {
         this.productos = productos; this.combos = combos; this.clientes = clientes;
         this.pedidos = pedidos; this.detalles = detalles;
+        this.metodosPago = metodosPago; this.pagos = pagos;
     }
 
     @PostMapping
@@ -88,6 +95,9 @@ public class CompraController {
 
         var cliente = clientes.findById(compra.getIdCliente())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado"));
+        var metodoPago = metodosPago.findById(compra.getIdMetodoPago())
+                .filter(metodo -> metodo.isMpagoEstado())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Método de pago no válido"));
         PedidoEntity pedido = new PedidoEntity();
         pedido.setPedidoEstadoProceso(EstadoPedido.PENDIENTE);
         pedido.setPedidoFechaPedido(Date.valueOf(LocalDate.now()));
@@ -103,6 +113,13 @@ public class CompraController {
             detalle.setFkPedido(pedido); detalle.setFkProducto(linea.producto()); detalle.setFkCombo(linea.combo());
             detalles.save(detalle);
         }
+        PagoEntity pago = new PagoEntity();
+        pago.setPagoFecha(java.time.LocalDateTime.now());
+        pago.setPagoMonto(total);
+        pago.setPagoEstado(true);
+        pago.setFkPedido(pedido);
+        pago.setFkMetodoPago(metodoPago);
+        pagos.save(pago);
         return new CompraResponseDto("Pedido " + pedido.getIdPedido() + " registrado correctamente", total);
     }
 

@@ -15,6 +15,7 @@ import com.uisrael.clienteweb.model.dto.request.ItemCompraRequestDto;
 import com.uisrael.clienteweb.services.CarritoService;
 import com.uisrael.clienteweb.services.IProductoService;
 import com.uisrael.clienteweb.services.IComboService;
+import com.uisrael.clienteweb.services.IMetodoPagoService;
 import com.uisrael.clienteweb.configuration.UsuarioAutenticado;
 
 @Controller
@@ -24,12 +25,15 @@ public class CarritoController {
     private final IProductoService productos;
     private final IComboService combos;
     private final WebClient webClient;
+    private final IMetodoPagoService metodosPago;
 
-    public CarritoController(CarritoService carrito, IProductoService productos, IComboService combos, WebClient webClient) {
+    public CarritoController(CarritoService carrito, IProductoService productos, IComboService combos,
+            WebClient webClient, IMetodoPagoService metodosPago) {
         this.carrito = carrito;
         this.productos = productos;
         this.combos = combos;
         this.webClient = webClient;
+        this.metodosPago = metodosPago;
     }
 
     @PostMapping("/agregar-combo/{id}")
@@ -42,6 +46,7 @@ public class CarritoController {
     public String ver(Model model) {
         model.addAttribute("items", carrito.getItems());
         model.addAttribute("total", carrito.getTotal());
+        model.addAttribute("metodosPago", metodosPago.listarMetodoPago());
         return "cliente/carrito";
     }
 
@@ -78,9 +83,10 @@ public class CarritoController {
     }
 
     @PostMapping("/confirmar")
-    public String confirmar(@AuthenticationPrincipal UsuarioAutenticado usuario) {
+    public String confirmar(@AuthenticationPrincipal UsuarioAutenticado usuario,
+            @RequestParam int idMetodoPago) {
         if (carrito.estaVacio()) return "redirect:/carrito?vacio";
-        CompraRequestDto compra = new CompraRequestDto(usuario.getId(), carrito.getItems().stream()
+        CompraRequestDto compra = new CompraRequestDto(usuario.getId(), idMetodoPago, carrito.getItems().stream()
                 .map(i -> new ItemCompraRequestDto(i.getIdProducto(), i.getIdCombo(), i.getCantidad())).toList());
         try {
             webClient.post().uri("/compras").bodyValue(compra).retrieve().toBodilessEntity().block();

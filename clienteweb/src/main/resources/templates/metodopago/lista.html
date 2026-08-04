@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/principal}">
+
+<div layout:fragment="contenido">
+
+	<div class="col-12">
+
+		<h1>Bienvenido</h1>
+
+		<div class="card">
+			<div class="card-header">
+				<div class="row align-items-center g-3 w-100">
+					<div class="col-12 col-lg-3">
+						<h3 class="card-title mb-0">Métodos de Pago</h3>
+						<p class="text-secondary m-0">Lista de métodos de pago</p>
+					</div>
+
+					<div class="col-12 col-lg-6">
+						<div class="d-flex justify-content-center">
+							<div class="input-group input-group-flat w-100"
+								style="max-width: 420px;">
+								<span class="input-group-text"> <!-- Download SVG icon from http://tabler.io/icons/icon/search -->
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+										viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="2" stroke-linecap="round"
+										stroke-linejoin="round" class="icon icon-1">
+										<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+										<path d="M21 21l-6 -6" /></svg>
+								</span> <input id="advanced-table-search" type="text"
+									class="form-control" placeholder="Buscar método..."
+									aria-label="Buscar metodo" autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div
+						class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
+						<a class="btn btn-primary ms-auto" th:href="@{/metodo-pago/nuevo}">Nuevo
+							método</a>
+					</div>
+				</div>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-vcenter card-table">
+					<thead>
+						<tr>
+							<th class="border-end">Descripción</th>
+							<th class="text-center">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="metodo : ${metodos}">
+							
+							<td class="sort-descripcion border-end align-middle fw-semibold"
+								th:text="${metodo.mpagoDescripcion}"></td>
+							
+							<td class="text-center align-middle">
+            <div class="d-inline-flex align-items-center gap-4">
+
+                <a
+                    th:href="@{/metodo-pago/editar/{id}(id=${metodo.idMetodoPago})}"
+                    class="btn btn-sm btn-outline-primary"
+                    title="Editar metodo de pago">
+
+                    <img
+                        th:src="@{/core/dist/icons/edit.svg}"
+                        width="20"
+                        height="20"
+                        alt="Editar">
+                </a>
+
+                <form
+				    th:action="@{/metodo-pago/eliminar/{id}
+				        (id=${metodo.idMetodoPago})}"
+				    method="post"
+				    class="d-inline">
+				
+				    <button
+				        type="submit"
+				        class="btn btn-sm btn-outline-danger"
+				        title="Desactivar Metodo"
+				        onclick="return confirm(
+				            '¿Deseas desactivar este método de pago?'
+				        )">
+				
+				        <img
+				            th:src="@{/core/dist/icons/trash.svg}"
+				            width="20"
+				            height="20"
+				            alt="Desactivar">
+				
+				    </button>
+				
+				</form>
+            </div>
+        </td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

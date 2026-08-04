@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 
 public class CompraRequestDto {
     private int idCliente;
+    private int idMetodoPago;
     @Valid
     @NotEmpty
     private List<ItemCompraRequestDto> items = new ArrayList<>();
@@ -16,4 +17,6 @@ public class CompraRequestDto {
     public void setItems(List<ItemCompraRequestDto> items) { this.items = items; }
     public int getIdCliente() { return idCliente; }
     public void setIdCliente(int idCliente) { this.idCliente = idCliente; }
+    public int getIdMetodoPago() { return idMetodoPago; }
+    public void setIdMetodoPago(int idMetodoPago) { this.idMetodoPago = idMetodoPago; }
 }

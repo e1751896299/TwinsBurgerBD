@@ -11,6 +11,8 @@ import com.uisrael.twinsburger.presentacion.dto.response.PagoResponseDto;
 public interface IPagoDtoMapper {
 	
 	@Mapping(target = "pagoEstado", ignore = true)
+	@Mapping(target = "idPedido", ignore = true)
+	@Mapping(target = "metodoPago", ignore = true)
 	Pago toDomain(PagoRequestDto dto);
 	PagoResponseDto toResponseDto(Pago pagoPojo);
 

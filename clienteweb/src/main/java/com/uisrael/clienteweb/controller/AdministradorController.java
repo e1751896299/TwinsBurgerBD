@@ -59,10 +59,9 @@ public class AdministradorController {
 		return "redirect:/administrador";
 	}
 	
-	@GetMapping("/eliminar/{id}")
+	@PostMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable int id) {
 	    servicioAdmin.eliminar(id);
 	    return "redirect:/administrador";
 	}
-
 }

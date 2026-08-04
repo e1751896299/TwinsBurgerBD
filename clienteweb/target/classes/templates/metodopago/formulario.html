@@ -1,0 +1,7 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/principal}">
+<div layout:fragment="contenido"><h1 th:text="${metodo.idMetodoPago > 0 ? 'Editar método de pago' : 'Nuevo método de pago'}"></h1>
+<div class="card"><div class="card-body"><form method="post" th:action="@{/metodo-pago}" th:object="${metodo}">
+<input type="hidden" th:field="*{idMetodoPago}"><div class="mb-3"><label class="form-label">Descripción</label>
+<input class="form-control" th:field="*{mpagoDescripcion}" required placeholder="Ej. Efectivo o billetera móvil"></div>
+<button class="btn btn-primary">Guardar</button><a class="btn btn-outline-secondary" th:href="@{/metodo-pago}">Cancelar</a>
+</form></div></div></div></html>

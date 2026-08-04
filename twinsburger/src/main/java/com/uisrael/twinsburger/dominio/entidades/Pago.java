@@ -9,6 +9,8 @@ public class Pago {
 	private LocalDateTime pagoFecha;
 	private BigDecimal pagoMonto;
 	private boolean pagoEstado = true;
+	private int idPedido;
+	private String metodoPago;
 	public Pago() {
 	}
 	public int getIdPago() {
@@ -35,6 +37,10 @@ public class Pago {
 	public void setPagoEstado(boolean pagoEstado) {
 		this.pagoEstado = pagoEstado;
 	}
+	public int getIdPedido() { return idPedido; }
+	public void setIdPedido(int idPedido) { this.idPedido = idPedido; }
+	public String getMetodoPago() { return metodoPago; }
+	public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
 	
 	
 	

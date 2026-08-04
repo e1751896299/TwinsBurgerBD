@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/principal}">
+<div layout:fragment="contenido">
+	<div class="d-flex align-items-center mb-3">
+		<div>
+			<h1
+				th:text="${'Detalle PED-' + #numbers.formatInteger(pedido.idPedido, 3)}">Detalle</h1>
+			<p class="text-secondary"
+				th:text="${#dates.format(pedido.pedidoFechaPedido, 'dd/MM/yyyy')}"></p>
+		</div>
+		<a class="btn btn-outline-secondary ms-auto" th:href="@{/pedido}">Volver</a>
+	</div>
+	<div class="card">
+		<div class="table-responsive">
+			<table class="table table-vcenter card-table">
+				<thead>
+					<tr>
+						<th class="border-end">Producto o combo</th>
+						<th class="border-end">Cantidad</th>
+						<th class="border-end">Precio</th>
+						<th class="border-end">Subtotal</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="detalle : ${detalles}">
+						<td class="border-end align-middle fw-semibold"
+							th:text="${detalle.prodNombre}"></td>
+						<td class="border-end align-middle"
+							th:text="${detalle.detalleCantidad}"></td>
+						<td class="border-end align-middle"
+							th:text="${'$' + #numbers.formatDecimal(detalle.detallePrecio,1,2)}"></td>
+						<td class="border-end align-middle"
+							th:text="${'$' + #numbers.formatDecimal(detalle.detalleSubtotal,1,2)}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="card-footer text-end">
+			<strong
+				th:text="${'Total: $' + #numbers.formatDecimal(pedido.pedidoTotal,1,2)}"></strong>
+		</div>
+	</div>
+</div>
+</html>

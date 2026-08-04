@@ -1,0 +1,735 @@
+<!doctype html>
+<html
+  lang="es"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/principal}"
+>
+  <head>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div layout:fragment="contenido">
+      <div>
+	        <div
+	          th:if="${!apiDisponible}"
+	          class="alert tb-api-alert mb-4"
+	          role="alert"
+	        >
+	          <div class="d-flex">
+	            <div class="me-3">
+	              <svg
+	                xmlns="http://www.w3.org/2000/svg"
+	                class="icon"
+	                width="24"
+	                height="24"
+	                viewBox="0 0 24 24"
+	                stroke-width="2"
+	                stroke="currentColor"
+	                fill="none"
+	                stroke-linecap="round"
+	                stroke-linejoin="round"
+	              >
+	                <path d="M12 9v4" />
+	                <path d="M12 17v.01" />
+	                <path
+	                  d="M5.07 19h13.86a2 2 0 0 0 1.74 -3l-6.93 -12a2 2 0 0 0 -3.48 0l-6.93 12a2 2 0 0 0 1.74 3z"
+	                />
+	              </svg>
+	            </div>
+	            <div>
+	              <h4 class="alert-title">La API no está disponible</h4>
+	              <div class="text-secondary">
+	                El dashboard se abrió correctamente, pero mostrará valores en
+	                cero hasta que
+	                <strong>twinsburger</strong> esté ejecutándose en el puerto
+	                8080.
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	
+	        <section class="card tb-hero mb-4" aria-labelledby="dashboard-title">
+	          <div class="card-body">
+	            <div class="row align-items-center">
+	              <div class="col-lg-8">
+	                <div class="tb-eyebrow">Centro de operaciones</div>
+	                <h1 id="dashboard-title" class="tb-hero-title">
+	                  Todo TwinsBurger, en un solo lugar.
+	                </h1>
+	                <p class="tb-hero-copy">
+	                  Revisa ventas, pedidos, clientes e inventario en tiempo real
+	                  para tomar decisiones rápidas durante la jornada.
+	                </p>
+	                <div class="tb-hero-actions">
+	                  <a class="btn btn-tb-primary" th:href="@{/pedido/nuevo}">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon me-1"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path d="M12 5v14M5 12h14" />
+	                    </svg>
+	                    Nuevo pedido
+	                  </a>
+	                  <a class="btn btn-tb-ghost" th:href="@{/producto}">
+	                    Revisar inventario
+	                  </a>
+	                </div>
+	              </div>
+	              <div class="col-lg-4 d-none d-lg-block text-end">
+	                <div class="display-1" aria-hidden="true">🍔</div>
+	                <div class="mt-2 text-white-50">
+	                  Sabor que se gestiona mejor
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+	        </section>
+	
+	        <section
+	          class="row row-cards mb-4"
+	          aria-label="Indicadores principales"
+	        >
+	          <div class="col-sm-6 col-xl-3">
+	            <article class="card tb-metric-card">
+	              <div class="card-body">
+	                <div class="tb-metric-head">
+	                  <div>
+	                    <div class="tb-metric-label">Ventas aprobadas</div>
+	                    <div
+	                      class="tb-metric-value"
+	                      th:text="${'$ ' + #numbers.formatDecimal(ventasTotales, 1, 'COMMA', 2, 'POINT')}"
+	                    >
+	                      $ 0.00
+	                    </div>
+	                  </div>
+	                  <span class="tb-icon-box tb-icon-red">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path
+	                        d="M12 2v20M17 5h-7.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+	                      />
+	                    </svg>
+	                  </span>
+	                </div>
+	                <div class="tb-metric-note">
+	                  Ticket promedio:
+	                  <strong
+	                    th:text="${'$ ' + #numbers.formatDecimal(ticketPromedio, 1, 'COMMA', 2, 'POINT')}"
+	                    >$ 0.00</strong
+	                  >
+	                </div>
+	              </div>
+	            </article>
+	          </div>
+	
+	          <div class="col-sm-6 col-xl-3">
+	            <article class="card tb-metric-card">
+	              <div class="card-body">
+	                <div class="tb-metric-head">
+	                  <div>
+	                    <div class="tb-metric-label">Pedidos registrados</div>
+	                    <div class="tb-metric-value" th:text="${totalPedidos}">
+	                      0
+	                    </div>
+	                  </div>
+	                  <span class="tb-icon-box tb-icon-gold">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path
+	                        d="M5 4h14a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1H5a1 1 0 0 1 -1 -1V5a1 1 0 0 1 1 -1z"
+	                      />
+	                      <path d="M9 9h6M9 13h6M9 17h3" />
+	                    </svg>
+	                  </span>
+	                </div>
+	                <div class="tb-metric-note">
+	                  <strong th:text="${pedidosHoy}">0</strong> pedidos creados hoy
+	                </div>
+	              </div>
+	            </article>
+	          </div>
+	
+	          <div class="col-sm-6 col-xl-3">
+	            <article class="card tb-metric-card">
+	              <div class="card-body">
+	                <div class="tb-metric-head">
+	                  <div>
+	                    <div class="tb-metric-label">Clientes activos</div>
+	                    <div class="tb-metric-value" th:text="${clientesActivos}">
+	                      0
+	                    </div>
+	                  </div>
+	                  <span class="tb-icon-box tb-icon-green">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path d="M9 11a4 4 0 1 0 0 -8a4 4 0 0 0 0 8z" />
+	                      <path d="M17 11a4 4 0 1 0 0 -8" />
+	                      <path d="M3 21v-2a6 6 0 0 1 6 -6h1a6 6 0 0 1 6 6v2" />
+	                      <path d="M16 13a6 6 0 0 1 5 6v2" />
+	                    </svg>
+	                  </span>
+	                </div>
+	                <div class="tb-metric-note">
+	                  De <strong th:text="${totalClientes}">0</strong> clientes
+	                  registrados
+	                </div>
+	              </div>
+	            </article>
+	          </div>
+	
+	          <div class="col-sm-6 col-xl-3">
+	            <article class="card tb-metric-card">
+	              <div class="card-body">
+	                <div class="tb-metric-head">
+	                  <div>
+	                    <div class="tb-metric-label">Productos</div>
+	                    <div class="tb-metric-value" th:text="${totalProductos}">
+	                      0
+	                    </div>
+	                  </div>
+	                  <span class="tb-icon-box tb-icon-blue">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path d="M12 3l8 4.5v9L12 21l-8 -4.5v-9z" />
+	                      <path
+	                        d="M12 12l8 -4.5M12 12v9M12 12L4 7.5M16 5.25l-8 4.5"
+	                      />
+	                    </svg>
+	                  </span>
+	                </div>
+	                <div class="tb-metric-note">
+	                  <strong th:text="${stockTotal}">0</strong> unidades en
+	                  inventario
+	                </div>
+	              </div>
+	            </article>
+	          </div>
+	        </section>
+	
+	        <section class="tb-mini-stats mb-4" aria-label="Resumen operativo">
+	          <div class="tb-mini-stat">
+	            <span>Pedidos activos</span>
+	            <strong th:text="${pedidosActivos}">0</strong>
+	          </div>
+	          <div class="tb-mini-stat">
+	            <span>Pedidos pendientes</span>
+	            <strong th:text="${pedidosPendientes}">0</strong>
+	          </div>
+	          <div class="tb-mini-stat">
+	            <span>Stock bajo</span>
+	            <strong th:text="${productosStockBajo + ' productos'}"
+	              >0 productos</strong
+	            >
+	          </div>
+	          <div class="tb-mini-stat">
+	            <span>Estado de la API</span>
+	            <strong
+	              th:classappend="${apiDisponible} ? 'text-green' : 'text-yellow'"
+	              th:text="${apiDisponible} ? 'Conectada' : 'Sin conexión'"
+	              >Conectada</strong
+	            >
+	          </div>
+	        </section>
+	
+	        <section class="row row-cards mb-4">
+	          <div class="col-lg-8">
+	            <article class="card tb-panel">
+	              <div class="card-header">
+	                <div>
+	                  <h2 class="card-title">Ventas de los últimos 7 días</h2>
+	                  <div class="tb-panel-subtitle">
+	                    Ingresos provenientes de pagos aprobados
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="card-body p-0">
+	                <div
+	                  id="chart-ventas"
+	                  class="tb-chart"
+	                  aria-label="Gráfico de ventas por día"
+	                ></div>
+	              </div>
+	            </article>
+	          </div>
+	          <div class="col-lg-4">
+	            <article class="card tb-panel">
+	              <div class="card-header">
+	                <div>
+	                  <h2 class="card-title">Estado de pedidos</h2>
+	                  <div class="tb-panel-subtitle">
+	                    Distribución operativa actual
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="card-body p-0">
+	                <div
+	                  id="chart-pedidos"
+	                  class="tb-chart"
+	                  aria-label="Gráfico de estado de pedidos"
+	                ></div>
+	              </div>
+	            </article>
+	          </div>
+	        </section>
+	
+	        <section class="row row-cards mb-4">
+	          <div class="col-lg-8">
+	            <article class="card tb-panel">
+	              <div class="card-header">
+	                <div>
+	                  <h2 class="card-title">Pedidos recientes</h2>
+	                  <div class="tb-panel-subtitle">
+	                    Últimos movimientos registrados en el sistema
+	                  </div>
+	                </div>
+	                <div class="card-actions">
+	                  <a class="btn btn-sm" th:href="@{/pedido}">Ver todos</a>
+	                </div>
+	              </div>
+	
+	              <div
+	                th:if="${!#lists.isEmpty(pedidosRecientes)}"
+	                class="table-responsive"
+	              >
+	                <table class="table table-vcenter card-table tb-table">
+	                  <thead>
+	                    <tr>
+	                      <th>Pedido</th>
+	                      <th>Descripción</th>
+	                      <th>Fecha</th>
+	                      <th>Total</th>
+	                      <th>Estado</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                    <tr th:each="pedido : ${pedidosRecientes}">
+	                      <td>
+	                        <span
+	                          class="tb-order-id"
+	                          th:text="${'#' + pedido.idPedido}"
+	                          >#0</span
+	                        >
+	                      </td>
+	                      <td>
+	                        <span
+	                          class="tb-description"
+	                          th:text="${#strings.isEmpty(pedido.pedidoDescripcion) ? 'Pedido sin descripción' : pedido.pedidoDescripcion}"
+	                        >
+	                          Pedido
+	                        </span>
+	                        <small
+	                          class="text-secondary"
+	                          th:text="${pedido.pedidoHoraRetiro != null ? 'Retiro: ' + pedido.pedidoHoraRetiro : 'Hora por confirmar'}"
+	                        >
+	                          Hora por confirmar
+	                        </small>
+	                      </td>
+	                      <td
+	                        th:text="${pedido.pedidoFechaPedido != null ? #dates.format(pedido.pedidoFechaPedido, 'dd/MM/yyyy') : 'Sin fecha'}"
+	                      >
+	                        Sin fecha
+	                      </td>
+	                      <td
+	                        class="fw-bold"
+	                        th:text="${pedido.pedidoTotal != null ? '$ ' + #numbers.formatDecimal(pedido.pedidoTotal, 1, 'COMMA', 2, 'POINT') : '$ 0.00'}"
+	                      >
+	                        $ 0.00
+	                      </td>
+	                      <td>
+	                        <span
+							    class="badge"
+							    th:classappend="${pedido.pedidoEstadoProceso == 'CANCELADO'}
+							        ? 'bg-red-lt text-red'
+							        : (${pedido.pedidoEstadoProceso == 'ENTREGADO'}
+							            ? 'bg-green-lt text-green'
+							            : 'bg-yellow-lt text-yellow')"
+							    th:text="${pedido.pedidoEstadoProceso == null
+							        ? 'PENDIENTE'
+							        : #strings.replace(
+							            pedido.pedidoEstadoProceso,
+							            '_',
+							            ' '
+							        )}">
+							    Estado
+							</span>
+	                      </td>
+	                    </tr>
+	                  </tbody>
+	                </table>
+	              </div>
+	
+	              <div th:if="${#lists.isEmpty(pedidosRecientes)}" class="tb-empty">
+	                <span class="tb-empty-icon">
+	                  <svg
+	                    xmlns="http://www.w3.org/2000/svg"
+	                    class="icon"
+	                    width="24"
+	                    height="24"
+	                    viewBox="0 0 24 24"
+	                    stroke-width="2"
+	                    stroke="currentColor"
+	                    fill="none"
+	                    stroke-linecap="round"
+	                    stroke-linejoin="round"
+	                  >
+	                    <path d="M9 11l3 3l8 -8" />
+	                    <path
+	                      d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9"
+	                    />
+	                  </svg>
+	                </span>
+	                Aún no existen pedidos para mostrar.
+	              </div>
+	            </article>
+	          </div>
+	
+	          <div class="col-lg-4">
+	            <article class="card tb-panel">
+	              <div class="card-header">
+	                <div>
+	                  <h2 class="card-title">Alerta de inventario</h2>
+	                  <div class="tb-panel-subtitle">
+	                    Productos con 5 unidades o menos
+	                  </div>
+	                </div>
+	                <div class="card-actions">
+	                  <a class="btn btn-sm" th:href="@{/producto}">Inventario</a>
+	                </div>
+	              </div>
+	              <div class="card-body py-2">
+	                <div
+	                  th:each="producto : ${productosCriticos}"
+	                  class="tb-stock-item"
+	                >
+	                  <div class="tb-stock-level" th:text="${producto.prodStock}">
+	                    0
+	                  </div>
+	                  <div class="flex-fill overflow-hidden">
+	                    <div
+	                      class="fw-bold text-truncate"
+	                      th:text="${producto.prodNombre}"
+	                    >
+	                      Producto
+	                    </div>
+	                    <div
+	                      class="small text-secondary text-truncate"
+	                      th:text="${#strings.isEmpty(producto.prodCategoria) ? 'Sin categoría' : producto.prodCategoria}"
+	                    >
+	                      Categoría
+	                    </div>
+	                  </div>
+	                  <span class="badge bg-red-lt text-red">Bajo</span>
+	                </div>
+	
+	                <div
+	                  th:if="${#lists.isEmpty(productosCriticos)}"
+	                  class="tb-empty"
+	                >
+	                  <span class="tb-empty-icon text-green">
+	                    <svg
+	                      xmlns="http://www.w3.org/2000/svg"
+	                      class="icon"
+	                      width="24"
+	                      height="24"
+	                      viewBox="0 0 24 24"
+	                      stroke-width="2"
+	                      stroke="currentColor"
+	                      fill="none"
+	                      stroke-linecap="round"
+	                      stroke-linejoin="round"
+	                    >
+	                      <path d="M5 12l5 5l10 -10" />
+	                    </svg>
+	                  </span>
+	                  El inventario no tiene alertas.
+	                </div>
+	              </div>
+	            </article>
+	          </div>
+	        </section>
+	
+	        <section class="mb-3" aria-labelledby="quick-actions-title">
+	          <div class="d-flex align-items-center justify-content-between mb-3">
+	            <h2 id="quick-actions-title" class="tb-section-title">
+	              Accesos rápidos
+	            </h2>
+	            <span class="text-secondary small">Operaciones frecuentes</span>
+	          </div>
+	          <div class="row row-cards">
+	            <div class="col-sm-6 col-lg-3">
+	              <a class="tb-quick-action" th:href="@{/pedido/nuevo}">
+	                <span class="tb-icon-box tb-icon-red">
+	                  <svg
+	                    xmlns="http://www.w3.org/2000/svg"
+	                    class="icon"
+	                    width="24"
+	                    height="24"
+	                    viewBox="0 0 24 24"
+	                    stroke-width="2"
+	                    stroke="currentColor"
+	                    fill="none"
+	                    stroke-linecap="round"
+	                    stroke-linejoin="round"
+	                  >
+	                    <path d="M12 5v14M5 12h14" />
+	                  </svg>
+	                </span>
+	                <span
+	                  ><strong>Nuevo pedido</strong
+	                  ><small>Registrar una venta</small></span
+	                >
+	              </a>
+	            </div>
+	            <div class="col-sm-6 col-lg-3">
+	              <a class="tb-quick-action" th:href="@{/producto/nuevo}">
+	                <span class="tb-icon-box tb-icon-gold">
+	                  <svg
+	                    xmlns="http://www.w3.org/2000/svg"
+	                    class="icon"
+	                    width="24"
+	                    height="24"
+	                    viewBox="0 0 24 24"
+	                    stroke-width="2"
+	                    stroke="currentColor"
+	                    fill="none"
+	                    stroke-linecap="round"
+	                    stroke-linejoin="round"
+	                  >
+	                    <path d="M12 3l8 4.5v9L12 21l-8 -4.5v-9z" />
+	                    <path d="M12 12v9M12 12L4 7.5M12 12l8 -4.5" />
+	                  </svg>
+	                </span>
+	                <span
+	                  ><strong>Nuevo producto</strong
+	                  ><small>Ampliar el catálogo</small></span
+	                >
+	              </a>
+	            </div>
+	            <div class="col-sm-6 col-lg-3">
+	              <a class="tb-quick-action" th:href="@{/cliente/nuevo}">
+	                <span class="tb-icon-box tb-icon-green">
+	                  <svg
+	                    xmlns="http://www.w3.org/2000/svg"
+	                    class="icon"
+	                    width="24"
+	                    height="24"
+	                    viewBox="0 0 24 24"
+	                    stroke-width="2"
+	                    stroke="currentColor"
+	                    fill="none"
+	                    stroke-linecap="round"
+	                    stroke-linejoin="round"
+	                  >
+	                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+	                    <path d="M6 21v-2a6 6 0 0 1 6 -6h1" />
+	                    <path d="M16 19h6M19 16v6" />
+	                  </svg>
+	                </span>
+	                <span
+	                  ><strong>Nuevo cliente</strong
+	                  ><small>Registrar contacto</small></span
+	                >
+	              </a>
+	            </div>
+	            <div class="col-sm-6 col-lg-3">
+	              <a class="tb-quick-action" th:href="@{/pago/nuevo}">
+	                <span class="tb-icon-box tb-icon-blue">
+	                  <svg
+	                    xmlns="http://www.w3.org/2000/svg"
+	                    class="icon"
+	                    width="24"
+	                    height="24"
+	                    viewBox="0 0 24 24"
+	                    stroke-width="2"
+	                    stroke="currentColor"
+	                    fill="none"
+	                    stroke-linecap="round"
+	                    stroke-linejoin="round"
+	                  >
+	                    <path d="M7 9m0 2a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" />
+	                    <path d="M17 15m0 2a2 2 0 1 0 0 -4a2 2 0 0 0 0 4" />
+	                    <path d="M3 5h18v14H3z" />
+	                  </svg>
+	                </span>
+	                <span
+	                  ><strong>Registrar pago</strong
+	                  ><small>Actualizar ingresos</small></span
+	                >
+	              </a>
+	            </div>
+	          </div>
+	        </section>
+	      </div>
+    </div>
+
+    <th:block layout:fragment="scripts">
+      <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+          const etiquetasVentas = /*[[${etiquetasVentas}]]*/ [];
+          const ventasPorDia = /*[[${ventasPorDia}]]*/ [];
+          const pedidosActivos = /*[[${pedidosActivos}]]*/ 0;
+          const pedidosPendientes = /*[[${pedidosPendientes}]]*/ 0;
+          const esOscuro =
+            document.documentElement.getAttribute("data-bs-theme") === "dark";
+          const colorTexto = esOscuro ? "#b9b1ad" : "#716a67";
+          const colorBorde = esOscuro
+            ? "rgba(255,255,255,.08)"
+            : "rgba(82,49,37,.10)";
+          const formatoMoneda = new Intl.NumberFormat("es-EC", {
+            style: "currency",
+            currency: "USD",
+          });
+
+          const elementoVentas = document.querySelector("#chart-ventas");
+          if (elementoVentas && window.ApexCharts) {
+            new ApexCharts(elementoVentas, {
+              chart: {
+                type: "area",
+                height: 290,
+                toolbar: { show: false },
+                fontFamily: "inherit",
+              },
+              series: [
+                {
+                  name: "Ventas",
+                  data: ventasPorDia,
+                },
+              ],
+              colors: ["#8f1d1d"],
+              dataLabels: { enabled: false },
+              stroke: {
+                width: 3,
+                curve: "smooth",
+              },
+              fill: {
+                type: "gradient",
+                gradient: {
+                  shadeIntensity: 1,
+                  opacityFrom: 0.33,
+                  opacityTo: 0.03,
+                  stops: [0, 92, 100],
+                },
+              },
+              xaxis: {
+                categories: etiquetasVentas,
+                labels: { style: { colors: colorTexto } },
+                axisBorder: { show: false },
+                axisTicks: { show: false },
+              },
+              yaxis: {
+                labels: {
+                  style: { colors: colorTexto },
+                  formatter: function (valor) {
+                    return "$" + Number(valor).toFixed(0);
+                  },
+                },
+              },
+              grid: {
+                borderColor: colorBorde,
+                strokeDashArray: 4,
+              },
+              tooltip: {
+                y: {
+                  formatter: function (valor) {
+                    return formatoMoneda.format(valor);
+                  },
+                },
+              },
+            }).render();
+          }
+
+          const elementoPedidos = document.querySelector("#chart-pedidos");
+          if (elementoPedidos && window.ApexCharts) {
+            new ApexCharts(elementoPedidos, {
+              chart: {
+                type: "donut",
+                height: 290,
+                fontFamily: "inherit",
+              },
+              series: [pedidosActivos, pedidosPendientes],
+              labels: ["Activos", "Pendientes"],
+              colors: ["#8f1d1d", "#f4b41a"],
+              legend: {
+                position: "bottom",
+                labels: { colors: colorTexto },
+              },
+              stroke: {
+                width: 3,
+                colors: [esOscuro ? "#211c1a" : "#ffffff"],
+              },
+              plotOptions: {
+                pie: {
+                  donut: {
+                    size: "68%",
+                    labels: {
+                      show: true,
+                      total: {
+                        show: true,
+                        label: "Pedidos",
+                        color: colorTexto,
+                        formatter: function () {
+                          return pedidosActivos + pedidosPendientes;
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+              dataLabels: { enabled: false },
+              noData: { text: "Sin pedidos" },
+            }).render();
+          }
+        });
+      </script>
+    </th:block>
+  </body>
+</html>

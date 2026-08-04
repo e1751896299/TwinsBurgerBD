@@ -2,6 +2,7 @@ package com.uisrael.clienteweb.model.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PagoResponseDto {
 	
@@ -9,6 +10,8 @@ public class PagoResponseDto {
 	private LocalDateTime pagoFecha;
 	private BigDecimal pagoMonto;
 	private boolean pagoEstado;
+	private int idPedido;
+	private String metodoPago;
 	
 	public boolean isPagoEstado() {
 		return pagoEstado;
@@ -16,6 +19,13 @@ public class PagoResponseDto {
 
 	public void setPagoEstado(boolean pagoEstado) {
 		this.pagoEstado = pagoEstado;
+	}
+	public int getIdPedido() { return idPedido; }
+	public void setIdPedido(int idPedido) { this.idPedido = idPedido; }
+	public String getMetodoPago() { return metodoPago; }
+	public void setMetodoPago(String metodoPago) { this.metodoPago = metodoPago; }
+	public String getPagoFechaFormateada() {
+		return pagoFecha == null ? "—" : pagoFecha.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 	}
 
 	public PagoResponseDto() {

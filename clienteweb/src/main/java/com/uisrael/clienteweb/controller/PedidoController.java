@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.uisrael.clienteweb.model.dto.request.PedidoRequestDto;
 import com.uisrael.clienteweb.model.dto.response.PedidoResponseDto;
 import com.uisrael.clienteweb.services.IPedidoService;
+import com.uisrael.clienteweb.services.IDetallePedidoService;
 
 @Controller
 @RequestMapping("/pedido")
@@ -27,9 +28,18 @@ public class PedidoController {
 
 	@Autowired
 	public IPedidoService servicioPedido;
+	private final IDetallePedidoService servicioDetalle;
 
-	public PedidoController(IPedidoService servicioPedido) {
+	public PedidoController(IPedidoService servicioPedido, IDetallePedidoService servicioDetalle) {
 		this.servicioPedido = servicioPedido;
+		this.servicioDetalle = servicioDetalle;
+	}
+
+	@GetMapping("/{id}/detalle")
+	public String detalle(@PathVariable int id, Model model) {
+		model.addAttribute("pedido", servicioPedido.buscarPorId(id));
+		model.addAttribute("detalles", servicioDetalle.listarPorPedido(id));
+		return "/pedido/detalle";
 	}
 
 	@InitBinder

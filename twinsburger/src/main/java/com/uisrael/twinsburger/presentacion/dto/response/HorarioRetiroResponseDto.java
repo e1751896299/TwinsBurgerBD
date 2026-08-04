@@ -7,6 +7,7 @@ public class HorarioRetiroResponseDto {
 	private int idHorarioRetiro;
 	private LocalTime hrInicio;
 	private LocalTime hrFin;
+	private boolean hrEstado;
 	
 	public HorarioRetiroResponseDto() {
 	}
@@ -34,6 +35,8 @@ public class HorarioRetiroResponseDto {
 	public void setHrFin(LocalTime hrFin) {
 		this.hrFin = hrFin;
 	}
+	public boolean isHrEstado() { return hrEstado; }
+	public void setHrEstado(boolean hrEstado) { this.hrEstado = hrEstado; }
 
 
 	
