@@ -1,10 +1,58 @@
-<!doctype html><html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/principal}">
-<head><meta charset="utf-8"><title>Combos</title></head><body><div layout:fragment="contenido">
-<div class="d-flex align-items-center mb-3"><h1 class="page-title">Combos</h1><a class="btn btn-primary ms-auto" th:href="@{/combo/nuevo}">Nuevo combo</a></div>
-<div th:if="${param.guardado}" class="alert alert-success">Combo guardado correctamente.</div>
-<div th:if="${param.errorGuardado}" class="alert alert-danger">No se pudo modificar el combo. Si ya fue vendido, desactívalo y crea una nueva versión.</div>
-<div class="card"><div class="table-responsive"><table class="table card-table table-vcenter"><thead><tr><th>Imagen</th><th>Nombre</th><th>Incluye</th><th>Precio</th><th>Stock posible</th><th>Acciones</th></tr></thead><tbody>
-<tr th:each="c : ${combos}"><td><img th:if="${c.comboImagen != null and !c.comboImagen.isBlank()}" th:src="${c.comboImagen}" class="avatar avatar-md"></td><td><strong th:text="${c.comboNombre}">Combo</strong><div class="text-secondary" th:text="${c.comboDescripcion}"></div></td>
-<td><span th:each="p,st : ${c.productos}" th:text="${p.cantidad + ' x ' + p.prodNombre + (!st.last ? ', ' : '')}"></span></td>
-<td th:text="${'$' + #numbers.formatDecimal(c.comboPrecio,1,2)}"></td><td th:text="${c.comboStockDisponible}"></td><td class="d-flex gap-2"><a class="btn btn-outline-primary" th:href="@{/combo/editar/{id}(id=${c.idCombo})}">Editar</a><form th:action="@{/combo/eliminar/{id}(id=${c.idCombo})}" method="post"><button class="btn btn-outline-danger">Desactivar</button></form></td></tr>
-</tbody></table></div></div></div></body></html>
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/principal}">
+<head>
+<meta charset="utf-8">
+<title>Bienvenido</title>
+</head>
+<body>
+	<div layout:fragment="contenido">
+		<div class="d-flex align-items-center mb-3">
+			<h1 class="page-title">Combos</h1>
+			<a class="btn btn-primary ms-auto" th:href="@{/combo/nuevo}">Nuevo
+				combo</a>
+		</div>
+		<div th:if="${param.guardado}" class="alert alert-success">Combo
+			guardado correctamente.</div>
+		<div th:if="${param.errorGuardado}" class="alert alert-danger">No
+			se pudo modificar el combo. Si ya fue vendido, desactívalo y crea una
+			nueva versión.</div>
+		<div class="card">
+			<div class="table-responsive">
+				<table class="table card-table table-vcenter">
+					<thead>
+						<tr>
+							<th>Imagen</th>
+							<th>Nombre</th>
+							<th>Incluye</th>
+							<th>Precio</th>
+							<th>Stock posible</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${combos}">
+							<td><img
+								th:if="${c.comboImagen != null and !c.comboImagen.isBlank()}"
+								th:src="${c.comboImagen}" class="avatar avatar-md"></td>
+							<td><strong th:text="${c.comboNombre}">Combo</strong>
+							<div class="text-secondary" th:text="${c.comboDescripcion}"></div></td>
+							<td><span th:each="p,st : ${c.productos}"
+								th:text="${p.cantidad + ' x ' + p.prodNombre + (!st.last ? ', ' : '')}"></span></td>
+							<td th:text="${'$' + #numbers.formatDecimal(c.comboPrecio,1,2)}"></td>
+							<td th:text="${c.comboStockDisponible}"></td>
+							<td class="d-flex gap-2"><a class="btn btn-outline-primary"
+								th:href="@{/combo/editar/{id}(id=${c.idCombo})}">Editar</a>
+							<form th:action="@{/combo/eliminar/{id}(id=${c.idCombo})}"
+									method="post">
+									<button class="btn btn-outline-danger">Desactivar</button>
+								</form></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

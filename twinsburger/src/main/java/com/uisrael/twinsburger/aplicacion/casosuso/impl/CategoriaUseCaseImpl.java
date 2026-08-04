@@ -18,7 +18,17 @@ public class CategoriaUseCaseImpl implements ICategoriaUseCase{
 
 	@Override
 	public Categoria guardar(Categoria nuevaCategoria) {
-		return repositorio.guardar(nuevaCategoria);
+
+	    if (nuevaCategoria.getIdCategoria() == 0) {
+	    	
+	        nuevaCategoria.setCategoriaEstado(true);
+
+	    } else {
+	        Categoria categoriaActual = buscarPorId(nuevaCategoria.getIdCategoria());
+	        nuevaCategoria.setCategoriaEstado(categoriaActual.isCategoriaEstado());
+	    }
+
+	    return repositorio.guardar(nuevaCategoria);
 	}
 
 	@Override

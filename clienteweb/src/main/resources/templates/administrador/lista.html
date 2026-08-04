@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html
 xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -9,194 +9,199 @@ layout:decorate="~{layouts/principal}">
 
     <div class="col-12">
 		
+    <h1>Bienvenido</h1>
 
-
-
-
-<!--<script>
-	window.tabler_list = window.tabler_list || {};
-	document.addEventListener("DOMContentLoaded", function() {
-		const list = window.tabler_list["table-"] = new List('table-', {
-			sortClass: 'table-sort',
-			listClass: 'table-tbody',
-			valueNames: [ 'sort-name', 'sort-content', 'sort-status', 'sort-date', 'sort-tags', 'sort-category']
-		});
-	})
-</script>-->
 <div class="card">
-	<div class="card-table">
+	<div>
 		<div class="card-header">
-			<div class="row w-full">
-				<div class="col">
+			<div class="row align-items-center g-3 w-100">
+				<div class="col-12 col-lg-3">
 					<h3 class="card-title mb-0">
 						Administradores
 					</h3>
 					<p class="text-secondary m-0">
-						Lista ed Administradores
+						Lista de usuarios administradores
 					</p>
 				</div>
-				<div class="col-md-auto col-sm-12">
-					
 
-					<div class="ms-auto d-flex flex-wrap btn-list">
-						<div class="input-group input-group-flat w-auto">
+				<div class="col-12 col-lg-6">
+					<div class="d-flex justify-content-center">
+						<div class="input-group input-group-flat w-100" style="max-width: 420px;">
 							<span class="input-group-text">
 								<!-- Download SVG icon from http://tabler.io/icons/icon/search -->
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
 							</span>
 
-							<input id="advanced-table-search" type="text" class="form-control" autocomplete="off">
-
-							<span class="input-group-text">
-								<kbd>ctrl + K</kbd>
-							</span>
+							<input id="advanced-table-search" type="text" class="form-control"
+								placeholder="Buscar administrador..." aria-label="Buscar administrador"
+								autocomplete="off">
 						</div>
-
-						<a href="#" class="btn btn-icon" aria-label="Button">
-							<!-- Download SVG icon from http://tabler.io/icons/icon/dots -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-						</a>
-						
-
-    <a th:href="@{/administrador/nuevo}" class="btn btn-primary mb-3">Nuevo Administrador</a>
-
-						
-
-
 					</div>
+				</div>
+
+				<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
+					<a th:href="@{/administrador/nuevo}" class="btn btn-primary">
+						Nuevo administrador
+					</a>
 				</div>
 			</div>
 		</div>
 
 		<div id="advanced-table">
 			<div class="table-responsive">
-				<table class="table table-vcenter table-selectable">
+				<table class="table table-vcenter table-hover card-table text-nowrap">
 					<thead>
 						<tr>
-							<th class="w-1"></th>
-							
-							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-name">
+								<th class="border-end">
 										Nombre
-									</button>
 								</th>
 							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-city">
+								<th class="border-end">
 										Apellido
-									</button>
 								</th>
 							
-								<th>
-									<button class="table-sort d-flex justify-content-between" data-sort="sort-status">
+								<th class="border-end">
 										Correo
-									</button>
 								</th>
 							
-								<th></th>
-								<th></th>
-
-							
+								<th class="text-center">
+										Acciones
+								</th>
+						
 						</tr>
 					</thead>
 
 					<tbody class="table-tbody">
-					
-					
-					
+			
 						<tr th:each="admin : ${administradores}">
 						
-							<td></td>	
-						
-						    <td th:text="${admin.adminNombre}"></td>
-						
-						    <td th:text="${admin.adminApellido}"></td>
-						
-						    <td th:text="${admin.adminCorreo}"></td>
-						    
-						    <td>
-    							<a th:href="@{/administrador/editar/{id}(id=${admin.idAdmin})}">
-        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
-    							</a>
+						    <td
+							    class="sort-nombre border-end align-middle fw-semibold"
+							    th:text="${admin.adminNombre}">
 							</td>
+							
+							<td
+							    class="sort-apellido border-end align-middle"	
+							    th:text="${admin.adminApellido}">
+							</td>
+							
+							<td
+							    class="sort-correo border-end align-middle text-secondary"
+							    th:text="${admin.adminCorreo}">
+							</td>
+							
+							<td class="text-center align-middle">
+            <div class="d-inline-flex align-items-center gap-4">
 
-							<td>
-    							<a th:href="@{/administrador/eliminar/{id}(id=${admin.idAdmin})}">
-        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
-    							</a>
-							</td>
-			
-	
-						</tr>
+                <a
+                    th:href="@{/administrador/editar/{id}(id=${admin.idAdmin})}"
+                    class="btn btn-sm btn-outline-primary"
+                    title="Editar administrador">
+
+                    <img
+                        th:src="@{/core/dist/icons/edit.svg}"
+                        width="20"
+                        height="20"
+                        alt="Editar">
+                </a>
+
+                <form
+				    th:action="@{/administrador/eliminar/{id}
+				        (id=${admin.idAdmin})}"
+				    method="post"
+				    class="d-inline">
+				
+				    <button
+				        type="submit"
+				        class="btn btn-sm btn-outline-danger"
+				        title="Desactivar producto"
+				        onclick="return confirm(
+				            '¿Deseas desactivar este producto?'
+				        )">
+				
+				        <img
+				            th:src="@{/core/dist/icons/trash.svg}"
+				            width="20"
+				            height="20"
+				            alt="Desactivar">
+				
+				    </button>
+				
+				</form>
+            </div>
+        </td>		
+		</tr>
 						
 					</tbody>
 				</table>
 			</div>
-			<div class="card-footer d-flex align-items-center">
-				<div class="dropdown">
-					<a class="btn dropdown-toggle" data-bs-toggle="dropdown">
-						<span id="page-count" class="me-1">20</span>
-						<span>records</span>
-					</a>
-					<div class="dropdown-menu">
-						
-							<a class="dropdown-item" onclick="setPageListItems(event)" data-value="10">10 records</a>
-						
-							<a class="dropdown-item" onclick="setPageListItems(event)" data-value="20">20 records</a>
-						
-							<a class="dropdown-item" onclick="setPageListItems(event)" data-value="50">50 records</a>
-						
-							<a class="dropdown-item" onclick="setPageListItems(event)" data-value="100">100 records</a>
-						
-					</div>
-				</div>
-
-				
-			</div>
 		</div>
 	</div>
 </div>
+</div>
+</div>
 
-<script>
-	const advancedTable = {"headers":[{"data-sort":"sort-name","name":"Name"},{"data-sort":"sort-city","name":"City"},{"data-sort":"sort-status","name":"Status"},{"data-sort":"sort-date","name":"Start date"},{"data-sort":"sort-tags","name":"Tags"},{"data-sort":"sort-category","name":"Category"}]}
-	const setPageListItems = e => {
-		window.tabler_list["advanced-table"].page = parseInt(e.target.dataset.value)
-		window.tabler_list["advanced-table"].update()
-
-		document.querySelector("#page-count").innerHTML = e.target.dataset.value
-	}
-
-	window.tabler_list = window.tabler_list || {}
-	document.addEventListener("DOMContentLoaded", function() {
-		const list = window.tabler_list["advanced-table"] = new List('advanced-table', {
-			sortClass: 'table-sort',
-			listClass: 'table-tbody',
-			page: parseInt("20"),
-			pagination: {
-				item: value => {
-					return `<li class="page-item"><a class="page-link cursor-pointer">${value.page}</a></li>`
-				},
-				innerWindow: 1,
-				outerWindow: 1,
-				left: 0,
-				right: 0,
-			},
-			valueNames: advancedTable.headers.map(header => header['data-sort'])
-		});
-
-		const searchInput = document.querySelector('#advanced-table-search');
-
-		if (searchInput) {
-			searchInput.addEventListener('input', () => {
-				list.search(searchInput.value)
-			})
-		}
-	})
+<script
+    th:src="@{/core/dist/libs/list.js/dist/list.min.js}">
 </script>
 
-	</div>
+<script>
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
 
-</div>
+            const contenedor =
+                document.getElementById(
+                    "advanced-table"
+                );
+
+            const cuerpoTabla =
+                contenedor?.querySelector(
+                    ".table-tbody"
+                );
+
+            if (!contenedor
+                    || !cuerpoTabla
+                    || typeof List === "undefined") {
+
+                return;
+            }
+
+            const list = new List(
+                "advanced-table",
+                {
+                    sortClass: "table-sort",
+                    listClass: "table-tbody",
+
+                    page: 10000,
+
+                    valueNames: [
+                        "sort-nombre",
+                        "sort-apellido",
+                        "sort-correo"
+                    ]
+                }
+            );
+
+            const searchInput =
+                document.getElementById(
+                    "advanced-table-search"
+                );
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "input",
+                    function () {
+
+                        list.search(
+                            searchInput.value
+                        );
+                    }
+                );
+            }
+        }
+    );
+</script>
 
 </html>

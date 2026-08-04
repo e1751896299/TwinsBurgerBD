@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroresponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.presentacion.dto.response.HorarioRetiroResponseDto"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
@@ -21,7 +20,6 @@
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.MetodoPagoResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.DetallePedidoResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IMetodoPagoService"/>
-    <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.CategoriaResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IClienteService"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.ClienteResponseDto"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.IHorarioRetiroService"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="com.uisrael.twinsburger.dominio.entidades.EstadoPedido"/>
     <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.request.CambioEstadoPedidoRequestDto"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.uisrael.clienteweb.services.impl.CategoriaServiceImpl"/>
+    <fullyQualifiedTypeName name="com.uisrael.clienteweb.model.dto.response.CategoriaResponseDto"/>
 </qualifiedTypeNameHistroy>

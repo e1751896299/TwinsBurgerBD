@@ -30,6 +30,9 @@ layout:decorate="~{layouts/principal}">
                     <small class="form-hint" th:if="${administrador.idAdmin != 0}">Déjala vacía para conservar la contraseña actual.</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-link" th:href="@{/administrador}">
+					Cancelar
+				</a>
             </form>
         </div>
     </div>

@@ -92,10 +92,44 @@ layout:decorate="~{layouts/principal}">
 					        Cantidad disponible antes de registrar ventas.
 					    </small>
 				</div>
-                <div class="mb-3">
-                    <label class="form-label">Categoria</label>
-                    <input type="text" th:field="*{prodCategoria}" class="form-control">
-                </div>
+				<div class="mb-3">
+
+				    <label
+				        class="form-label"
+				        for="prodCategoria">
+				        Categoría
+				    </label>
+				
+				    <select
+				        id="prodCategoria"
+				        th:field="*{prodCategoria}"
+				        class="form-select"
+				        required>
+				
+				        <option value="">
+				            Selecciona una categoría
+				        </option>
+				
+				        <option
+				            th:each="categoria : ${categorias}"
+				            th:value="${categoria.categoriaNombre}"
+				            th:text="${categoria.categoriaNombre}">
+				            Hamburguesas
+				        </option>
+				
+				    </select>
+				
+				    <small
+				        class="form-hint"
+				        th:if="${#lists.isEmpty(categorias)}">
+				
+				        No existen categorías disponibles.
+				        Primero registra una categoría.
+				
+				    </small>
+				
+</div>
+                
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
         </div>

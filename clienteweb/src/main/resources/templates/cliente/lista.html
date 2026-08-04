@@ -6,94 +6,147 @@ layout:decorate="~{layouts/principal}">
 
 <div layout:fragment="contenido">
 
-    <h1>Clientes</h1>
+	<div class="col-12">
+    <h1>Bienvenido</h1>
 
     <div class="card">
-    <div class="card-table">
 		<div class="card-header">
-			<div class="row w-full">
-				<div class="col">
+			<div class="row align-items-center g-3 w-100">
+				<div class="col12 col-lg3">
 					<h3 class="card-title mb-0">
-						Employee
+						Clientes
 					</h3>
 					<p class="text-secondary m-0">
-						Table description.
+						Lista de usuarios clientes.
 					</p>
 				</div>
-				<div class="col-md-auto col-sm-12">
-					
-
-					<div class="ms-auto d-flex flex-wrap btn-list">
-						<div class="input-group input-group-flat w-auto">
+				<div class="col-12 col-lg6">
+					<div class="d-flex justify-content-center">
+						<div class="input-group input-group-flat w-100" style="max-width: 420px;">
 							<span class="input-group-text">
 								<!-- Download SVG icon from http://tabler.io/icons/icon/search -->
 	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
 							</span>
 
-							<input id="advanced-table-search" type="text" class="form-control" autocomplete="off">
+							<input id="advanced-table-search" type="text" class="form-control" placeholder="Buscar cliente..." aria-label="Buscar cliente" autocomplete="off">
 
-							<span class="input-group-text">
-								<kbd>ctrl + K</kbd>
-							</span>
 						</div>
-
-						<a href="#" class="btn btn-icon" aria-label="Button">
-							<!-- Download SVG icon from http://tabler.io/icons/icon/dots -->
-	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
-						</a>
-						
-
-    <a th:href="@{/cliente/nuevo}" class="btn btn-primary mb-3">Nuevo Cliente</a>
-
-						
-
-
 					</div>
 				</div>
+				
+				
 			</div>
 		</div>
 
 		<div id="advanced-table">
     
         <div class="table-responsive">
-            <table class="table table-vcenter card-table">
+            <table class="table table-vcenter table-hover card-table text-nowrap">
                 <thead>
                     <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Estado</th>
+                        <th class="border-end">
+                        	Nombre
+                        </th>
+                        <th class="border-end">
+                        	Apellido
+                        </th>
+                        <th class="border-end">
+                        	Correo
+                        </th>
+                        <th class="border-end">
+                        	Telefono
+                        </th>
+                        <th class="border-end">
+                        	Estado
+                        </th>
+                        
                     </tr>
                 </thead>
                 <tbody class="table-tbody">
                     <tr th:each="cliente : ${clientes}">
-                        <td th:text="${cliente.cliNombre}"></td>
-                        <td th:text="${cliente.cliApellido}"></td>
-                        <td th:text="${cliente.cliCorreo}"></td>
-                        <td th:text="${cliente.cliTelefono}"></td>
-                        <td th:text="${cliente.cliEstado}"></td>
-                        
-                        <td>
-    							<a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}">
-        							<img src="/core/dist/icons/edit.svg" width="20" height="20">
-    							</a>
-							</td>
-
-							<td>
-    							<a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}">
-        							<img src="/core/dist/icons/trash.svg" width="20" height="20">
-    							</a>
-							</td>
-                        
+                        <td class="sort-nombre border-end align-middle fw-semibold" 
+                        	th:text="${cliente.cliNombre}"></td>
+                        	
+                        <td class="sort-apellido border-end align-middle" 
+                        	th:text="${cliente.cliApellido}"></td>
+                        <td class="sort-correo border-end align-middle text-secondary"
+                        	th:text="${cliente.cliCorreo}"></td>
+                        <td class="sort-telefono border-end align-middle text-secondary"
+                        	th:text="${cliente.cliTelefono}"></td>
+                        <td class="border-end align-middle text-secondary"
+                        	th:text="${cliente.cliEstado}"></td>                         
                     </tr>
                 </tbody>
             </table>
             </div>
         </div>
-    </div>
 
 </div>
 </div>
+</div>
+
+<script
+    th:src="@{/core/dist/libs/list.js/dist/list.min.js}">
+</script>
+
+<script>
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const contenedor =
+                document.getElementById(
+                    "advanced-table"
+                );
+
+            const cuerpoTabla =
+                contenedor?.querySelector(
+                    ".table-tbody"
+                );
+
+            if (!contenedor
+                    || !cuerpoTabla
+                    || typeof List === "undefined") {
+
+                return;
+            }
+
+            const list = new List(
+                "advanced-table",
+                {
+                    sortClass: "table-sort",
+                    listClass: "table-tbody",
+
+                    page: 10000,
+
+                    valueNames: [
+                        "sort-nombre",
+                        "sort-apellido",
+                        "sort-correo",
+                        "sort-telefono"
+                    ]
+                }
+            );
+
+            const searchInput =
+                document.getElementById(
+                    "advanced-table-search"
+                );
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "input",
+                    function () {
+
+                        list.search(
+                            searchInput.value
+                        );
+                    }
+                );
+            }
+        }
+    );
+</script>
 
 </html>

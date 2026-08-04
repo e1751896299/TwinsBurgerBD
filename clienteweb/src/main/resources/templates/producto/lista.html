@@ -6,31 +6,61 @@ layout:decorate="~{layouts/principal}">
 
 <div layout:fragment="contenido">
 
-    <h1>Lista de Productos</h1>
-
-    <a th:href="@{/producto/nuevo}" class="btn btn-primary mb-3">Nuevo Producto</a>
+    <h1>Bienvenido</h1>
 
     <div class="card">
+    <div class="card-table">
+		<div class="card-header">
+			<div class="row w-full">
+				<div class="col">
+					<h3 class="card-title mb-0">
+						Tabla
+					</h3>
+					<p class="text-secondary m-0">
+						Lista de Productos.
+					</p>
+				</div>
+				<div class="col-12 col-lg-6">
+					<div class="d-flex justify-content-center">
+						<div class="input-group input-group-flat w-100" style="max-width: 420px;">
+							<span class="input-group-text">
+								<!-- Download SVG icon from http://tabler.io/icons/icon/search -->
+	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+							</span>
+
+							<input id="advanced-table-search" type="text" class="form-control" placeholder="Buscar producto..." aria-label="Buscar productor" autocomplete="off">
+						
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-lg-3 d-flex justify-content-center justify-content-lg-end">
+					<a th:href="@{/producto/nuevo}" class="btn btn-primary mb-3">Nuevo Producto</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="advanced-table">
+    
         <div class="table-responsive">
-            <table class="table table-vcenter card-table">
+            <table class="table table-vcenter table-hover card-table text-nowrap">
                 <thead>
                     <tr>
-						<th>Imagen</th>                    
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Categoria</th>
-                        <th>Fecha creacion</th>
-                        <th>Acciones</th>
+						<th class="border-end">Imagen</th>                    
+                        <th class="border-end">Nombre</th>
+                        <th class="border-end">Descripcion</th>
+                        <th class="border-end">Precio</th>
+                        <th class="border-end">Stock</th>
+                        <th class="border-end">Categoria</th>
+                        <th class="border-end">Fecha creacion</th>
+                        <th class="border-end">Acciones</th>
 						
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-tbody">
                     <tr th:each="producto : ${productos}">
                     
                     <!-- Imagen -->
-        <td>
+        <td class="border-end">
             <img
                 th:if="${producto.prodImagen != null and !producto.prodImagen.isBlank()}"
                 th:src="${producto.prodImagen}"
@@ -45,17 +75,19 @@ layout:decorate="~{layouts/principal}">
         </td>
 
         <!-- Nombre -->
-        <td th:text="${producto.prodNombre}">
+        <td class="sort-nombre border-end align-middle fw-semibold"
+        	th:text="${producto.prodNombre}">
             Nombre
         </td>
 
         <!-- Descripción -->
-        <td th:text="${producto.prodDescripcion}">
+        <td class="sort-descripcion border-end align-middle"
+        	th:text="${producto.prodDescripcion}">
             Descripción
         </td>
 
         <!-- Precio -->
-        <td>
+        <td class="sort-precio border-end align-middle">
             <span
                 th:if="${producto.prodPrecio != null}"
                 class="fw-bold"
@@ -71,17 +103,19 @@ layout:decorate="~{layouts/principal}">
         </td>
 
         <!-- Stock -->
-        <td th:text="${producto.prodStock}">
+        <td class="sort-stock border-end align-middle text-secondary"
+        	th:text="${producto.prodStock}">
             0
         </td>
 
         <!-- Categoría -->
-        <td th:text="${producto.prodCategoria}">
+        <td class="sort-categoria border-end align-middle text-secondary"
+        	th:text="${producto.prodCategoria}">
             Categoría
         </td>
 
         <!-- Fecha -->
-        <td
+        <td class="sort-fecha border-end align-middle text-secondary"
             th:text="${producto.proFechaCreacion != null
                 ? #temporals.format(producto.proFechaCreacion, 'dd/MM/yyyy HH:mm')
                 : 'Sin fecha'}">
@@ -89,8 +123,8 @@ layout:decorate="~{layouts/principal}">
         </td>
 
         <!-- Acciones -->
-        <td>
-            <div class="btn-list flex-nowrap">
+        <td class="text-center align-middle">
+            <div class="d-inline-flex align-items-center gap-3">
 
                 <a
                     th:href="@{/producto/editar/{id}(id=${producto.idProducto})}"
@@ -104,19 +138,29 @@ layout:decorate="~{layouts/principal}">
                         alt="Editar">
                 </a>
 
-                <a
-                    th:href="@{/producto/eliminar/{id}(id=${producto.idProducto})}"
-                    class="btn btn-sm btn-outline-danger"
-                    title="Eliminar producto"
-                    onclick="return confirm('¿Deseas eliminar este producto?')">
-
-                    <img
-                        th:src="@{/core/dist/icons/trash.svg}"
-                        width="20"
-                        height="20"
-                        alt="Eliminar">
-                </a>
-
+                <form
+				    th:action="@{/producto/eliminar/{id}
+				        (id=${producto.idProducto})}"
+				    method="post"
+				    class="d-inline">
+				
+				    <button
+				        type="submit"
+				        class="btn btn-sm btn-outline-danger"
+				        title="Desactivar producto"
+				        onclick="return confirm(
+				            '¿Deseas desactivar este producto?'
+				        )">
+				
+				        <img
+				            th:src="@{/core/dist/icons/trash.svg}"
+				            width="20"
+				            height="20"
+				            alt="Desactivar">
+				
+				    </button>
+				
+				</form>
             </div>
         </td>
                         
@@ -126,7 +170,75 @@ layout:decorate="~{layouts/principal}">
             </table>
         </div>
     </div>
-
+    </div>
+	</div>
 </div>
+
+<script
+    th:src="@{/core/dist/libs/list.js/dist/list.min.js}">
+</script>
+
+<script>
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const contenedor =
+                document.getElementById(
+                    "advanced-table"
+                );
+
+            const cuerpoTabla =
+                contenedor?.querySelector(
+                    ".table-tbody"
+                );
+
+            if (!contenedor
+                    || !cuerpoTabla
+                    || typeof List === "undefined") {
+
+                return;
+            }
+
+            const list = new List(
+                "advanced-table",
+                {
+                    sortClass: "table-sort",
+                    listClass: "table-tbody",
+
+                    page: 10000,
+
+                    valueNames: [
+                        "sort-nombre",
+                        "sort-descripcion",
+                        "sort-precio",
+                        "sort-stock",
+                        "sort-categoria",
+                        "sort-fecha"
+                    ]
+                }
+            );
+
+            const searchInput =
+                document.getElementById(
+                    "advanced-table-search"
+                );
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "input",
+                    function () {
+
+                        list.search(
+                            searchInput.value
+                        );
+                    }
+                );
+            }
+        }
+    );
+</script>
+
 
 </html>
